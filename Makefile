@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/08/30 02:01:21 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/09/01 19:34:47 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ RM			= rm -rf
 all			: $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(shell dirname $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(GIT_SUBM): %/.git: .gitmodules
