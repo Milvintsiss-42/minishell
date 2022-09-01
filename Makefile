@@ -6,14 +6,15 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/09/01 19:34:47 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/09/01 19:35:25 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 SRCS_DIR	= srcs
-SRCS		= minishell.c
+SRCS		= minishell.c\
+ $(addprefix common/, commands_utils.c)
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

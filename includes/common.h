@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/01 19:00:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:08:48 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 // -> stdout of cat is written to outfile2 in append mode
 // -> nothing is passed as stdin to the second "cat" but "cat" doesn't wait for
 // input.
+// 
+// Each command needs to be initiated with default_command() method to avoid
+// unitialized parameters.
 typedef struct s_command
 {
 	const char	*cmd;
@@ -36,5 +39,7 @@ typedef struct s_command
 	int			pipe_out[2];
 	int			is_last;
 }	t_command;
+
+t_command			default_command(void);
 
 #endif
