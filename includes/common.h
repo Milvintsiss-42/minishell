@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/08/30 15:46:39 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:00:58 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_command
 	const char	*infile;
 	const char	*outfile;
 	int			is_append_mode;
-	int			pipe_in;
-	int			pipe_out;
+	int			pipe_in[2];
+	int			pipe_out[2];
 	int			is_last;
 }	t_command;
 
