@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/01 19:08:48 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:51:46 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_command
 	int			pipe_out[2];
 	int			is_last;
 }	t_command;
+
+typedef struct s_prg_data
+{
+	const char	*bin_name;
+	const char	**env;
+	t_command	*commands;
+	int			nb_commands;	
+}	t_prg_data;
 
 t_command			default_command(void);
 
