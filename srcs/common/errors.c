@@ -6,11 +6,12 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:56:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 14:59:27 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:39:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include <stdio.h>
 #include <sys/errno.h>
 
 int	ft_perror(t_prg_data prg_data, const char *error_str)

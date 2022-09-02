@@ -6,12 +6,14 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/08/30 02:36:49 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:56:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+
+# include "common.h"
 
 // ERR_CSM errors are custom errors that need arguments and to be printed with
 // ft_print_fd.

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:04:37 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:44:16 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	main(int argc, char const **argv, char const **env)
 	t_prg_data	prg_data;
 
 	init_prg_data(&prg_data, argc, argv, env);
+	if (KDEBUG_EXEC)
+		test_execution(&prg_data);
 	return (0);
 }
