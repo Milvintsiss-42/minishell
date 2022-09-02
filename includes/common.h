@@ -6,12 +6,14 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 14:51:46 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:00:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
+
+# define ERR_UNKNOWN			"Unknown error"
 
 // Only last infile, outfile, or here_doc are needed, write an error to the
 // stderr for each infile, outfile, here_doc who are overwrote.
@@ -48,6 +50,12 @@ typedef struct s_prg_data
 	int			nb_commands;	
 }	t_prg_data;
 
-t_command			default_command(void);
+t_command	default_command(void);
+
+int			ft_perror(t_prg_data prg_data, const char *error_str);
+int			ft_fperror(t_prg_data prg_data, const char *filename,
+				const char *error_str);
+int			ft_perror_errno(t_prg_data prg_data);
+int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
 
 #endif
