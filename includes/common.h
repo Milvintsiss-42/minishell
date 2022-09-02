@@ -6,18 +6,20 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:26:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:43:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
 
+# include "libft.h"
+
 # ifndef KDEBUG
 #  define KDEBUG 0
 # endif
-# ifndef KDEBUG_EXECUTION
-#  define KDEBUG_EXECUTION 0
+# ifndef KDEBUG_EXEC
+#  define KDEBUG_EXEC 0
 # endif
 
 # define ERR_UNKNOWN			"Unknown error"
@@ -58,6 +60,7 @@ typedef struct s_prg_data
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
+void		test_execution(t_prg_data *prg_data);
 
 t_command	default_command(void);
 
