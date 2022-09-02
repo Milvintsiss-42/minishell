@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:14:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:26:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@
 // unitialized parameters.
 typedef struct s_command
 {
-	const char	*cmd;
-	const char	**args;
-	const char	**env;
-	int			read_from_here_doc;
-	const char	*here_doc_limiter;
-	const char	*infile;
-	const char	*outfile;
-	int			is_append_mode;
-	int			pipe_in[2];
-	int			pipe_out[2];
-	int			is_last;
+	char	*cmd;
+	char	**args;
+	char	**env;
+	int		read_from_here_doc;
+	char	*here_doc_limiter;
+	char	*infile;
+	char	*outfile;
+	int		is_append_mode;
+	int		pipe_in[2];
+	int		pipe_out[2];
+	int		is_last;
 }	t_command;
 
 typedef struct s_prg_data
@@ -56,6 +56,8 @@ typedef struct s_prg_data
 	t_command	*commands;
 	int			nb_commands;	
 }	t_prg_data;
+
+int			execute(t_prg_data *prg_data);
 
 t_command	default_command(void);
 
