@@ -6,12 +6,19 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:00:37 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:14:24 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
+
+# ifndef KDEBUG
+#  define KDEBUG 0
+# endif
+# ifndef KDEBUG_EXECUTION
+#  define KDEBUG_EXECUTION 0
+# endif
 
 # define ERR_UNKNOWN			"Unknown error"
 

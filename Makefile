@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/09/01 19:35:25 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/09/02 15:13:04 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,9 @@ ifeq (sanitize, $(filter sanitize,$(MAKECMDGOALS)))
 endif
 ifeq (debug, $(filter debug,$(MAKECMDGOALS)))
 	CFLAGS	+= -D KDEBUG=1
+endif
+ifeq (debug_execution, $(filter debug_execution,$(MAKECMDGOALS)))
+	CFLAGS	+= -D KDEBUG_EXECUTION=1
 endif
 
 GIT_SUBM	= $(shell \
@@ -86,9 +89,11 @@ sanitize	:
 			@echo "WARN: Compiling with fsanitize flag!"
 debug		:
 			@echo "WARN: debug is enabled"
+debug		:
+			@echo "WARN: debug_execution is enabled"
 noconnection:
 			@echo "WARN: Fetching submodules disabled!"
 
 .PHONY: \
  all clean fclean fcleanall re rmlibft\
- nWerror sanitize debug noconnection
+ nWerror sanitize debug debug_execution noconnection
