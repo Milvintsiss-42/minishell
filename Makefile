@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/09/02 17:25:05 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/09/03 19:20:10 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 SRCS_DIR	= srcs
-SRCS		= minishell.c\
+SRCS		= main.c\
  $(addprefix common/, commands_utils.c errors.c)\
  $(addprefix execution/, execution.c execution_testing.c\
  pipe_utils.c)
