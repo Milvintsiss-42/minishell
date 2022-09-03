@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:56:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:39:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:15:12 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <sys/errno.h>
 
+// prints error for the program
 int	ft_perror(t_prg_data prg_data, const char *error_str)
 {
 	ft_putstr_fd(prg_data.bin_name, 2);
@@ -23,6 +24,7 @@ int	ft_perror(t_prg_data prg_data, const char *error_str)
 	return (1);
 }
 
+// prints error for the file
 int	ft_fperror(t_prg_data prg_data, const char *filename, const char *error_str)
 {
 	ft_putstr_fd(prg_data.bin_name, 2);
@@ -34,6 +36,7 @@ int	ft_fperror(t_prg_data prg_data, const char *filename, const char *error_str)
 	return (1);
 }
 
+// prints error for the program
 int	ft_perror_errno(t_prg_data prg_data)
 {
 	if (errno == 0)
@@ -42,6 +45,7 @@ int	ft_perror_errno(t_prg_data prg_data)
 	return (errno);
 }
 
+// prints error for the file
 int	ft_fperror_errno(t_prg_data prg_data, const char *filename)
 {
 	if (errno == 0)
