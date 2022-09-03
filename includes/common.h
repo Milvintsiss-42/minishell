@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/03 19:16:56 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/09/03 19:49:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ typedef struct s_prg_data
 	const char	**env;
 	t_command	*commands;
 	int			nb_commands;
+
+	char		**history;
+	int			len_history;
+
+	int			last_exit_status;
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
