@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execution_testing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:44:29 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:50:35 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
 // This execution is not protected as it is only used for debugging purposes
+// ls | cat | wc -l
 void	test_execution(t_prg_data *prg_data)
 {
 	prg_data->nb_commands = 3;
