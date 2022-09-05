@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:44:16 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:56:56 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ int	main(int argc, char const **argv, char const **env)
 	init_prg_data(&prg_data, argc, argv, env);
 	if (KDEBUG_EXEC)
 		test_execution(&prg_data);
+	// ask indefinitely for a command
+		// each command input is parsed
+		// listen for signals CTRL + D or C or /
 	return (0);
 }
