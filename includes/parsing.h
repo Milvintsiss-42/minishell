@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/08/30 16:17:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:45:37 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
+
+# include "common.h"
 
 // ERR_CSM errors are custom errors that need arguments and to be printed with
 // ft_print_fd.
@@ -33,5 +35,7 @@ alone, please give them a friend"
 // ignored.
 # define ERR_CSM_MULTIPLE_OUTPUTS "%s: warning: Multiple outputs are given, \
 \"%s\" will be ignored."
+
+t_command	*get_commands(char *line);
 
 #endif

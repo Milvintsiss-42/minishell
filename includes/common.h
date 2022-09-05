@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:43:59 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:07:54 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COMMON_H
 
 # include "libft.h"
+# include <stdbool.h>
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -33,7 +34,9 @@
 // -> stdout of cat is written to outfile2 in append mode
 // -> nothing is passed as stdin to the second "cat" but "cat" doesn't wait for
 // input.
-// 
+
+// Command stucture
+//
 // Each command needs to be initiated with default_command() method to avoid
 // unitialized parameters.
 typedef struct s_command
@@ -51,12 +54,24 @@ typedef struct s_command
 	int		is_last;
 }	t_command;
 
+// Initalized at startup
+// 
+// contains :
+// - program name
+// - environment variables
+// - the history of the commands
+// - amount of commands in the history
 typedef struct s_prg_data
 {
 	const char	*bin_name;
 	const char	**env;
 	t_command	*commands;
-	int			nb_commands;	
+	int			nb_commands;
+
+	char		**history;
+	int			len_history;
+
+	int			last_exit_status;
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
