@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:56:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 15:39:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:44:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,13 @@
 
 int	ft_perror(t_prg_data prg_data, const char *error_str)
 {
-	ft_putstr_fd(prg_data.bin_name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(error_str, 2);
-	ft_putstr_fd("\n", 2);
+	ft_printf_fd(2, "%s: %s\n", prg_data.bin_name, error_str);
 	return (1);
 }
 
 int	ft_fperror(t_prg_data prg_data, const char *filename, const char *error_str)
 {
-	ft_putstr_fd(prg_data.bin_name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(filename, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(error_str, 2);
-	ft_putstr_fd("\n", 2);
+	ft_printf_fd(2, "%s: %s: %s\n", prg_data.bin_name, filename, error_str);
 	return (1);
 }
 
@@ -46,8 +38,7 @@ int	ft_fperror_errno(t_prg_data prg_data, const char *filename)
 {
 	if (errno == 0)
 		return (ft_fperror(prg_data, filename, ERR_UNKNOWN));
-	ft_putstr_fd(prg_data.bin_name, 2);
-	ft_putstr_fd(": ", 2);
-	perror(filename);
+	ft_printf_fd(2, "%s: %s: %s\n",
+		prg_data.bin_name, filename, strerror(errno));
 	return (errno);
 }
