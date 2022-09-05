@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/03 19:49:03 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:07:54 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COMMON_H
 
 # include "libft.h"
+# include <stdbool.h>
 
 # ifndef KDEBUG
 #  define KDEBUG 0
