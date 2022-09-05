@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:17:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/02 17:30:18 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:41:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	create_pipes(t_prg_data *prg_data)
 		if (pipe(fds_pipe) == -1)
 		{
 			ft_perror_errno(*prg_data);
-			close_all_pipes(prg_data);
 			return (0);
 		}
 		prg_data->commands[i].pipe_out[0] = fds_pipe[0];
