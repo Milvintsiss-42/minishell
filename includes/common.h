@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/06 13:29:20 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/09/06 16:48:40 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ typedef struct s_command
 	char	**args;
 	char	**env;
 	enum	{NONE, PIPE, OR, AND} e_sep;
-	int		read_from_here_doc;
+	bool	read_from_here_doc;
 	char	*here_doc_limiter;
 	char	*infile;
 	char	*outfile;
-	int		is_append_mode;
+	bool	is_append_mode;
 	int		pipe_in[2];
 	int		pipe_out[2];
-	int		is_last;
+	bool	is_last;
 }	t_command;
 
 // Initalized at startup
