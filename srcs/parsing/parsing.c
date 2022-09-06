@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/09/05 15:46:23 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/09/06 13:47:48 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	is_empty(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (1);
 	while (line[i])
 	{
 		if (!ft_isspace(line[i]))
