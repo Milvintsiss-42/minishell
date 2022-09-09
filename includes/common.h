@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/06 16:48:40 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/09/09 16:52:41 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define COMMON_H
 
 # include "libft.h"
-# include <stdbool.h>
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -24,6 +23,11 @@
 # endif
 
 # define ERR_UNKNOWN			"Unknown error"
+
+# define TRUE		1
+# define FALSE		0
+
+typedef int			t_bool;
 
 // Only last infile, outfile, or here_doc are needed, write an error to the
 // stderr for each infile, outfile, here_doc who are overwrote.
@@ -45,14 +49,14 @@ typedef struct s_command
 	char	**args;
 	char	**env;
 	enum	{NONE, PIPE, OR, AND} e_sep;
-	bool	read_from_here_doc;
+	t_bool	read_from_here_doc;
 	char	*here_doc_limiter;
 	char	*infile;
 	char	*outfile;
-	bool	is_append_mode;
+	t_bool	is_append_mode;
 	int		pipe_in[2];
 	int		pipe_out[2];
-	bool	is_last;
+	t_bool	is_last;
 }	t_command;
 
 // Initalized at startup
