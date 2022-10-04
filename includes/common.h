@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/09 16:52:41 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:21:15 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_command
 	char	*cmd;
 	char	**args;
 	char	**env;
-	enum	{NONE, PIPE, OR, AND} e_sep;
+	enum	{e_NONE, e_PIPE, e_OR, e_AND} e_sep;
 	t_bool	read_from_here_doc;
 	char	*here_doc_limiter;
 	char	*infile;
