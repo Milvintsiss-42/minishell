@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/09 16:53:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:25:57 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_command	default_command(void)
 	command.cmd = 0;
 	command.args = 0;
 	command.env = 0;
-	command.e_sep = NONE;
+	command.e_sep = e_NONE;
 	command.read_from_here_doc = FALSE;
 	command.here_doc_limiter = 0;
 	command.infile = 0;
