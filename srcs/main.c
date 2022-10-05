@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/05 14:56:56 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:41:23 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char const **argv, char const **env)
 	init_prg_data(&prg_data, argc, argv, env);
 	if (KDEBUG_EXEC)
 		test_execution(&prg_data);
-	// ask indefinitely for a command
-		// each command input is parsed
-		// listen for signals CTRL + D or C or /
+	ft_loop_input(&prg_data);
 	return (0);
 }
