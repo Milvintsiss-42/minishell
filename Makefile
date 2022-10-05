@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/09/03 19:20:10 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/05 23:23:39 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 $(GIT_SUBM): %/.git: .gitmodules
 ifneq (noconnection, $(filter noconnection,$(MAKECMDGOALS)))
 	@git submodule init
-	@git submodule update --remote $*
+	@git submodule update $*
 endif
 
 $(LIBFT)	:
