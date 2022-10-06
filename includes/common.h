@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 00:05:16 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:16:53 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COMMON_H
 
 # include "libft.h"
+# include "errno.h"
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -90,5 +91,10 @@ int			ft_fperror(t_prg_data prg_data, const char *filename,
 				const char *error_str);
 int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
+
+int			get_absolute_path(char **abs_path, const char *r_path,
+				char *env_path);
+char		*get_path_from_env(char	**env);
+const char	*ft_basename(const char *path);
 
 #endif
