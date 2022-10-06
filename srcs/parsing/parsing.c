@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/06 18:09:18 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:28:25 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	is_empty(char *line)
 // Also checks if the line is not empty
 t_command	**parsing(t_prg_data *prg_data, char *line)
 {
+	(void)prg_data;
 	if (is_empty(line))
 		return (NULL);
 	// TODO: check if all whitespaces are ignored in the command input or just space and tab

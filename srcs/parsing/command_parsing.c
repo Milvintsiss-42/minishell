@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:12 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/06 18:09:58 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:16:24 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,33 @@ static int	get_nb_commands(char *line)
 		i++;
 	}
 	return (amount);
+}
+
+static char	**get_args(char *line, int start, int end)
+{
+	(void)line;
+	(void)start;
+	(void)end;
+	return (NULL);
+}
+
+// creates a command struct based on args
+// returns a pointer to a t_command
+static t_command	*generate_cmd(int sep, int start, int end, char *line)
+{
+	t_command	*cmd;
+
+	cmd = malloc(sizeof(t_command));
+	if (!cmd)
+		return (NULL);
+	*cmd = default_command();
+	cmd->args = get_args(line, start, end);
+	if (!cmd->args)
+		return (NULL);
+	cmd->cmd = cmd->args[-1];
+	cmd->e_sep = sep;
+	cmd->is_last = FALSE;
+	return (cmd);
 }
 
 static t_command	*get_command(char *line, int cmd_nb)
@@ -99,50 +126,6 @@ static t_command	*get_command(char *line, int cmd_nb)
 		i++;
 	}
 	return (NULL);
-}
-
-// creates a command struct based on args
-// returns a pointer to a t_command
-static t_command	*generates_cmd(int sep, int start, int end, char *line)
-{
-	t_command	*cmd;
-
-	cmd = malloc(sizeof(t_command));
-	if (!cmd)
-		return (NULL);
-	*cmd = default_command();
-	cmd->args = get_args(line, start, end);
-	if (!cmd->args)
-		return (NULL);
-	cmd->cmd = cmd->args[0];
-	cmd->e_sep = sep;
-	cmd->is_last = FALSE;
-	return (cmd);
-}
-
-static char	**get_args(char *str, int start, int end)
-{
-	char		**args;
-	t_bool		in_squote;
-	t_bool		in_dquote;
-
-	str += start;
-	in_squote = FALSE;
-	in_dquote = FALSE;
-	args = (char **)malloc(sizeof(char *));
-	if (!args)
-		return (NULL);
-	while (str != str + end)
-	{
-		if (!in_squote && line[i] == '\"' && i - 1 >= 0 && line[i - 1] != '\\')
-			in_dquote = !in_dquote;
-		if (!in_dquote && line[i] == '\'' && i - 1 >= 0 && line[i - 1] != '\\')
-			in_squote = !in_squote;
-		while (*str == ' ' || *str == '\t')
-			line++;
-		str++;
-	}
-	retun (NULL);
 }
 
 // parse the line to separate each commands (seps: | || && > >> < <<)

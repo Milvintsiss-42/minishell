@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/06 18:38:12 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/06 19:39:41 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS		= main.c \
 	$(addprefix execution/, \
 		execution_testing.c \
 		execution.c \
-		expandables.c \
 		pipe_utils.c \
 	) \
 	$(addprefix parsing/, \
@@ -42,7 +41,7 @@ LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
 CC			= cc
-CFLAGS		= -Wall -Wextra
+CFLAGS		= -Wall -Wextra -Werror -lreadline
 LFLAGS		= $(LIBFT_FLAGS)
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror

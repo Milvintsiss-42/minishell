@@ -6,17 +6,14 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/05 16:49:10 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:40:23 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include "parsing.h"
+#include "cli.h" 
 
-//TODO: change prompt if needed
-static void	ft_display_prompt(void)
-{
-	ft_printf("> ");
-}
 
 //TODO: handle if command is running
 //TODO: listen for signals CTRL + D or C or /
@@ -25,6 +22,7 @@ static void	signal_handler(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
+		// exit(0); // TODO: handle exit and free everything
 		signal(SIGINT, signal_handler);
 	}
 }
@@ -34,15 +32,13 @@ static void	signal_handler(int signo)
 //TODO: listen for signals CTRL + D or C or /
 void	ft_loop_input(t_prg_data *data)
 {
-	char	*line;
-	char	**cmds;
+	char		*line;
+	t_command	**cmds;
 
 	signal(SIGINT, signal_handler);
-	print_logo();
 	while (TRUE)
 	{
-		ft_display_prompt();
-		line = get_next_line(STDIN_FILENO);
+		line = readline("> ");
 		//TODO: HANDLE ERROR if line is NULL
 		//TODO: add command to history
 		cmds = parsing(data, line);
