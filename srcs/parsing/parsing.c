@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/06 19:28:25 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 15:10:27 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ t_command	**parsing(t_prg_data *prg_data, char *line)
 	// TODO: check if all whitespaces are ignored in the command input or just space and tab
 	while (*line == ' ' || *line == '\t')
 		line++;
-	// TODO: add parsing validation such as opening and closing quotes no sinle &...
+	// TODO: add parsing validation such as opening and closing quotes, single &...
 	return (get_commands(line));
 }
