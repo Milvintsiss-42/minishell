@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/07 14:22:47 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/07 18:13:28 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ SRCS		= main.c \
 	$(addprefix parsing/, \
 		parsing.c \
 		command_parsing.c \
-	) 
+	) \
+	$(addprefix signals/, \
+		signals.c \
+	)
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 19:40:29 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:11:15 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define COMMON_H
 
 # include "libft.h"
-# include <signal.h>
 # include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>

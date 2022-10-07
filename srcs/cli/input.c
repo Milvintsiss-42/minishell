@@ -6,28 +6,14 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 17:44:17 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:13:00 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "parsing.h"
 #include "cli.h"
-
-//TODO: handle if command is running
-//TODO: listen for signals CTRL + D or C or /
-static void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		// TODO: find way to print prompt again
-		ft_putstr_fd("\n", 2);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		return ;
-	}
-}
+#include "signals.h"
 
 // ask indefinitely for a command
 // each command input is parsed and executed
@@ -37,13 +23,16 @@ void	ft_loop_input(t_prg_data *data)
 	char		*line;
 	t_command	**cmds;
 
-	signal(SIGINT, signal_handler);
-	// signal(SIGQUIT, SIG_IGN);
+	ft_signal_handler();
 	while (TRUE)
 	{
-		line = readline("\n> ");
+		line = readline("> ");
 		if (!line)
-			continue; //TODO: exit properly
+		{
+			// CTRL + D case
+			printf("exit\n");
+			exit(0); // TODO: handle exit + clean
+		}
 		if (ft_strlen(line) > 0)
 			add_history(line); //TODO: free history at the end -> rl_clear_history();
 		(void)data;
