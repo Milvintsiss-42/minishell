@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/06 19:40:23 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 14:23:22 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	signal_handler(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
-		// exit(0); // TODO: handle exit and free everything
+		exit(0); // TODO: handle exit and free everything
 		signal(SIGINT, signal_handler);
 	}
 }
