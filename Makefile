@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/06 19:39:41 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/07 14:22:47 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -lreadline
+CFLAGS		= -Wall -Wextra -Werror
 LFLAGS		= $(LIBFT_FLAGS)
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
@@ -83,7 +83,7 @@ rmlibft		:
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
-			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
+			$(CC) $(CFLAGS) -lreadline $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
 			
 clean		:
 			$(RM) $(OBJ_DIR)
