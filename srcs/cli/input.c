@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 15:46:21 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:44:17 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ static void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
-		ft_putstr("\n");
-		exit(0); // TODO: handle exit and free everything
-		signal(SIGINT, signal_handler);
+		// TODO: find way to print prompt again
+		ft_putstr_fd("\n", 2);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		return ;
 	}
 }
 
@@ -35,18 +38,17 @@ void	ft_loop_input(t_prg_data *data)
 	t_command	**cmds;
 
 	signal(SIGINT, signal_handler);
+	// signal(SIGQUIT, SIG_IGN);
 	while (TRUE)
 	{
-		line = readline("> ");
-		//TODO: HANDLE ERROR if line is NULL
-		//TODO: add command to history
+		line = readline("\n> ");
+		if (!line)
+			continue; //TODO: exit properly
 		if (ft_strlen(line) > 0)
-			add_history(line);
+			add_history(line); //TODO: free history at the end -> rl_clear_history();
 		(void)data;
 		(void)cmds;
-		// cmds = parsing(data, line);
-		// if (!cmds)
-		// 	continue ; //TODO: handle error
+		//TODO: parsing
 		//TODO: execution
 		//TODO: free allocated stuffs
 		free(line);
