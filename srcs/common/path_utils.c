@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:41:26 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 18:17:43 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:06:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	get_absolute_path(char **abs_path, const char *r_path, char *env_path)
 
 char	*get_path_from_env(char	**env)
 {
+	if (!env)
+		return (0);
 	while (*env)
 	{
 		if (ft_strncmp(*env, "PATH=", 5) == 0)
