@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/07 18:13:28 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/10 19:33:49 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra
 LFLAGS		= $(LIBFT_FLAGS)
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
