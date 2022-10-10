@@ -37,7 +37,8 @@ static char	*ft_join_paths(char const *p1, size_t len_p1, char const *p2)
 	return (str - (len1 + (!is_finished) + len2));
 }
 
-static int	from_env_path(char **abs_path, const char *r_path, char *env_path)
+static int	from_env_path(char **abs_path, const char *r_path,
+	const char *env_path)
 {
 	char	*next;
 
@@ -68,7 +69,7 @@ static int	from_env_path(char **abs_path, const char *r_path, char *env_path)
 // Store the absolute path or the relative path in abs_path if he is available.
 // Returns 0 in case of sucess, returns errno otherwise (be sure to use the
 // return value of this method as errno can be overwritted).
-int	get_absolute_path(char **abs_path, const char *r_path, char *env_path)
+int	get_absolute_path(char **abs_path, const char *r_path, const char *env_path)
 {
 	int	s_errno;
 
@@ -89,7 +90,7 @@ int	get_absolute_path(char **abs_path, const char *r_path, char *env_path)
 	return (s_errno);
 }
 
-char	*get_path_from_env(char	**env)
+const char	*get_path_from_env(char *const *env)
 {
 	if (!env)
 		return (0);

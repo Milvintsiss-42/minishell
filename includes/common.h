@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 18:16:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:03:36 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,18 @@ typedef int			t_bool;
 // unitialized parameters.
 typedef struct s_command
 {
-	char	*cmd;
-	char	**args;
-	char	**env;
-	enum	{e_NONE, e_PIPE, e_OR, e_AND} e_sep;
-	t_bool	read_from_here_doc;
-	char	*here_doc_limiter;
-	char	*infile;
-	char	*outfile;
-	t_bool	is_append_mode;
-	int		pipe_in[2];
-	int		pipe_out[2];
-	t_bool	is_last;
+	char		*cmd;
+	char		**args;
+	char *const	*env;
+	enum		{e_NONE, e_PIPE, e_OR, e_AND} e_sep;
+	t_bool		read_from_here_doc;
+	char		*here_doc_limiter;
+	char		*infile;
+	char		*outfile;
+	t_bool		is_append_mode;
+	int			pipe_in[2];
+	int			pipe_out[2];
+	t_bool		is_last;
 }	t_command;
 
 // Initalized at startup
@@ -70,7 +70,7 @@ typedef struct s_command
 typedef struct s_prg_data
 {
 	const char	*bin_name;
-	const char	**env;
+	char *const	*env;
 	t_command	*commands;
 	int			nb_commands;
 	int			*commands_pids;
@@ -93,8 +93,8 @@ int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
 
 int			get_absolute_path(char **abs_path, const char *r_path,
-				char *env_path);
-char		*get_path_from_env(char	**env);
+				const char *env_path);
+const char	*get_path_from_env(char *const *env);
 const char	*ft_basename(const char *path);
 
 #endif

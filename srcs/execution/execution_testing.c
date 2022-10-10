@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_testing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/09/03 19:50:35 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/10 21:15:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	test_execution(t_prg_data *prg_data)
 	prg_data->commands[0] = default_command();
 	prg_data->commands[1] = default_command();
 	prg_data->commands[2] = default_command();
+	prg_data->commands[0].env = prg_data->env;
+	prg_data->commands[1].env = prg_data->env;
+	prg_data->commands[2].env = prg_data->env;
 	prg_data->commands[0].cmd = "ls";
 	prg_data->commands[1].cmd = "cat";
 	prg_data->commands[2].cmd = "wc";
