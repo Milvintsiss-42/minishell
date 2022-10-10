@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 18:45:46 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/10 19:48:41 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int	main(int argc, char const **argv, char const **env)
 	t_prg_data	prg_data;
 
 	init_prg_data(&prg_data, argc, argv, env);
-	// if (KDEBUG_EXEC)
-	// 	test_execution(&prg_data);
+	if (KDEBUG_EXEC)
+	{
+		test_execution(&prg_data);
+		return (0);
+	}
 	ft_print_logo();
 	ft_loop_input(&prg_data);
 	return (0);
