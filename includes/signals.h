@@ -6,12 +6,12 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:10:48 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 18:14:11 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/10 19:24:08 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIGNALS_H
-# define CLISIGNALS_H_H
+# define SIGNALS_H
 
 # include <signal.h>
 
