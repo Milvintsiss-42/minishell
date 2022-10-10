@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "errno.h"
+# include "string.h"
 
 # ifndef KDEBUG
 #  define KDEBUG 0
