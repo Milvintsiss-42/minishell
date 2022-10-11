@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/11 13:35:22 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/10 19:33:49 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,6 @@ SRCS		= main.c \
 		pipe_utils.c \
 	) \
 	$(addprefix parsing/, \
-		$(addprefix validation, \
-			validation.c
-		) \
 		parsing.c \
 		command_parsing.c \
 	) \
