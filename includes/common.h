@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/10 21:03:36 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:32:19 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_prg_data
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
-void		test_execution(t_prg_data *prg_data);
+int			test_execution(t_prg_data *prg_data);
 
 t_command	default_command(void);
 

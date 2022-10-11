@@ -24,14 +24,19 @@ int	clean_execution(t_prg_data *prg_data)
 	return (0);
 }
 
+// If something fails during the execution of this method or the last child
+// quitted unexpectedly, returns -1.
+// Otherwise the returns result of the last child is returned.
 int	execute(t_prg_data *prg_data)
 {
+	int	return_result;
+
 	prg_data->commands_pids = 0;
 	if (!create_pipes(prg_data))
 		return (clean_execution(prg_data));
 	if (!launch_childs(prg_data))
 		return (clean_execution(prg_data));
+	return_result = wait_for_childs_to_finish(prg_data);
 	clean_execution(prg_data);
-	// TODO: should return the result of the last command
-	return (1);
+	return (return_result);
 }

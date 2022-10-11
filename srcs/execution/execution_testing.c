@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/10 21:28:42 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:32:04 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // This execution is not protected as it is only used for debugging purposes
 // ls | cat | wc -l
-void	test_execution(t_prg_data *prg_data)
+int	test_execution(t_prg_data *prg_data)
 {
 	prg_data->nb_commands = 3;
 	prg_data->commands = malloc(sizeof(t_command) * prg_data->nb_commands);
@@ -38,5 +38,5 @@ void	test_execution(t_prg_data *prg_data)
 	prg_data->commands[1].args[1] = 0;
 	prg_data->commands[2].args[2] = 0;
 	prg_data->commands[2].is_last = 1;
-	execute(prg_data);
+	return (execute(prg_data));
 }

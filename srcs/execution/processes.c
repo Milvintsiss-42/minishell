@@ -6,11 +6,12 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/10 21:07:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:33:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include <sys/wait.h>
 
 static void	exit_process(t_prg_data *prg_data, int err)
 {
@@ -66,4 +67,31 @@ int	launch_childs(t_prg_data *prg_data)
 		i++;
 	}
 	return (1);
+}
+
+// Wait for all childs to finish, gets the return result of the last child and
+// returns it.
+// If something fails during the execution of this method or the last child
+// quitted unexpectedly, returns -1.
+int	wait_for_childs_to_finish(t_prg_data *prg_data)
+{
+	int	i;
+	int	wstatus;
+	int	err;
+
+	i = -1;
+	err = 0;
+	while (++i < prg_data->nb_commands - 1)
+	{
+		if (waitpid(prg_data->commands_pids[i], &wstatus, 0) == -1)
+		{
+			ft_perror_errno(*prg_data);
+			err = 1;
+		}
+	}
+	if (err)
+		return (-1);
+	if (WIFEXITED(wstatus))
+		return (WEXITSTATUS(wstatus));
+	return (-1);
 }

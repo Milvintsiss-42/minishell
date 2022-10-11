@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/06 19:45:07 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:28:55 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void		close_all_pipes(t_prg_data *prg_data);
 int			create_pipes(t_prg_data *prg_data);
 
 int			launch_childs(t_prg_data *prg_data);
-
+int			wait_for_childs_to_finish(t_prg_data *prg_data);
 #endif
