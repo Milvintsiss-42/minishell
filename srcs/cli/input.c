@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 18:13:00 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/11 13:38:32 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void	ft_loop_input(t_prg_data *data)
 {
 	char		*line;
-	t_command	**cmds;
+	t_command	*cmd;
 
 	ft_signal_handler();
 	while (TRUE)
@@ -35,11 +35,14 @@ void	ft_loop_input(t_prg_data *data)
 		}
 		if (ft_strlen(line) > 0)
 			add_history(line); //TODO: free history at the end -> rl_clear_history();
-		(void)data;
-		(void)cmds;
-		//TODO: parsing
-		//TODO: execution
-		//TODO: free allocated stuffs
-		free(line);
+		while (TRUE)
+		{
+			cmd = parsing(data, line); //TODO: parsing
+			if (!cmd)
+				break ;
+			//TODO: execution
+			free(cmd); //TODO: free allocated stuffs
+		}
+		free(line); //TODO: free allocated stuffs
 	}
 }
