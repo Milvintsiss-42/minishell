@@ -6,17 +6,34 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/05 23:23:39 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/10 19:33:49 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 SRCS_DIR	= srcs
-SRCS		= main.c\
- $(addprefix common/, commands_utils.c errors.c)\
- $(addprefix execution/, execution.c execution_testing.c\
- pipe_utils.c)
+SRCS		= main.c \
+	$(addprefix cli/, \
+		input.c \
+		logo.c \
+	) \
+	$(addprefix common/, \
+		commands_utils.c \
+		errors.c \
+	) \
+	$(addprefix execution/, \
+		execution_testing.c \
+		execution.c \
+		pipe_utils.c \
+	) \
+	$(addprefix parsing/, \
+		parsing.c \
+		command_parsing.c \
+	) \
+	$(addprefix signals/, \
+		signals.c \
+	)
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -69,7 +86,7 @@ rmlibft		:
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
-			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
+			$(CC) $(CFLAGS) -lreadline $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
 			
 clean		:
 			$(RM) $(OBJ_DIR)

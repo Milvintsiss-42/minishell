@@ -6,16 +6,15 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/09/06 13:47:48 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 15:10:27 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "parsing.h"
 
-// TODO: check if all whitespaces are ignored in the command input
 // Checks for empty line
-int	is_empty(char *line)
+static int	is_empty(char *line)
 {
 	int	i;
 
@@ -24,7 +23,7 @@ int	is_empty(char *line)
 		return (1);
 	while (line[i])
 	{
-		if (!ft_isspace(line[i]))
+		if (!ft_isspace(line[i])) // TODO: check if all whitespaces are ignored in the command input
 			return (0);
 		i++;
 	}
@@ -34,12 +33,14 @@ int	is_empty(char *line)
 // Takes as input the raw user input from the shell
 // Will fill the program data struct with the commands to exec
 // Also checks if the line is not empty
-void	parsing(t_prg_data *prg_data, char *line)
+t_command	**parsing(t_prg_data *prg_data, char *line)
 {
-	t_command	*cmds;
-
+	(void)prg_data;
 	if (is_empty(line))
-		return ;
-	cmds = get_commands(line);
-	return ;
+		return (NULL);
+	// TODO: check if all whitespaces are ignored in the command input or just space and tab
+	while (*line == ' ' || *line == '\t')
+		line++;
+	// TODO: add parsing validation such as opening and closing quotes, single &...
+	return (get_commands(line));
 }
