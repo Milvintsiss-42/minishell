@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/11 13:38:32 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:36:47 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,28 @@
 #include "cli.h"
 #include "signals.h"
 
+static void	handle_parsing_exec(t_prg_data *data, char	*line)
+{
+	t_command	*cmds;
+	int			cmd_no;
+
+	cmd_no = 0;
+	while (TRUE)
+	{
+		cmds = parsing(data, line, cmd_no);
+		if (!cmds)
+			break ;
+		//TODO: execution
+		free(cmds); //TODO: free allocated stuffs
+	}
+}
+
 // ask indefinitely for a command
 // each command input is parsed and executed
 //TODO: listen for signals CTRL + D or C or /
 void	ft_loop_input(t_prg_data *data)
 {
 	char		*line;
-	t_command	*cmd;
 
 	ft_signal_handler();
 	while (TRUE)
@@ -35,14 +50,7 @@ void	ft_loop_input(t_prg_data *data)
 		}
 		if (ft_strlen(line) > 0)
 			add_history(line); //TODO: free history at the end -> rl_clear_history();
-		while (TRUE)
-		{
-			cmd = parsing(data, line); //TODO: parsing
-			if (!cmd)
-				break ;
-			//TODO: execution
-			free(cmd); //TODO: free allocated stuffs
-		}
+		handle_parsing_exec(data, line);
 		free(line); //TODO: free allocated stuffs
 	}
 }
