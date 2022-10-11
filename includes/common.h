@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 16:32:19 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:39:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ int			execute(t_prg_data *prg_data);
 int			test_execution(t_prg_data *prg_data);
 
 t_command	default_command(void);
+void		reset_commands_data_and_free(t_prg_data *prg_data);
+void		free_commands(t_command *commands, int nb_commands);
+void		free_command_elements(t_command command);
 
 int			ft_perror(t_prg_data prg_data, const char *error_str);
 int			ft_fperror(t_prg_data prg_data, const char *filename,

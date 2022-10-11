@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 16:31:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:39:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@
 int	clean_execution(t_prg_data *prg_data)
 {
 	close_all_pipes(prg_data);
-	// TODO: method to free all command struct
-	free(prg_data->commands);
-	prg_data->commands = 0;
-	free(prg_data->commands_pids);
-	prg_data->commands_pids = 0;
+	reset_commands_data_and_free(prg_data);
 	return (0);
 }
 
