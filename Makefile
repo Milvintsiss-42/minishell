@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/10 19:33:49 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/12 17:08:25 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,15 +37,20 @@ SRCS		= main.c \
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./
+INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./\
+ -I$(RL_DIR)/include
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
+# Directory used for readline with a basic installation via Brew
+RL_DIR		= /usr/local/opt/readline
+
 CC			= cc
 CFLAGS		= -Wall -Wextra
-LFLAGS		= $(LIBFT_FLAGS)
+LFLAGS		= $(LIBFT_FLAGS)\
+ -L$(RL_DIR)/lib
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
 endif
