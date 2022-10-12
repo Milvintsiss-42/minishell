@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/12 17:08:25 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/12 19:29:25 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS		= main.c \
 		execution.c \
 		processes.c \
 		pipe_utils.c \
+		here_doc.c \
+		redirections.c \
 	) \
 	$(addprefix parsing/, \
 		parsing.c \

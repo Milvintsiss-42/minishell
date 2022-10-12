@@ -6,15 +6,17 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/12 18:11:14 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/12 20:54:52 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include <sys/wait.h>
 
-static void	exit_process(t_prg_data *prg_data, int err)
+void	exit_process(t_prg_data *prg_data, t_command *command, int err)
 {
+	close_pipe(command->pipe_in);
+	close_pipe(command->pipe_out);
 	clean_execution(prg_data);
 	exit(err);
 }
@@ -35,14 +37,26 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 		}
 		else
 			ft_fperror(*prg_data, command->cmd, strerror(s_errno));
-		exit_process(prg_data, s_errno);
+		exit_process(prg_data, command, s_errno);
 	}
 	execve(abs_path, command->args, command->env);
-	exit_process(prg_data, ft_perror_errno(*prg_data));
+	exit_process(prg_data, command, ft_perror_errno(*prg_data));
 }
 
 static void	launch_child(t_prg_data	*prg_data, t_command *command)
 {
+	if (command->here_doc_limiter != 0)
+		set_here_doc_as_stdin(prg_data, command);
+	else if (command->infile != 0)
+		set_infile_as_stdin(prg_data, command);
+	else
+		sets_pipe_as_stdin(prg_data, command);
+	close_pipe(command->pipe_in);
+	if (command->outfile != 0)
+		set_outfile_as_stdout(prg_data, command);
+	else
+		sets_pipe_as_stdout(prg_data, command);
+	close_pipe(command->pipe_out);
 	exec_command(prg_data, command);
 }
 
@@ -53,6 +67,12 @@ int	launch_childs(t_prg_data *prg_data)
 	i = 0;
 	while (i < prg_data->nb_commands)
 	{
+		if (i != 0)
+			cpy_pipe(prg_data->commands[i].pipe_in,
+				prg_data->commands[i - 1].pipe_out);
+		if (i != prg_data->nb_commands - 1)
+			if (pipe(prg_data->commands[i].pipe_out) == -1)
+				return (ft_perror_errno(*prg_data) * 0);
 		prg_data->commands[i].pid = fork();
 		if (prg_data->commands[i].pid < 0)
 			return (ft_perror_errno(*prg_data) * 0);
@@ -61,6 +81,8 @@ int	launch_childs(t_prg_data *prg_data)
 			launch_child(prg_data, &prg_data->commands[i]);
 			break ;
 		}
+		if (i != 0)
+			close_pipe(prg_data->commands[i].pipe_in);
 		i++;
 	}
 	return (1);

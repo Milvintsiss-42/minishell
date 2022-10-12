@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 16:28:55 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:27:38 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@
  delimited by end-of-file (wanted `%s')\n"
 
 int			clean_execution(t_prg_data *prg_data);
+void		exit_process(t_prg_data *prg_data, t_command *command, int err);
+
+void		sets_pipe_as_stdin(t_prg_data *prg_data, t_command *command);
+void		sets_pipe_as_stdout(t_prg_data *prg_data, t_command *command);
+void		cpy_pipe(int dst_pipe[2], int src_pipe[2]);
 void		close_pipe(int fds_pipe[2]);
-void		close_all_pipes(t_prg_data *prg_data);
-int			create_pipes(t_prg_data *prg_data);
+
+void		set_here_doc_as_stdin(t_prg_data *prg_data, t_command *command);
+
+void		set_infile_as_stdin(t_prg_data *prg_data, t_command *command);
+void		set_outfile_as_stdout(t_prg_data *prg_data, t_command *command);
 
 int			launch_childs(t_prg_data *prg_data);
 int			wait_for_childs_to_finish(t_prg_data *prg_data);
