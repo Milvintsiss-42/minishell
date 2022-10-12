@@ -50,3 +50,9 @@ OUTPUT
 OUTPUT
  and  then hello
 ```
+
+```shell
+> ls (&& ls -alh)
+OUTPUT
+parse error near `)'
+```

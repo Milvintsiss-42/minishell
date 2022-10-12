@@ -14,6 +14,9 @@
 # define COMMON_H
 
 # include "libft.h"
+# include <stdio.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include "errno.h"
 # include "string.h"
 
@@ -62,7 +65,7 @@ typedef struct s_command
 }	t_command;
 
 // Initalized at startup
-// 
+//
 // contains :
 // - program name
 // - environment variables

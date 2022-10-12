@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   logo.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 16:37:25 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 15:13:07 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/07 18:09:06 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/10/07 18:13:51 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "signals.h"
 #include "common.h"
-#include "cli.h"
 
-void	ft_print_logo(void)
+static void	signal_int(int signo)
 {
-	ft_printf("            _       _     _          _ _ \n");
-	ft_printf("           (_)     (_)   | |        | | |\n");
-	ft_printf("  _ __ ___  _ _ __  _ ___| |__   ___| | |\n");
-	ft_printf(" | '_ ` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |\n");
-	ft_printf(" | | | | | | | | | | \\__ \\ | | |  __/ | |\n");
-	ft_printf(" |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|\n\n");
+	if (signo == SIGINT)
+	{
+		ft_putstr_fd("\n", 2);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		return ;
+	}
+}
+
+void	ft_signal_handler(void)
+{
+	signal(SIGINT, signal_int);
+	signal(SIGQUIT, SIG_IGN);
 }

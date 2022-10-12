@@ -6,38 +6,40 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/05 16:31:32 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:13:00 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include "parsing.h"
+#include "cli.h"
+#include "signals.h"
 
-//TODO: change prompt if needed
-static void	ft_display_prompt(void)
+// ask indefinitely for a command
+// each command input is parsed and executed
+//TODO: listen for signals CTRL + D or C or /
+void	ft_loop_input(t_prg_data *data)
 {
-	ft_printf("> ");
-}
+	char		*line;
+	t_command	**cmds;
 
-//TODO: handle if command is running
-static void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		ft_putstr("\n");
-		signal(SIGINT, signal_handler);
-	}
-}
-
-void	ft_loop_input(s_prg_data *data)
-{
-	char	*line;
-
-	signal(SIGINT, signal_handler);
+	ft_signal_handler();
 	while (TRUE)
 	{
-		ft_display_prompt();
-		line = get_next_line(STDIN_FILENO);
-		//TODO: HANDLE ERROR if line is NULL
-		//TODO: add parsing + execution
+		line = readline("> ");
+		if (!line)
+		{
+			// CTRL + D case
+			printf("exit\n");
+			exit(0); // TODO: handle exit + clean
+		}
+		if (ft_strlen(line) > 0)
+			add_history(line); //TODO: free history at the end -> rl_clear_history();
+		(void)data;
+		(void)cmds;
+		//TODO: parsing
+		//TODO: execution
+		//TODO: free allocated stuffs
+		free(line);
 	}
 }

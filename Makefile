@@ -6,29 +6,53 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/06 19:42:07 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/12 17:08:25 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 SRCS_DIR	= srcs
-SRCS		= main.c\
- $(addprefix common/, commands_utils.c errors.c path_utils.c)\
- $(addprefix execution/, execution.c execution_testing.c processes.c\
- pipe_utils.c)
+SRCS		= main.c \
+	$(addprefix cli/, \
+		input.c \
+		logo.c \
+	) \
+	$(addprefix common/, \
+		commands_utils.c \
+		errors.c \
+		path_utils.c \
+	) \
+	$(addprefix execution/, \
+		execution_testing.c \
+		execution.c \
+		processes.c \
+		pipe_utils.c \
+	) \
+	$(addprefix parsing/, \
+		parsing.c \
+		command_parsing.c \
+	) \
+	$(addprefix signals/, \
+		signals.c \
+	)
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./
+INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./\
+ -I$(RL_DIR)/include
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
+# Directory used for readline with a basic installation via Brew
+RL_DIR		= /usr/local/opt/readline
+
 CC			= cc
 CFLAGS		= -Wall -Wextra
-LFLAGS		= $(LIBFT_FLAGS)
+LFLAGS		= $(LIBFT_FLAGS)\
+ -L$(RL_DIR)/lib
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
 endif
@@ -55,7 +79,7 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 $(GIT_SUBM): %/.git: .gitmodules
 ifneq (noconnection, $(filter noconnection,$(MAKECMDGOALS)))
 	@git submodule init
-	@git submodule update --remote $*
+	@git submodule update $*
 endif
 
 $(LIBFT)	:
@@ -69,8 +93,8 @@ rmlibft		:
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
-			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
-			
+			$(CC) $(CFLAGS) -lreadline $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
+
 clean		:
 			$(RM) $(OBJ_DIR)
 			$(RM) $(OBJBNS_DIR)
