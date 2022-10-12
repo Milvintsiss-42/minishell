@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 17:49:11 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:09:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_command	default_command(void)
 	command.pipe_in[1] = -1;
 	command.pipe_out[0] = -1;
 	command.pipe_out[1] = -1;
+	command.pid = -1;
 	command.is_last = FALSE;
 	return (command);
 }
@@ -38,8 +39,6 @@ void	reset_commands_data_and_free(t_prg_data *prg_data)
 	free_commands(prg_data->commands, prg_data->nb_commands);
 	prg_data->commands = 0;
 	prg_data->nb_commands = 0;
-	free(prg_data->commands_pids);
-	prg_data->commands_pids = 0;
 }
 
 void	free_commands(t_command *commands, int nb_commands)

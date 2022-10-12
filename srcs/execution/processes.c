@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 16:40:14 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:11:14 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,13 @@ int	launch_childs(t_prg_data *prg_data)
 {
 	int	i;
 
-	prg_data->commands_pids = malloc(sizeof(int) * prg_data->nb_commands);
-	if (!prg_data->commands_pids)
-		return (ft_perror_errno(*prg_data) * 0);
 	i = 0;
 	while (i < prg_data->nb_commands)
 	{
-		prg_data->commands_pids[i] = fork();
-		if (prg_data->commands_pids < 0)
+		prg_data->commands[i].pid = fork();
+		if (prg_data->commands[i].pid < 0)
 			return (ft_perror_errno(*prg_data) * 0);
-		if (prg_data->commands_pids[i] == 0)
+		if (prg_data->commands[i].pid == 0)
 		{
 			launch_child(prg_data, &prg_data->commands[i]);
 			break ;
@@ -83,7 +80,7 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 	err = 0;
 	while (++i < prg_data->nb_commands - 1)
 	{
-		if (waitpid(prg_data->commands_pids[i], &wstatus, 0) == -1)
+		if (waitpid(prg_data->commands[i].pid, &wstatus, 0) == -1)
 		{
 			ft_perror_errno(*prg_data);
 			err = 1;

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/11 17:39:43 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:11:32 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	execute(t_prg_data *prg_data)
 {
 	int	return_result;
 
-	prg_data->commands_pids = 0;
 	if (!create_pipes(prg_data))
 		return (clean_execution(prg_data));
 	if (!launch_childs(prg_data))
