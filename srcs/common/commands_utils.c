@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/12 18:09:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 00:15:16 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ t_command	default_command(void)
 	command.cmd = 0;
 	command.args = 0;
 	command.env = 0;
-	command.e_sep = e_NONE;
-	command.read_from_here_doc = FALSE;
 	command.here_doc_limiter = 0;
 	command.infile = 0;
 	command.outfile = 0;
@@ -32,6 +30,36 @@ t_command	default_command(void)
 	command.pid = -1;
 	command.is_last = FALSE;
 	return (command);
+}
+
+/// @brief Sets streams enums accordingly to commands parameters and neighbors
+/// @param prg_data
+void	set_streams_enums(t_prg_data *prg_data)
+{
+	int			i;
+	t_command	*commands;
+
+	i = -1;
+	commands = prg_data->commands;
+	while (++i < prg_data->nb_commands)
+	{
+		if (commands[i].here_doc_limiter != 0)
+			commands[i].e_stdin = stream_HERE_DOC;
+		else if (commands[i].infile != 0)
+			commands[i].e_stdin = stream_REDIR;
+		else if (i != 0 && commands[i - 1].e_stdout == stream_PIPE)
+			commands[i].e_stdin = stream_PIPE;
+		else
+			commands[i].e_stdin = stream_NONE;
+		if (commands[i].outfile != 0)
+			commands[i].e_stdout = stream_REDIR;
+		else if (i != prg_data->nb_commands - 1
+			&& commands[i + 1].here_doc_limiter == 0
+			&& commands[i + 1].infile == 0)
+			commands[i].e_stdout = stream_PIPE;
+		else
+			commands[i].e_stdout = stream_NONE;
+	}
 }
 
 void	reset_commands_data_and_free(t_prg_data *prg_data)

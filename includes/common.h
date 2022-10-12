@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/12 18:08:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 00:10:57 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@
 # define TRUE		1
 # define FALSE		0
 
-typedef int			t_bool;
+typedef int		t_bool;
+typedef enum e_streams
+{
+	stream_NONE,
+	stream_PIPE,
+	stream_HERE_DOC,
+	stream_REDIR
+}	t_stream;
 
 // Only last infile, outfile, or here_doc are needed, write an error to the
 // stderr for each infile, outfile, here_doc who are overwrote.
@@ -53,8 +60,9 @@ typedef struct s_command
 	char		*cmd;
 	char		**args;
 	char *const	*env;
-	enum		{e_NONE, e_PIPE, e_OR, e_AND} e_sep;
-	t_bool		read_from_here_doc;
+	enum		{sep_NONE, sep_OR, sep_AND} e_sep;
+	t_stream	e_stdin;
+	t_stream	e_stdout;
 	char		*here_doc_limiter;
 	char		*infile;
 	char		*outfile;

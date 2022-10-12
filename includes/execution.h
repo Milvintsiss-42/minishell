@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/12 19:27:38 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 00:15:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define ERR_CMD_NOT_FOUND		"Command not found"
 # define ERR_CSM_EOF_IN_HERE_DOC	"%s: warning: here-document at line %d\
  delimited by end-of-file (wanted `%s')\n"
+
+
+void		set_streams_enums(t_prg_data *prg_data);
 
 int			clean_execution(t_prg_data *prg_data);
 void		exit_process(t_prg_data *prg_data, t_command *command, int err);
