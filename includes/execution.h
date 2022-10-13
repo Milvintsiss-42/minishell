@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 16:59:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:21:40 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void		sets_pipe_as_stdout(t_prg_data *prg_data, t_command *command);
 void		cpy_pipe(int dst_pipe[2], int src_pipe[2]);
 void		close_pipe(int fds_pipe[2]);
 
+int			prompt_here_doc(t_prg_data *prg_data, t_command *command);
 void		set_here_doc_as_stdin(t_prg_data *prg_data, t_command *command);
+void		close_here_docs_pipes(t_prg_data *prg_data);
 
 void		set_infile_as_stdin(t_prg_data *prg_data, t_command *command);
 void		set_outfile_as_stdout(t_prg_data *prg_data, t_command *command);

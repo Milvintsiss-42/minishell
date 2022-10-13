@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 00:10:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:02:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_command
 	t_stream	e_stdin;
 	t_stream	e_stdout;
 	char		*here_doc_limiter;
+	int			here_doc_pipe[2];
 	char		*infile;
 	char		*outfile;
 	t_bool		is_append_mode;

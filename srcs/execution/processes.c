@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 00:22:21 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:15:12 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	launch_childs(t_prg_data *prg_data)
 {
 	int	i;
 
-	i = 0;
-	while (i < prg_data->nb_commands)
+	i = -1;
+	while (++i < prg_data->nb_commands)
 	{
 		if (i != 0)
 			cpy_pipe(prg_data->commands[i].pipe_in,
@@ -81,9 +81,10 @@ int	launch_childs(t_prg_data *prg_data)
 			launch_child(prg_data, &prg_data->commands[i]);
 			break ;
 		}
+		if (prg_data->commands[i].e_stdin == stream_HERE_DOC)
+			close_pipe(prg_data->commands[i].here_doc_pipe);
 		if (i != 0)
 			close_pipe(prg_data->commands[i].pipe_in);
-		i++;
 	}
 	return (1);
 }
