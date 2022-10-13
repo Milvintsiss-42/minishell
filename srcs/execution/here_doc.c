@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:07:11 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 18:26:19 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:41:03 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	handle_errors(t_prg_data *prg_data, t_command *command, char *line,
 	return (1);
 }
 
+// TODO: Handle signals
 int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 {
 	char	*line;
