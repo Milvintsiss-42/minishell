@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 18:15:12 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:04:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ int	launch_childs(t_prg_data *prg_data)
 	i = -1;
 	while (++i < prg_data->nb_commands)
 	{
+		// TODO: redirections and pipes for echo, pwd, etc
+		if (is_builtin(&prg_data->commands[i]))
+		{
+			exec_builtin(prg_data, &prg_data->commands[i]);
+			continue ;
+		}
 		if (i != 0)
 			cpy_pipe(prg_data->commands[i].pipe_in,
 				prg_data->commands[i - 1].pipe_out);
@@ -103,6 +109,8 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 	err = 0;
 	while (++i < prg_data->nb_commands - 1)
 	{
+		if (is_builtin(&prg_data->commands[i]))
+			continue ;
 		if (waitpid(prg_data->commands[i].pid, &wstatus, 0) == -1)
 		{
 			ft_perror_errno(*prg_data);

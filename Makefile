@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/13 22:21:29 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/13 22:33:38 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,11 @@ SRCS		= main.c \
 		pipe_utils.c \
 		here_doc.c \
 		redirections.c \
+		$(addprefix builtins/, \
+			builtins.c \
+			cd_builtin.c \
+			pwd_builtin.c \
+		) \
 		$(addprefix testing/, \
 			execution_testing.c \
 			execution_testing_first_pipeline.c \

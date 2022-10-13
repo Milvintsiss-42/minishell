@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 17:21:40 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:14:28 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,10 @@ void		set_outfile_as_stdout(t_prg_data *prg_data, t_command *command);
 
 int			launch_childs(t_prg_data *prg_data);
 int			wait_for_childs_to_finish(t_prg_data *prg_data);
+
+void		exec_builtin(t_prg_data *prg_data, t_command *command);
+int			is_builtin(t_command *command);
+void		exec_cd_builtin(t_prg_data *prg_data, t_command *command);
+int			exec_pwd_builtin(t_prg_data *prg_data, t_command *command);
+
 #endif
