@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 22:04:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:08:20 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 	exit_process(prg_data, command, ft_perror_errno(*prg_data));
 }
 
-static void	launch_child(t_prg_data	*prg_data, t_command *command)
+void	launch_child(t_prg_data	*prg_data, t_command *command)
 {
 	if (command->e_stdin == stream_HERE_DOC)
 		set_here_doc_as_stdin(prg_data, command);
@@ -58,41 +58,6 @@ static void	launch_child(t_prg_data	*prg_data, t_command *command)
 		sets_pipe_as_stdout(prg_data, command);
 	close_pipe(command->pipe_out);
 	exec_command(prg_data, command);
-}
-
-int	launch_childs(t_prg_data *prg_data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < prg_data->nb_commands)
-	{
-		// TODO: redirections and pipes for echo, pwd, etc
-		if (is_builtin(&prg_data->commands[i]))
-		{
-			exec_builtin(prg_data, &prg_data->commands[i]);
-			continue ;
-		}
-		if (i != 0)
-			cpy_pipe(prg_data->commands[i].pipe_in,
-				prg_data->commands[i - 1].pipe_out);
-		if (i != prg_data->nb_commands - 1)
-			if (pipe(prg_data->commands[i].pipe_out) == -1)
-				return (ft_perror_errno(*prg_data) * 0);
-		prg_data->commands[i].pid = fork();
-		if (prg_data->commands[i].pid < 0)
-			return (ft_perror_errno(*prg_data) * 0);
-		if (prg_data->commands[i].pid == 0)
-		{
-			launch_child(prg_data, &prg_data->commands[i]);
-			break ;
-		}
-		if (prg_data->commands[i].e_stdin == stream_HERE_DOC)
-			close_pipe(prg_data->commands[i].here_doc_pipe);
-		if (i != 0)
-			close_pipe(prg_data->commands[i].pipe_in);
-	}
-	return (1);
 }
 
 // Wait for all childs to finish, gets the return result of the last child and

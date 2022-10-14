@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/14 17:59:23 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/14 19:46:02 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS		= main.c \
 		processes.c \
 		pipe_utils.c \
 		here_doc.c \
+		prompt_here_docs.c \
 		redirections.c \
 		$(addprefix builtins/, \
 			builtins.c \
