@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/14 19:24:31 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:58:44 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ static int	test_execution_third_pipeline(t_prg_data *prg_data)
 
 // This execution is not protected as it is only used for debugging purposes
 // cat << HERE > outfile | echo "hello world" | cat < infile | cat <<HERE2
-// cd "includes" | pwd
+// cd "includes" | pwd | cat -e
+// ls -la | cat -e
 int	test_execution(t_prg_data *prg_data)
 {
 	test_execution_first_pipeline(prg_data);
