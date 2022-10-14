@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/14 19:08:20 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:01:25 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,25 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 
 void	launch_child(t_prg_data	*prg_data, t_command *command)
 {
+	int	err;
+
+	err = 0;
 	if (command->e_stdin == stream_HERE_DOC)
-		set_here_doc_as_stdin(prg_data, command);
+		err = set_here_doc_as_stdin(prg_data, command);
 	else if (command->e_stdin == stream_REDIR)
-		set_infile_as_stdin(prg_data, command);
+		err = set_infile_as_stdin(prg_data, command);
 	else if (command->e_stdin == stream_PIPE)
-		sets_pipe_as_stdin(prg_data, command);
+		err = sets_pipe_as_stdin(prg_data, command);
 	close_pipe(command->pipe_in);
+	if (err != 0)
+		exit_process(prg_data, command, err);
 	if (command->e_stdout == stream_REDIR)
-		set_outfile_as_stdout(prg_data, command);
+		err = set_outfile_as_stdout(prg_data, command);
 	else if (command->e_stdout == stream_PIPE)
-		sets_pipe_as_stdout(prg_data, command);
+		err = sets_pipe_as_stdout(prg_data, command);
 	close_pipe(command->pipe_out);
+	if (err != 0)
+		exit_process(prg_data, command, err);
 	exec_command(prg_data, command);
 }
 
