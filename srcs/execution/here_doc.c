@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:07:11 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/13 18:41:03 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:18:10 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_end_of_input(t_command *command, char *line, size_t len)
 	int	is_end_of_input;
 
 	*(line + len - 1) = 0;
-	is_end_of_input = ((*(command->here_doc_limiter) != 0 ^ len == 1)
+	is_end_of_input = (((*command->here_doc_limiter != 0) ^ (len == 1))
 			&& ft_strncmp(line, command->here_doc_limiter, len - 1) == 0);
 	*(line + len - 1) = '\n';
 	return (is_end_of_input);
