@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/13 22:33:38 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/10/14 17:59:23 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,8 @@ RL_DIR		= /usr/local/opt/readline
 
 CC			= cc
 CFLAGS		= -Wall -Wextra
-LFLAGS		= $(LIBFT_FLAGS)\
- -L$(RL_DIR)/lib
+LFLAGS		= $(LIBFT_FLAGS) \
+ -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
 endif
@@ -103,8 +103,8 @@ rmlibft		:
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
-			$(CC) $(CFLAGS) -lreadline $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
-
+			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
+			
 clean		:
 			$(RM) $(OBJ_DIR)
 			$(RM) $(OBJBNS_DIR)
