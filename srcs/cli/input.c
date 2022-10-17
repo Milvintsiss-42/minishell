@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/11 16:36:47 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/13 18:34:21 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	handle_parsing_exec(t_prg_data *data, char	*line)
 		if (!cmds)
 			break ;
 		//TODO: execution
-		free(cmds); //TODO: free allocated stuffs
+		free(cmds); //TODO: free each allocated stuffs
 	}
 }
 

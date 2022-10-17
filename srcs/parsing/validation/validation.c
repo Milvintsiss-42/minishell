@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:32:19 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/11 17:57:35 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/13 17:08:38 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_bool	parsing_validation(t_prg_data *prg_data, char *line)
 		return (!ft_fperror(*prg_data, "syntax error", "unclosed quote"));
 	if (check_parenthesis(line))
 		return (!ft_fperror(*prg_data, "syntax error", "unclosed parenthesis")); // TODO: is the error message correct?
+	// TODO: check for && || | ect ...
 	return (TRUE);
 }
