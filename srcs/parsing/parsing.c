@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/13 17:50:18 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/18 15:21:15 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	get_nb_commands(char *line)
 			in_dquote = !in_dquote;
 		if (!in_dquote && line[i] == '\'')
 			in_squote = !in_squote;
-		if (!in_squote && !in_dquote && line[i] == '|' && ++amount)
-			if (i + 1 < len && line[i + 1] == '|')
-				i++;
+		if (!in_squote && !in_dquote && line[i] == '|'
+			&& i + 1 < len && line[i + 1] == '|' && ++amount)
+			i++;
 		if (!in_squote && !in_dquote && (line[i] == '&' && i + 1 < len
 				&& line[i + 1] == '&') && ++amount)
 			i++;
@@ -60,5 +60,6 @@ t_command	*parsing(t_prg_data *prg_data, char *line, int cmd_no)
 		return (NULL);
 	if (get_nb_commands(line) == cmd_no)
 		return (NULL);
+	printf("[DEBUG] | Number of commands: %d\n", get_nb_commands(line)); // TODO: REMOVE AS IT'S FOR DEBUG
 	return (get_commands(prg_data, line, cmd_no));
 }

@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/11 16:38:00 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/10/18 15:43:35 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,15 @@ SRCS		= main.c \
 	$(addprefix common/, \
 		commands_utils.c \
 		errors.c \
+		path_utils.c \
 	) \
 	$(addprefix execution/, \
 		execution_testing.c \
 		execution.c \
+		processes.c \
 		pipe_utils.c \
+		here_doc.c \
+		redirections.c \
 	) \
 	$(addprefix parsing/, \
 		$(addprefix validation/, \
@@ -40,15 +44,20 @@ SRCS		= main.c \
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./
+INC			= -I./includes -I./$(LIBFT_DIR)/includes -I./\
+ -I$(RL_DIR)/include
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/build/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 
+# Directory used for readline with a basic installation via Brew
+RL_DIR		= /usr/local/opt/readline
+
 CC			= cc
 CFLAGS		= -Wall -Wextra
-LFLAGS		= $(LIBFT_FLAGS)
+LFLAGS		= $(LIBFT_FLAGS) \
+ -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 	CFLAGS	+= -Werror
 endif
@@ -89,7 +98,7 @@ rmlibft		:
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
-			$(CC) $(CFLAGS) -lreadline $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
+			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
 			
 clean		:
 			$(RM) $(OBJ_DIR)
