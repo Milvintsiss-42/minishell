@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/17 17:29:52 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:11:35 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	free_command_elements(t_command command)
 		args++;
 	}
 	free(command.args);
+	// TODO: free(command.env)?
 	free(command.here_doc_limiter);
 	free(command.infile);
 	free(command.outfile);
