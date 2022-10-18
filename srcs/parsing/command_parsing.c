@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:12 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/06 19:16:24 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/13 00:20:39 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ static t_command	*get_command(char *line, int cmd_nb)
 			if (i + 1 < len && line[i + 1] == '|')
 			{
 				if (amount == cmd_nb)
-					return (generate_cmd(e_OR, start, i, line));
+					return (generate_cmd(sep_OR, start, i, line));
 				i++;
 			}
 			if (amount == cmd_nb)
-				return (generate_cmd(e_PIPE, start, i, line));
+				return (generate_cmd(sep_NONE, start, i, line)); // TODO: do something different for pipes?
 			++amount;
 			start = i + 1;
 		}
@@ -118,7 +118,7 @@ static t_command	*get_command(char *line, int cmd_nb)
 				&& i + 1 < len && line[i + 1] == '&'))
 		{
 			if (amount == cmd_nb)
-				return (generate_cmd(e_AND, start, i, line));
+				return (generate_cmd(sep_AND, start, i, line));
 			i++;
 			amount++;
 			start = i + 1;

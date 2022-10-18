@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/10 19:37:59 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:02:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include "errno.h"
+# include "string.h"
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -30,7 +32,14 @@
 # define TRUE		1
 # define FALSE		0
 
-typedef int			t_bool;
+typedef int		t_bool;
+typedef enum e_streams
+{
+	stream_NONE,
+	stream_PIPE,
+	stream_HERE_DOC,
+	stream_REDIR
+}	t_stream;
 
 // Only last infile, outfile, or here_doc are needed, write an error to the
 // stderr for each infile, outfile, here_doc who are overwrote.
@@ -48,22 +57,25 @@ typedef int			t_bool;
 // unitialized parameters.
 typedef struct s_command
 {
-	char	*cmd;
-	char	**args;
-	char	**env;
-	enum	{e_NONE, e_PIPE, e_OR, e_AND} e_sep;
-	t_bool	read_from_here_doc;
-	char	*here_doc_limiter;
-	char	*infile;
-	char	*outfile;
-	t_bool	is_append_mode;
-	int		pipe_in[2];
-	int		pipe_out[2];
-	t_bool	is_last;
+	char		*cmd;
+	char		**args;
+	char *const	*env;
+	enum		{sep_NONE, sep_OR, sep_AND} e_sep;
+	t_stream	e_stdin;
+	t_stream	e_stdout;
+	char		*here_doc_limiter;
+	int			here_doc_pipe[2];
+	char		*infile;
+	char		*outfile;
+	t_bool		is_append_mode;
+	int			pipe_in[2];
+	int			pipe_out[2];
+	pid_t		pid;
+	t_bool		is_last;
 }	t_command;
 
 // Initalized at startup
-// 
+//
 // contains :
 // - program name
 // - environment variables
@@ -72,7 +84,7 @@ typedef struct s_command
 typedef struct s_prg_data
 {
 	const char	*bin_name;
-	const char	**env;
+	char *const	*env;
 	t_command	*commands;
 	int			nb_commands;
 
@@ -83,14 +95,22 @@ typedef struct s_prg_data
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
-void		test_execution(t_prg_data *prg_data);
+int			test_execution(t_prg_data *prg_data);
 
 t_command	default_command(void);
+void		reset_commands_data_and_free(t_prg_data *prg_data);
+void		free_commands(t_command *commands, int nb_commands);
+void		free_command_elements(t_command command);
 
 int			ft_perror(t_prg_data prg_data, const char *error_str);
 int			ft_fperror(t_prg_data prg_data, const char *filename,
 				const char *error_str);
 int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
+
+int			get_absolute_path(char **abs_path, const char *r_path,
+				const char *env_path);
+const char	*get_path_from_env(char *const *env);
+const char	*ft_basename(const char *path);
 
 #endif
