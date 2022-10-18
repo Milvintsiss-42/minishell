@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/18 15:21:15 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:27:27 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,24 @@ static int	get_nb_commands(char *line)
 	int		amount;
 	t_bool	in_squote;
 	t_bool	in_dquote;
-	int		len;
 
 	i = 0;
 	amount = 1;
-	len = ft_strlen(line);
 	in_squote = FALSE;
 	in_dquote = FALSE;
-	while (line[i] && i < len && ++i)
+	while (line[i])
 	{
 		if (!in_squote && line[i] == '\"')
 			in_dquote = !in_dquote;
 		if (!in_dquote && line[i] == '\'')
 			in_squote = !in_squote;
 		if (!in_squote && !in_dquote && line[i] == '|'
-			&& i + 1 < len && line[i + 1] == '|' && ++amount)
+			&& line[i + 1] == '|' && ++amount)
 			i++;
-		if (!in_squote && !in_dquote && (line[i] == '&' && i + 1 < len
+		if (!in_squote && !in_dquote && (line[i] == '&'
 				&& line[i + 1] == '&') && ++amount)
 			i++;
+		i++;
 	}
 	return (amount);
 }
