@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:12 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/18 18:33:47 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/19 16:34:21 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,69 @@ static void	*get_to_command(char *line, int cmd_no)
 	return (NULL);
 }
 
+static int	get_args_nu(char *line, int len)
+{
+	int		amnt;
+	t_bool	sqo;
+	t_bool	dqo;
+
+	amnt = 0;
+	sqo = FALSE;
+	dqo = FALSE;
+	while (*line && len--)
+	{
+		
+	}
+	return (amnt);
+}
+
+// static char	**get_args(t_prg_data *prg_data, char *line,
+// 	int len, int cmd_no)
+// {
+// 	char	*end;
+// 	t_bool	sqo;
+// 	t_bool	dqo;
+
+// 	sqo = FALSE;
+// 	dqo = FALSE;
+// 	while (*line)
+// 	{
+// 		line++;
+// 	}
+// 	return (NULL);
+// }
+
 static t_command	*create_commands(t_prg_data *prg_data, char *line,
 	int len, int cmd_no)
 {
+	t_command	*cmds;
+	char		*end;
+
+	(void)len;
+	(void)cmd_no;
+	cmds = malloc(sizeof(t_command) * (1));
+	cmds[0] = default_command();
+	cmds[0].env = prg_data->env;
+	while (*line == ' ' || *line == '\t')
+		line++;
+	end = line;
+	while (*end != '\0' && *end != ' ' && *end != '\t' && *end != '|'
+		&& !(*end == '&' && *(end + 1) == '&'))
+		end++;
+	cmds[0].cmd = ft_substr(line, 0, end - line);
+	// cmds[0].args = malloc(sizeof(char *) * (get_args_nu(line, len) + 1));
+	printf("cmd: \"%s\" | strlen: %ld\n", cmds[0].cmd, ft_strlen(cmds[0].cmd));
+	printf("args nu: %d\n", get_args_nu(end, len - ft_strlen(cmds[0].cmd)));
 	return (NULL);
 }
 
 // returns an array of commands
 t_command	*get_commands(t_prg_data *prg_data, char *line, int cmd_no)
 {
-	t_command	*cmds;
 	long int	max;
-	void	*tmp;
+	void		*tmp;
 
 	(void)prg_data;
-	(void)cmds;
 	line = (char *)get_to_command(line, cmd_no);
 	printf("[DEBUG] | cmd [%d]: %s\n", cmd_no, line); // TODO: remove DEBUG print
 	if (!line) // TODO: check if this is needed or add safety check
@@ -67,5 +115,5 @@ t_command	*get_commands(t_prg_data *prg_data, char *line, int cmd_no)
 		max = ft_strlen(line);
 	printf("[TEST] | %s | %s\n", line, (char *)get_to_command(line, cmd_no + 1)); // TODO: remove DEBUG print
 	printf("[TEST] | LEN=%ld\n", max); // TODO: remove DEBUG print
-	return (NULL);
+	return (create_commands(prg_data, line, max, cmd_no));
 }
