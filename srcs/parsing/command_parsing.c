@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:12 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/19 16:34:21 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/10/20 15:22:01 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,34 @@ static int	get_args_nu(char *line, int len)
 	amnt = 0;
 	sqo = FALSE;
 	dqo = FALSE;
-	while (*line && len--)
+	while (*line && len)
 	{
-		
+		while ((*line == ' ' || *line == '\t') && len)
+		{
+			line++;
+			len--;
+		}
+		if (*line != '\0' && *line != ' ' && *line != '\t' && len)
+		{
+			while (*line != '\0' && len)
+			{
+				// TODO: skip infile and outfile
+				if (!sqo && *line == '\"')
+					dqo = !dqo;
+				if (!dqo && *line == '\'')
+					sqo = !sqo;
+				if (!sqo && !dqo && (*line == ' ' || *line == '\t'))
+					break ;
+				if (!sqo && !dqo && (*line == '|' || *line == '&'
+						&& *line + 1 == '&'))
+					break ;
+				line++;
+				len--;
+			}
+			amnt++;
+		}
+		if (*line == '|' || *line == '&' && *line + 1 == '&')
+			break ;
 	}
 	return (amnt);
 }
