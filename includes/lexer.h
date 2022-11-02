@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:54:23 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/31 17:56:03 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 16:58:34 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 # define LEXER_H
 
 # include "common.h"
+# include "tokenizer.h"
 
-int				lexer(void);
+typedef struct s_lexer
+{
+	t_lst_tokens			*token;
+	size_t					len;
+
+	t_bool					is_separator;
+	t_token_separator		sep;
+}				t_lexer;
+
+int				lexer(t_lst_tokens *tokens);
 
 #endif
