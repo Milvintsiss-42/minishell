@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:04:57 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/31 17:54:23 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/10/31 17:56:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "tokenizer.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-t_command	*parsing(t_prg_data *prog_data, char *line)
-{
-	t_command			*commands;
-	t_lst_tokens		*tokens;
+# include "common.h"
 
-	(void) prog_data;
-	tokens = tokenizer(line);
-	while (tokens)
-	{
-		printf("TOKENS [%s]\n", tokens->token);
-		tokens = tokens->next;
-	}
-	commands = NULL;
-	return (commands);
-}
+int				lexer(void);
+
+#endif

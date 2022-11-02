@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:04:57 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/31 17:48:29 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/10/31 18:00:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "tokenizer.h"
-
-t_command	*parsing(t_prg_data *prog_data, char *line)
+/*
+* Attach some Metadata to the tokens from the tokenizer.
+*/
+int	lexer(void)
 {
-	t_command			*commands;
-	t_lst_tokens		*tokens;
-
-	(void) prog_data;
-	tokens = tokenizer(line);
-	while (tokens)
-	{
-		printf("TOKENS [%s]\n", tokens->token);
-		tokens = tokens->next;
-	}
-	commands = NULL;
-	return (commands);
+	return (0);
 }

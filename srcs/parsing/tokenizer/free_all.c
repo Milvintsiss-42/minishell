@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:04:57 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/31 19:27:30 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/10/31 19:28:30 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "tokenizer.h"
 
-t_command	*parsing(t_prg_data *prog_data, char *line)
+void	*free_tokenizer(t_lst_tokens *tokens)
 {
-	t_command			*commands;
-	t_lst_tokens		*tokens;
+	t_lst_tokens	*tmp;
 
-	(void) prog_data;
-	tokens = tokenizer(line);
 	while (tokens)
 	{
-		printf("TOKENS [%s]\n", tokens->token);
+		tmp = tokens;
 		tokens = tokens->next;
+		free(tmp->token);
+		free(tmp);
 	}
-	commands = NULL;
-	return (commands);
+	return (NULL);
 }

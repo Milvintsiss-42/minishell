@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/18 15:43:35 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/02 14:33:01 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,13 @@ SRCS		= main.c \
 		redirections.c \
 	) \
 	$(addprefix parsing/, \
-		$(addprefix validation/, \
-			validation.c \
+		$(addprefix tokenizer/, \
+			free_all.c \
+			lst_tokens.c \
+			skip_quotes.c \
+			tokenizer.c \
 		) \
 		parsing.c \
-		command_parsing.c \
 	) \
 	$(addprefix signals/, \
 		signals.c \
@@ -55,7 +57,7 @@ LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 RL_DIR		= /usr/local/opt/readline
 
 CC			= cc
-CFLAGS		= -Wall -Wextra
+CFLAGS		= -Wall -Wextra -g3
 LFLAGS		= $(LIBFT_FLAGS) \
  -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))

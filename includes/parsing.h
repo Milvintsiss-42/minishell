@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/18 16:06:09 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 14:53:27 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ alone, please give them a friend"
 # define ERR_CSM_MULTIPLE_OUTPUTS "%s: warning: Multiple outputs are given, \
 \"%s\" will be ignored."
 
-t_command		*get_commands(t_prg_data *prg_data, char *line, int cmd_no);
-t_command		*parsing(t_prg_data *prg_data, char *line, int cmd_no);
-t_bool			parsing_validation(t_prg_data *prg_data, char *line);
+t_command		*parsing(t_prg_data *prog_data, char *line);
 
 #endif

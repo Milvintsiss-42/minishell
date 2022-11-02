@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   skip_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:04:57 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/31 19:11:49 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/11/02 14:24:00 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "tokenizer.h"
 
-t_command	*parsing(t_prg_data *prog_data, char *line)
+size_t	skip_quotes(char *line)
 {
-	t_command			*commands;
-	t_lst_tokens		*tokens;
+	char	quote;
+	size_t	i;
 
-	(void) prog_data;
-	tokens = tokenizer(line);
-	while (tokens)
+	quote = *line;
+	i = 1;
+	while (line[i])
 	{
-		printf("TOKENS [%s]\n", tokens->token);
-		tokens = tokens->next;
+		if (line[i] == quote)
+			return (i + 1);
+		i++;
 	}
-	commands = NULL;
-	return (commands);
+	return (0);
 }
