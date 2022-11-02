@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/02 11:31:44 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 16:56:47 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 	prg_data->bin_name = ft_basename(argv[0]);
 	prg_data->env = env;
 }
-
 
 int	main(int argc, char const **argv, char *const *env)
 {
