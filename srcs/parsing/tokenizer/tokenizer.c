@@ -6,49 +6,23 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:34:13 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:21:36 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 17:04:16 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
+#include "parsing.h"
 
 static char	*add_token(t_lst_tokens *tokens, char *line_start,
 		size_t len_to_copy)
 {
 	if (len_to_copy == 0)
 		return (line_start);
-	if (len_to_copy == 1 && *line_start == ' ')
+	if (len_to_copy == 1 && (*line_start == ' ' || *line_start == '\t'))
 		return (line_start + 1);
 	if (!add_new_token(tokens, ft_strndup(line_start, len_to_copy)))
 		return (NULL);
 	return (line_start + len_to_copy);
-}
-
-static t_token_separator	is_separtor(char *str)
-{
-	if (ft_strncmp(str, STR_OR, 2) == 0)
-		return (e_OR);
-	else if (ft_strncmp(str, STR_AND, 2) == 0)
-		return (e_AND);
-	else if (ft_strncmp(str, STR_RD_FILE_APN, 2) == 0)
-		return (e_RD_FILE_APN);
-	else if (ft_strncmp(str, STR_RD_STDIN_HEREDOC, 2) == 0)
-		return (e_RD_STDIN_HEREDOC);
-	else if (ft_strncmp(str, STR_PIPE, 1) == 0)
-		return (e_PIPE);
-	else if (ft_strncmp(str, STR_RD_FILE, 1) == 0)
-		return (e_RD_FILE);
-	else if (ft_strncmp(str, STR_RD_STDIN, 1) == 0)
-		return (e_RD_STDIN);
-	else if (ft_strncmp(str, STR_OPEN_PRTH, 1) == 0)
-		return (e_OPEN_PRTH);
-	else if (ft_strncmp(str, STR_CLOSE_PRTH, 1) == 0)
-		return (e_CLOSE_PRTH);
-	else if (ft_strncmp(str, STR_SPC, 1) == 0)
-		return (e_SPC);
-	else if (ft_strncmp(str, STR_TAB, 1) == 0)
-		return (e_TAB);
-	return (e_NONE);
 }
 
 static void	*add_rest_of_line(t_lst_tokens *tokens, char *str, char *last_cpy)
@@ -91,7 +65,7 @@ t_lst_tokens	*tokenizer(char *str)
 	last_cpy = str;
 	while (*str)
 	{
-		if (is_separtor(str) > 0)
+		if (is_separator(str) > 0)
 		{
 			if (!add_token_and_separator(tokens, str, &last_cpy))
 				return (free_tokenizer(tokens));
