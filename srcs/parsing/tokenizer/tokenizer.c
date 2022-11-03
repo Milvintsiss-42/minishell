@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:34:13 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/03 16:39:58 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/03 18:46:09 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	*add_rest_of_line(t_lst_tokens *tokens, char *str, char *last_cpy)
 	{
 		last_cpy = add_token(tokens, last_cpy, str - last_cpy);
 		if (!last_cpy)
-			return (free_tokenizer(tokens));
+			return (NULL);
 	}
 	return (tokens);
 }
@@ -77,6 +77,6 @@ t_lst_tokens	*tokenizer(char *str)
 			str++;
 	}
 	if (!add_rest_of_line(tokens, str, last_cpy))
-		return (NULL);
+		return (free_tokenizer(tokens));
 	return (tokens);
 }
