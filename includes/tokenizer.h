@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:53:34 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 14:53:06 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:43:52 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,7 @@
 
 # include "common.h"
 # include "tokens.h"
-
-typedef struct s_lst_tokens
-{
-	char				*token;
-	struct s_lst_tokens	*prev;
-	struct s_lst_tokens	*next;
-}				t_lst_tokens;
+# include "parsing.h"
 
 t_lst_tokens	*tokenizer(char *line);
 size_t			skip_quotes(char *line);

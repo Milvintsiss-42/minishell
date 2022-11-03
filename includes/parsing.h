@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/02 16:53:22 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:42:29 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ alone, please give them a friend"
 // ignored.
 # define ERR_CSM_MULTIPLE_OUTPUTS "%s: warning: Multiple outputs are given, \
 \"%s\" will be ignored."
+
+typedef struct s_lst_tokens
+{
+	char					*token;
+
+	t_bool					is_separator;
+	t_token_separator		sep;
+
+	struct s_lst_tokens		*prev;
+	struct s_lst_tokens		*next;
+}				t_lst_tokens;
 
 t_command			*parsing(t_prg_data *prog_data, char *line);
 t_token_separator	is_separator(char *str);

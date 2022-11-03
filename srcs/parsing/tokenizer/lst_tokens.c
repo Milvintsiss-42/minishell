@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 19:14:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 16:03:13 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:39:52 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_lst_tokens	*add_new_token(t_lst_tokens *tokens, char *value)
 	new_val = malloc(sizeof(t_lst_tokens));
 	if (!new_val)
 		return (NULL);
+	memset(new_val, 0, sizeof(t_lst_tokens));
 	new_val->token = value;
 	new_val->next = NULL;
 	new_val->prev = last_token;
