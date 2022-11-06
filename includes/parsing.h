@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/02 18:42:29 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:57:54 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct s_lst_tokens
 
 	t_bool					is_separator;
 	t_token_separator		sep;
+
+	t_bool					is_in_parenthesis;
+
+	t_bool					is_in_quotes;
+	t_bool					does_expand;
 
 	struct s_lst_tokens		*prev;
 	struct s_lst_tokens		*next;
