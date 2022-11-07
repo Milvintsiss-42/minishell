@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/03 19:16:02 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 15:27:33 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_command	*parsing(t_prg_data *prog_data, char *line)
 	t_lst_tokens		*tokens;
 
 	tokens = tokenizer(line);
+	if (!tokens)
+		return (NULL); // tokens is freed in tokenizer on error
 	// TODO: add handling if tokens is empty (i.e only spaces were entered)
 	t_lst_tokens *tmp = tokens;
 	while (tmp)
@@ -27,6 +29,8 @@ t_command	*parsing(t_prg_data *prog_data, char *line)
 		tmp = tmp->next;
 	}
 	tokens = lexer(tokens, prog_data);
+	if (tokens == NULL)
+		return (NULL); // tokens is freed in lexer on error
 	t_lst_tokens *tmp2 = tokens;
 	while (tmp2)
 	{
