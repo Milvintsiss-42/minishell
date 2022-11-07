@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:48:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 15:22:23 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:00:21 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ t_lst_tokens	*lexer(t_lst_tokens *tokens, t_prg_data *prog_data)
 	set_is_inparenthesis(tokens);
 	if (!quotes_handling(tokens))
 		return (free_all(tokens));
+	return (tokens);
 }
