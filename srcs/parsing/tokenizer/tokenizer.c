@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:34:13 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/03 18:46:09 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 14:28:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static char	*add_token(t_lst_tokens *tokens, char *line_start,
 {
 	if (len_to_copy == 0)
 		return (line_start);
-	if (len_to_copy == 1 && *line_start == ' ')
+	if (len_to_copy == 1 && (*line_start == ' ' || *line_start == '\t'
+			|| *line_start == '\n'))
 		return (line_start + 1);
 	if (!add_new_token(tokens, ft_strndup(line_start, len_to_copy)))
 		return (NULL);
@@ -41,7 +42,8 @@ static char	*add_token_and_separator(t_lst_tokens *tokens, char *str,
 	*last_cpy = add_token(tokens, *last_cpy, str - *last_cpy);
 	if (!last_cpy)
 		return (NULL);
-	*last_cpy = add_token(tokens, *last_cpy, 1 + (is_separator(str) > 7));
+	*last_cpy = add_token(tokens, *last_cpy, 1 + (is_separator(str)
+				>= e_RD_FILE_APN));
 	if (!last_cpy)
 		return (NULL);
 	return (*last_cpy);
@@ -68,7 +70,7 @@ t_lst_tokens	*tokenizer(char *str)
 		{
 			if (!add_token_and_separator(tokens, str, &last_cpy))
 				return (free_tokenizer(tokens));
-			if (is_separator(str) > 7)
+			if (is_separator(str) >= e_RD_FILE_APN)
 				str++;
 		}
 		if (*str == SQUOTE || *str == DQUOTE)
