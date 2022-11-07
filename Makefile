@@ -35,6 +35,7 @@ SRCS		= main.c \
 			builtins.c \
 			cd_builtin.c \
 			pwd_builtin.c \
+			echo_builtin.c \
 		) \
 		$(addprefix testing/, \
 			execution_testing.c \
