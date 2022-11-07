@@ -25,6 +25,7 @@ SRCS		= main.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
+		launch_commands.c \
 		processes.c \
 		pipe_utils.c \
 		here_doc.c \

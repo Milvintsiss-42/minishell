@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/14 20:01:25 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:33:24 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	launch_child(t_prg_data	*prg_data, t_command *command)
 	close_pipe(command->pipe_out);
 	if (err != 0)
 		exit_process(prg_data, command, err);
-	exec_command(prg_data, command);
+	if (is_builtin(command))
+		exec_builtin(prg_data, command, 1);
+	else
+		exec_command(prg_data, command);
 }
 
 // Wait for all childs to finish, gets the return result of the last child and
@@ -79,10 +82,8 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 
 	i = -1;
 	err = 0;
-	while (++i < prg_data->nb_commands - 1)
+	while (++i < prg_data->nb_commands)
 	{
-		if (is_builtin(&prg_data->commands[i]))
-			continue ;
 		if (waitpid(prg_data->commands[i].pid, &wstatus, 0) == -1)
 		{
 			ft_perror_errno(*prg_data);

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/14 19:55:38 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:46:34 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 // ERR_CSM errors are custom errors that need arguments and to be printed with
 // ft_print_fd.
 // Others errors can be printed with perror.
-# define ERR_CMD_NOT_FOUND		"Command not found"
-# define ERR_CSM_EOF_IN_HERE_DOC	"%s: warning: here-document at line %d\
+# define ERR_CMD_NOT_FOUND				"Command not found"
+# define ERR_CSM_EOF_IN_HERE_DOC		"%s: warning: here-document at line %d\
  delimited by end-of-file (wanted `%s')\n"
 
 void		set_streams_enums(t_prg_data *prg_data);
+
+int			execute_commands(t_prg_data *prg_data);
+void		launch_child(t_prg_data	*prg_data, t_command *command);
+int			wait_for_childs_to_finish(t_prg_data *prg_data);
 
 int			clean_execution(t_prg_data *prg_data);
 void		exit_process(t_prg_data *prg_data, t_command *command, int err);
@@ -39,12 +43,10 @@ void		close_here_docs_pipes(t_prg_data *prg_data);
 int			set_infile_as_stdin(t_prg_data *prg_data, t_command *command);
 int			set_outfile_as_stdout(t_prg_data *prg_data, t_command *command);
 
-void		launch_child(t_prg_data	*prg_data, t_command *command);
-int			wait_for_childs_to_finish(t_prg_data *prg_data);
-
-void		exec_builtin(t_prg_data *prg_data, t_command *command);
+int			exec_builtin(t_prg_data *prg_data, t_command *command,
+				int is_child);
 int			is_builtin(t_command *command);
-void		exec_cd_builtin(t_prg_data *prg_data, t_command *command);
+int			exec_cd_builtin(t_prg_data *prg_data, t_command *command);
 int			exec_pwd_builtin(t_prg_data *prg_data, t_command *command);
 
 #endif
