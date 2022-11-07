@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/03 16:57:54 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:01:18 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // ex: cat <<
 // ex: cat < >
 // ex: cat < < infile
-# define ERR_LONELY_SYMBOLS	"syntax error: One or multiple symbols are\
+# define ERR_LONELY_SYMBOLS	"syntax error: One or multiple symbols are \
 alone, please give them a friend"
 
 // ex: cat << HERE < infile
@@ -55,5 +55,6 @@ typedef struct s_lst_tokens
 
 t_command			*parsing(t_prg_data *prog_data, char *line);
 t_token_separator	is_separator(char *str);
+int					validate_parsing(char *line);
 
 #endif
