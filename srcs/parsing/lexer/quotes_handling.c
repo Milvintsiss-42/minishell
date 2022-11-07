@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:25:09 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 14:55:16 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 15:13:55 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static void	*quotes_removal(t_lst_tokens *token, size_t start, size_t end)
 	size_t	i;
 	size_t	j;
 
+	if (!token->token || *token->token == '\0')
+		return (token->token);
 	new_token = malloc(sizeof(char) * (ft_strlen(token->token) - 1));
 	if (!new_token)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (token->token[i])
+	while (token->token && token->token[i])
 	{
 		if (!(i == start || i == end))
 		{
@@ -46,7 +48,7 @@ static int	remove_grouped_quotes(t_lst_tokens *token)
 
 	quote = '\0';
 	i = 0;
-	while (token && token->token[i])
+	while (token && token->token[i] && i < ft_strlen(token->token))
 	{
 		if (quote == '\0' && (token->token[i] == '\''
 				|| token->token[i] == '\"'))
@@ -68,11 +70,14 @@ static int	remove_grouped_quotes(t_lst_tokens *token)
 
 void	*quotes_handling(t_lst_tokens *tokens)
 {
+	t_lst_tokens	*start;
+
+	start = tokens;
 	while (tokens)
 	{
 		if (remove_grouped_quotes(tokens) == -1)
 			return (NULL);
 		tokens = tokens->next;
 	}
-	return (tokens);
+	return (start);
 }
