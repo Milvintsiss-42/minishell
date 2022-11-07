@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/07 17:05:33 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/07 22:57:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 // cd "includes" | pwd | cat -e
 // cd "srcs"
 // pwd
+// echo -n hello world
 int	test_execution(t_prg_data *prg_data)
 {
 	test_execution_first_pipeline(prg_data);
 	test_execution_second_pipeline(prg_data);
 	test_execution_third_pipeline(prg_data);
 	test_execution_fourth_pipeline(prg_data);
-	return (test_execution_fifth_pipeline(prg_data));
+	test_execution_fifth_pipeline(prg_data);
+	return (test_execution_sixth_pipeline(prg_data));
 }
