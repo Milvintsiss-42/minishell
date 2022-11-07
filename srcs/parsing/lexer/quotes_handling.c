@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:25:09 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/06 23:05:53 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/07 14:55:16 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,40 @@ static void	*quotes_removal(t_lst_tokens *token, size_t start, size_t end)
 	return (token->token);
 }
 
-void	*quotes_handling(t_lst_tokens *tokens)
+static int	remove_grouped_quotes(t_lst_tokens *token)
 {
 	char		quote;
 	size_t		start_pos;
-	size_t		end_pos;
 	size_t		i;
 
 	quote = '\0';
+	i = 0;
+	while (token && token->token[i])
+	{
+		if (quote == '\0' && (token->token[i] == '\''
+				|| token->token[i] == '\"'))
+		{
+			quote = token->token[i];
+			start_pos = i;
+		}
+		else if (quote != '\0' && token->token[i] == quote)
+		{
+			quote = '\0';
+			if (!quotes_removal(token, start_pos, i))
+				return (-1);
+			i += -2;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	*quotes_handling(t_lst_tokens *tokens)
+{
 	while (tokens)
 	{
-		i = 0;
-		while (tokens->token[i])
-		{
-			i++;
-		}
+		if (remove_grouped_quotes(tokens) == -1)
+			return (NULL);
 		tokens = tokens->next;
 	}
 	return (tokens);
