@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/08 19:08:16 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/08 19:12:44 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS		= main.c \
 			execution_testing_fourth_pipeline.c \
 			execution_testing_fifth_pipeline.c \
 			execution_testing_sixth_pipeline.c \
+			execution_testing_env.c \
 			execution_testing_exit.c \
 		) \
 	) \

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/08 19:08:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:11:04 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	test_execution(t_prg_data *prg_data)
 	test_execution_fourth_pipeline(prg_data);
 	test_execution_fifth_pipeline(prg_data);
 	test_execution_sixth_pipeline(prg_data);
+	test_execution_env(prg_data);
 	test_execution_exit(prg_data);
 	printf("Should never print as program exited previously\n");
 	return (0);
