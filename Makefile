@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/08 19:12:44 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/08 19:21:08 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS		= main.c \
 			builtins.c \
 			cd_builtin.c \
 			pwd_builtin.c \
+			env_builtin.c \
 			echo_builtin.c \
 			exit_builtin.c \
 		) \
