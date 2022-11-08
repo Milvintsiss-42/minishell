@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/08 11:37:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:07:56 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int			test_execution_third_pipeline(t_prg_data *prg_data);
 int			test_execution_fourth_pipeline(t_prg_data *prg_data);
 int			test_execution_fifth_pipeline(t_prg_data *prg_data);
 int			test_execution_sixth_pipeline(t_prg_data *prg_data);
-int			test_execution_seventh_pipeline(t_prg_data *prg_data);
+int			test_execution_exit(t_prg_data *prg_data);
 
 t_command	default_command(void);
 void		reset_commands_data_and_free(t_prg_data *prg_data);
