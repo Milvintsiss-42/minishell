@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:11:47 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/08 19:19:52 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:07:02 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	is_builtin(t_command *command)
 		|| ft_strncmp("pwd", command->cmd, 4) == 0
 		|| ft_strncmp("env", command->cmd, 4) == 0
 		|| ft_strncmp("echo", command->cmd, 5) == 0
-		|| ft_strncmp("exit", command->cmd, 5) == 0);
+		|| ft_strncmp("echo", command->cmd, 5) == 0
+		|| ft_strncmp("exit", command->cmd, 5) == 0
+		|| ft_strncmp("unset", command->cmd, 6) == 0
+		|| ft_strncmp("export", command->cmd, 7) == 0);
 }
 
 static int	exec_command_builtin(t_prg_data *prg_data, t_command *command)
@@ -33,6 +36,10 @@ static int	exec_command_builtin(t_prg_data *prg_data, t_command *command)
 		return (exec_echo_builtin(prg_data, command));
 	if (ft_strncmp("exit", command->cmd, 5) == 0)
 		return (exec_exit_builtin(prg_data, command));
+	if (ft_strncmp("unset", command->cmd, 6) == 0)
+		return (exec_unset_builtin(prg_data, command));
+	if (ft_strncmp("export", command->cmd, 7) == 0)
+		return (exec_export_builtin(prg_data, command));
 	return (-1);
 }
 
