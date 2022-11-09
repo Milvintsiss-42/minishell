@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 17:52:43 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:02:36 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_prg_data
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
+void		clear_prg_data(t_prg_data *prg_data);
 
 int			test_execution(t_prg_data *prg_data);
 int			test_execution_first_pipeline(t_prg_data *prg_data);
@@ -115,6 +116,10 @@ int			ft_fperror(t_prg_data prg_data, const char *filename,
 				const char *error_str);
 int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
+
+void		free_env(char **env);
+int			copy_env_to_heap(t_prg_data *prg_data,
+				char ***r_env_cpy, char *const *env);
 
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);
