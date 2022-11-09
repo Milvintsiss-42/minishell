@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/07 21:33:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:31:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exit_process(t_prg_data *prg_data, t_command *command, int err)
 	close_pipe(command->pipe_in);
 	close_pipe(command->pipe_out);
 	clean_execution(prg_data);
+	// TODO: clean prg_data
 	exit(err);
 }
 
