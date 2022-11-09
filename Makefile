@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/14 16:47:57 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/07 21:18:27 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,26 @@ SRCS		= main.c \
 		path_utils.c \
 	) \
 	$(addprefix execution/, \
-		execution_testing.c \
 		execution.c \
+		launch_commands.c \
 		processes.c \
 		pipe_utils.c \
 		here_doc.c \
+		prompt_here_docs.c \
 		redirections.c \
+		$(addprefix builtins/, \
+			builtins.c \
+			cd_builtin.c \
+			pwd_builtin.c \
+		) \
+		$(addprefix testing/, \
+			execution_testing.c \
+			execution_testing_first_pipeline.c \
+			execution_testing_second_pipeline.c \
+			execution_testing_third_pipeline.c \
+			execution_testing_fourth_pipeline.c \
+			execution_testing_fifth_pipeline.c \
+		) \
 	) \
 	$(addprefix parsing/, \
 		parsing.c \
