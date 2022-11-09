@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/08 18:42:26 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/09 19:03:21 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,10 @@ SRCS		= main.c \
 	) \
 	$(addprefix common/, \
 		commands_utils.c \
+		clear_prg_data.c \
 		errors.c \
 		path_utils.c \
+		env.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
@@ -35,6 +37,7 @@ SRCS		= main.c \
 			builtins.c \
 			cd_builtin.c \
 			pwd_builtin.c \
+			env_builtin.c \
 			echo_builtin.c \
 			exit_builtin.c \
 		) \
@@ -46,7 +49,8 @@ SRCS		= main.c \
 			execution_testing_fourth_pipeline.c \
 			execution_testing_fifth_pipeline.c \
 			execution_testing_sixth_pipeline.c \
-			execution_testing_seventh_pipeline.c \
+			execution_testing_env.c \
+			execution_testing_exit.c \
 		) \
 	) \
 	$(addprefix parsing/, \

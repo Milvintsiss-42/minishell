@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 01:00:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:33:32 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			exec_builtin(t_prg_data *prg_data, t_command *command,
 int			is_builtin(t_command *command);
 int			exec_cd_builtin(t_prg_data *prg_data, t_command *command);
 int			exec_pwd_builtin(t_prg_data *prg_data, t_command *command);
+int			exec_env_builtin(t_prg_data *prg_data, t_command *command);
 int			exec_echo_builtin(t_prg_data *prg_data, t_command *command);
 int			exec_exit_builtin(t_prg_data *prg_data, t_command *command);
 #endif
