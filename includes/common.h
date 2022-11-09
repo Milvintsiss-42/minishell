@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/08 19:11:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:52:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_command
 {
 	char		*cmd;
 	char		**args;
-	char *const	*env;
 	enum		{sep_NONE, sep_OR, sep_AND} e_sep;
 	t_stream	e_stdin;
 	t_stream	e_stdout;
@@ -84,7 +83,7 @@ typedef struct s_command
 typedef struct s_prg_data
 {
 	const char	*bin_name;
-	char *const	*env;
+	char		**env;
 	t_command	*commands;
 	int			nb_commands;
 

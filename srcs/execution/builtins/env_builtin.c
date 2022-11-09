@@ -6,13 +6,13 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 20:05:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/08 21:46:22 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:56:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-static int	get_output_len(char *const *env)
+static int	get_output_len(char **env)
 {
 	int		i;
 	size_t	output_len;
@@ -27,7 +27,7 @@ static int	get_output_len(char *const *env)
 	return (output_len);
 }
 
-static char	*join_output(char *output, char *const *env)
+static char	*join_output(char *output, char **env)
 {
 	size_t	cur_output_len;
 	int		i;
@@ -46,7 +46,7 @@ static char	*join_output(char *output, char *const *env)
 }
 
 static int	get_output_from_env(char **r_output,
-		t_prg_data *prg_data, char *const *env)
+		t_prg_data *prg_data, char **env)
 {
 	char	*output;
 
@@ -59,10 +59,13 @@ static int	get_output_from_env(char **r_output,
 
 int	exec_env_builtin(t_prg_data *prg_data, t_command *command)
 {
-	char *const	*env;
-	char		*output;
+	char	**env;
+	char	*output;
 
-	env = command->env;
+	(void)command;
+	env = prg_data->env;
+	if (!env)
+		return (0);
 	if (get_output_from_env(&output, prg_data, env) != 0)
 		return (ft_perror_errno(*prg_data));
 	write(STDOUT_FILENO, output, ft_strlen(output));
