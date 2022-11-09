@@ -17,7 +17,7 @@ int	exec_pwd_builtin(t_prg_data *prg_data, t_command *command)
 	char	*buf;
 
 	(void)command;
-	buf = malloc(sizeof(char) * 100);
+	buf = malloc(sizeof(char) * 500);
 	if (!getcwd(buf, sizeof(char) * 500))
 	{
 		buf = ft_realloc(buf, sizeof(char) * 2048);
