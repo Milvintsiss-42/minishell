@@ -136,5 +136,6 @@ const char	*get_path_from_env(char *const *env);
 const char	*ft_basename(const char *path);
 
 char		*get_pwd(void);
+int			updates_env_pwd(t_prg_data *prg_data);
 
 #endif
