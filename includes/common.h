@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/13 04:46:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/13 21:38:58 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,18 @@ int			ft_fperror(t_prg_data prg_data, const char *filename,
 int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
 
+int			get_env_size(char **env);
+char		**get_env_element_address_by_name(t_prg_data *prg_data, char *name);
+char		*get_env_element_value_by_name(t_prg_data *prg_data, char *name);
+
 void		free_env(char **env);
 int			copy_env_to_heap(t_prg_data *prg_data,
 				char ***r_env_cpy, char *const *env);
+int			add_element_to_env(t_prg_data *prg_data, char *name, char *value);
+int			modify_value_of_env_element(t_prg_data *prg_data,
+				char *name, char *new_value);
+int			add_or_modify_env_element_if_exists(t_prg_data *prg_data,
+				char *name, char *new_value);
 
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);
