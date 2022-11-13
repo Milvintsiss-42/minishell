@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/09 14:06:40 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/14 00:09:54 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,11 @@ SRCS		= main.c \
 	) \
 	$(addprefix common/, \
 		commands_utils.c \
+		clear_prg_data.c \
 		errors.c \
 		path_utils.c \
+		env_info_utils.c \
+		env_modify_utils.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
