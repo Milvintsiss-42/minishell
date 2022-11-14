@@ -131,6 +131,7 @@ int			modify_value_of_env_element(t_prg_data *prg_data,
 				char *name, char *new_value);
 int			add_or_modify_env_element_if_exists(t_prg_data *prg_data,
 				char *name, char *new_value);
+int			remove_env_element(t_prg_data *prg_data, char *name);
 
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);

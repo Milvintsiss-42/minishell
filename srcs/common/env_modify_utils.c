@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 04:12:58 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 05:09:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/14 05:10:57 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,48 @@ int	add_or_modify_env_element_if_exists(t_prg_data *prg_data,
 	if (rstatus >= 0)
 		return (rstatus);
 	return (add_element_to_env(prg_data, name, new_value));
+}
+
+static void	cpy_old_env_to_new(char **new_env, char **old_env, char **to_skip)
+{
+	int		i;
+	int		skipped;
+
+	i = 0;
+	skipped = 0;
+	while (old_env[i + skipped])
+	{
+		if ((old_env + i + skipped) != to_skip)
+		{
+			new_env[i] = old_env[i + skipped];
+			i++;
+		}
+		else if (old_env[i + 1] != 0)
+			skipped = 1;
+	}
+	new_env[i] = 0;
+}
+
+/// @brief Finds element in env and remove it.
+/// @param prg_data
+/// @param name Element name, should not be null.
+/// @return Returns 0 in case of success.
+/// Returns -1 if there is no corresponding element in env.
+/// Returns errno and print the corresponding error otherwise.
+int	remove_env_element(t_prg_data *prg_data, char *name)
+{
+	char	**new_env;
+	char	**env_element_address;
+
+	env_element_address = get_env_element_address_by_name(prg_data, name);
+	if (!env_element_address)
+		return (-1);
+	new_env = malloc(sizeof(char *) * (get_env_size(prg_data->env)));
+	if (!new_env)
+		return (ft_perror_errno(*prg_data));
+	free(*env_element_address);
+	cpy_old_env_to_new(new_env, prg_data->env, env_element_address);
+	free(prg_data->env);
+	prg_data->env = new_env;
+	return (0);
 }
