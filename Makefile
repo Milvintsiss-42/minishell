@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/13 04:23:45 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/14 05:07:50 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS		= main.c \
 		path_utils.c \
 		env_info_utils.c \
 		env_modify_utils.c \
+		env_cpy_and_free.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
@@ -41,6 +42,9 @@ SRCS		= main.c \
 			env_builtin.c \
 			echo_builtin.c \
 			exit_builtin.c \
+			unset_builtin.c \
+			export_builtin.c \
+			export-unset_utils.c \
 		) \
 		$(addprefix testing/, \
 			execution_testing.c \
@@ -50,6 +54,8 @@ SRCS		= main.c \
 			execution_testing_fourth_pipeline.c \
 			execution_testing_fifth_pipeline.c \
 			execution_testing_sixth_pipeline.c \
+			execution_testing_export.c \
+			execution_testing_unset.c \
 			execution_testing_env.c \
 			execution_testing_exit.c \
 		) \
