@@ -44,6 +44,7 @@ SRCS		= main.c \
 			exit_builtin.c \
 			unset_builtin.c \
 			export_builtin.c \
+			export-unset_utils.c \
 		) \
 		$(addprefix testing/, \
 			execution_testing.c \

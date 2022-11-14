@@ -6,24 +6,11 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:43:05 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 02:54:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/14 03:11:56 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
-
-static int	is_name_valid(char *name)
-{
-	if (!*name)
-		return (0);
-	while (*name)
-	{
-		if (!ft_isalnum(*name) && *name != '_')
-			return (0);
-		name++;
-	}
-	return (1);
-}
 
 static int	add_env_element_from_arg(t_prg_data *prg_data, char *arg)
 {
@@ -36,9 +23,8 @@ static int	add_env_element_from_arg(t_prg_data *prg_data, char *arg)
 	*value = 0;
 	value++;
 	name = arg;
-	if (!is_name_valid(name))
-		return (ft_fperror(*prg_data,
-				"export", "Invalid identifier") * -1);
+	if (!is_name_identifier_valid(name))
+		return (error_invalid_identifier(prg_data, "export"));
 	return (add_or_modify_env_element_if_exists(prg_data, name, value));
 }
 
