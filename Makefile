@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/14 03:46:35 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/14 05:07:50 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS		= main.c \
 		path_utils.c \
 		env_info_utils.c \
 		env_modify_utils.c \
+		env_cpy_and_free.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
