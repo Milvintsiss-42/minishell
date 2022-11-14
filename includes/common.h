@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 02:42:07 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/14 03:46:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int			test_execution_fourth_pipeline(t_prg_data *prg_data);
 int			test_execution_fifth_pipeline(t_prg_data *prg_data);
 int			test_execution_sixth_pipeline(t_prg_data *prg_data);
 int			test_execution_export(t_prg_data *prg_data);
+int			test_execution_unset(t_prg_data *prg_data);
 int			test_execution_env(t_prg_data *prg_data);
 int			test_execution_exit(t_prg_data *prg_data);
 
