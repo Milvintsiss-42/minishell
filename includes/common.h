@@ -86,7 +86,7 @@ typedef struct s_command
 typedef struct s_prg_data
 {
 	const char	*bin_name;
-	char *const	*env;
+	char		**env;
 	t_command	*commands;
 	int			nb_commands;
 
@@ -97,7 +97,19 @@ typedef struct s_prg_data
 }	t_prg_data;
 
 int			execute(t_prg_data *prg_data);
+void		clear_prg_data(t_prg_data *prg_data);
+
 int			test_execution(t_prg_data *prg_data);
+int			test_execution_first_pipeline(t_prg_data *prg_data);
+int			test_execution_second_pipeline(t_prg_data *prg_data);
+int			test_execution_third_pipeline(t_prg_data *prg_data);
+int			test_execution_fourth_pipeline(t_prg_data *prg_data);
+int			test_execution_fifth_pipeline(t_prg_data *prg_data);
+int			test_execution_sixth_pipeline(t_prg_data *prg_data);
+int			test_execution_export(t_prg_data *prg_data);
+int			test_execution_unset(t_prg_data *prg_data);
+int			test_execution_env(t_prg_data *prg_data);
+int			test_execution_exit(t_prg_data *prg_data);
 
 t_command	default_command(void);
 void		reset_commands_data_and_free(t_prg_data *prg_data);
@@ -110,9 +122,26 @@ int			ft_fperror(t_prg_data prg_data, const char *filename,
 int			ft_perror_errno(t_prg_data prg_data);
 int			ft_fperror_errno(t_prg_data prg_data, const char *filename);
 
+int			get_env_size(char **env);
+char		**get_env_element_address_by_name(t_prg_data *prg_data, char *name);
+char		*get_env_element_value_by_name(t_prg_data *prg_data, char *name);
+
+void		free_env(char **env);
+int			copy_env_to_heap(t_prg_data *prg_data,
+				char ***r_env_cpy, char *const *env);
+int			add_element_to_env(t_prg_data *prg_data, char *name, char *value);
+int			modify_value_of_env_element(t_prg_data *prg_data,
+				char *name, char *new_value);
+int			add_or_modify_env_element_if_exists(t_prg_data *prg_data,
+				char *name, char *new_value);
+int			remove_env_element(t_prg_data *prg_data, char *name);
+
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);
 const char	*get_path_from_env(char *const *env);
 const char	*ft_basename(const char *path);
+
+char		*get_pwd(void);
+int			updates_env_pwd(t_prg_data *prg_data);
 
 #endif

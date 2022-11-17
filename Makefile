@@ -20,16 +20,45 @@ SRCS		= main.c \
 	) \
 	$(addprefix common/, \
 		commands_utils.c \
+		clear_prg_data.c \
 		errors.c \
 		path_utils.c \
+		env_info_utils.c \
+		env_modify_utils.c \
+		env_cpy_and_free.c \
 	) \
 	$(addprefix execution/, \
-		execution_testing.c \
 		execution.c \
+		launch_commands.c \
 		processes.c \
 		pipe_utils.c \
 		here_doc.c \
+		prompt_here_docs.c \
 		redirections.c \
+		$(addprefix builtins/, \
+			builtins.c \
+			cd_builtin.c \
+			pwd_builtin.c \
+			env_builtin.c \
+			echo_builtin.c \
+			exit_builtin.c \
+			unset_builtin.c \
+			export_builtin.c \
+			export-unset_utils.c \
+		) \
+		$(addprefix testing/, \
+			execution_testing.c \
+			execution_testing_first_pipeline.c \
+			execution_testing_second_pipeline.c \
+			execution_testing_third_pipeline.c \
+			execution_testing_fourth_pipeline.c \
+			execution_testing_fifth_pipeline.c \
+			execution_testing_sixth_pipeline.c \
+			execution_testing_export.c \
+			execution_testing_unset.c \
+			execution_testing_env.c \
+			execution_testing_exit.c \
+		) \
 	) \
 	$(addprefix parsing/, \
 		$(addprefix commands/, \
