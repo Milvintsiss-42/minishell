@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/07 16:41:55 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/09 18:05:38 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,10 @@ t_command			*parsing(t_prg_data *prog_data, char *line);
 t_token_separator	is_separator(char *str);
 int					validate_input(char *line);
 void				*free_parsing(t_lst_tokens *tokens);
+// tokeninzer/lexer into commands
+t_command			*cmd_translator(t_lst_tokens *tokens, t_prg_data *prg_data);
+size_t				command_nu(t_lst_tokens *tokens);
+t_token_separator	is_or_and_pipe(char *str);
+int					command_generator(t_command	*command, t_lst_tokens **tkns);
 
 #endif

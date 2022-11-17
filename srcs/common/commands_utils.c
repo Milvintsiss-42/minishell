@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/10/18 14:11:35 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:27:32 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	free_command_elements(t_command command)
 {
 	char	**args;
 
-	free(command.cmd);
+	if (command.cmd)
+		free(command.cmd);
 	args = command.args;
 	while (*args)
 	{
@@ -96,8 +97,10 @@ void	free_command_elements(t_command command)
 		args++;
 	}
 	free(command.args);
-	// TODO: free(command.env)?
-	free(command.here_doc_limiter);
-	free(command.infile);
-	free(command.outfile);
+	if (command.here_doc_limiter)
+		free(command.here_doc_limiter);
+	if (command.infile)
+		free(command.infile);
+	if (command.outfile)
+		free(command.outfile);
 }

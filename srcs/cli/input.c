@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/02 14:25:13 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/08 18:37:47 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static void	handle_parsing_exec(t_prg_data *data, char	*line)
 	int			cmd_no;
 
 	cmd_no = 0;
-	while (TRUE)
-	{
-		cmds = parsing(data, line);
-		if (!cmds)
-			break ;
-		//TODO: execution
-		free(cmds); //TODO: free each allocated stuffs
-		cmd_no++;
-	}
+	cmds = parsing(data, line);
+	if (!cmds)
+		return ;
+	//TODO: execution
+	cmd_no++;
+	free(cmds); //TODO: free each allocated stuffs
 }
 
 // ask indefinitely for a command

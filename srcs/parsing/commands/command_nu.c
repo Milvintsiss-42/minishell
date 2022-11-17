@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parsing.c                                     :+:      :+:    :+:   */
+/*   command_nu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 16:41:34 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 18:30:40 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/11/07 18:22:17 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/11/08 18:25:42 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	*free_parsing(t_lst_tokens *tokens)
+size_t	command_nu(t_lst_tokens *tokens)
 {
-	t_lst_tokens	*tmp;
+	size_t	nb;
 
-	tmp = tokens;
+	nb = 1;
 	while (tokens)
 	{
-		if (tokens->token)
-			free(tokens->token);
-		tmp = tokens->next;
-		if (tokens)
-			free(tokens);
-		tokens = tmp;
+		if (is_or_and_pipe(tokens->token) != e_NONE)
+			nb++;
+		tokens = tokens->next;
 	}
-	// TODO: free commands if not NULL
-	return (NULL);
+	return (nb);
 }

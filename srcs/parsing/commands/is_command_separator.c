@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parsing.c                                     :+:      :+:    :+:   */
+/*   is_command_separator.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 16:41:34 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 18:30:40 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/11/08 18:05:27 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/11/10 15:34:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	*free_parsing(t_lst_tokens *tokens)
+t_token_separator	is_or_and_pipe(char *str)
 {
-	t_lst_tokens	*tmp;
-
-	tmp = tokens;
-	while (tokens)
-	{
-		if (tokens->token)
-			free(tokens->token);
-		tmp = tokens->next;
-		if (tokens)
-			free(tokens);
-		tokens = tmp;
-	}
-	// TODO: free commands if not NULL
-	return (NULL);
+	if (str && *str && *(str + 1) && ft_strncmp(str, STR_OR, 2) == 0)
+		return (e_OR);
+	else if (str && *str && *(str + 1) && ft_strncmp(str, STR_AND, 2) == 0)
+		return (e_AND);
+	else if (str && *str && *(str + 1) && ft_strncmp(str, STR_PIPE, 1) == 0)
+		return (e_PIPE);
+	return (e_NONE);
 }

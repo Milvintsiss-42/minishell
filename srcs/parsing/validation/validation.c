@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:39:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 16:39:14 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/10 15:30:03 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int	is_all_quotes_closed(char *line)
 	char	quote;
 	size_t	opened_quotes;
 
+	if (!line)
+		return (0);
+	quote = '\0';
 	opened_quotes = 0;
 	while (line && *line)
 	{

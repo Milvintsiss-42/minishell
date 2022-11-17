@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:48:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 16:00:21 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/10 15:47:59 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	set_separators(t_lst_tokens *tokens)
 
 	while (tokens)
 	{
-		printf("[LEXER] - set_separator: '%s'\n", tokens->token);
 		separator = is_separator(tokens->token);
 		if (separator)
 		{

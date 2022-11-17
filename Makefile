@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/06 22:43:10 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/10 15:23:29 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,12 @@ SRCS		= main.c \
 		redirections.c \
 	) \
 	$(addprefix parsing/, \
+		$(addprefix commands/, \
+			cmd_generator.c \
+			cmd_translator.c \
+			command_nu.c \
+			is_command_separator.c \
+		) \
 		$(addprefix lexer/, \
 			lexer.c \
 			quotes_handling.c \
@@ -42,6 +48,10 @@ SRCS		= main.c \
 			skip_quotes.c \
 			tokenizer.c \
 		) \
+		$(addprefix validation/, \
+			validation.c \
+		) \
+		free_parsing.c \
 		is_separator.c \
 		parsing.c \
 	) \
