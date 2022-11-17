@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/08 18:37:47 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/17 23:47:54 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	handle_parsing_exec(t_prg_data *data, char	*line)
 	if (!cmds)
 		return ;
 	//TODO: execution
+	execute(data);
 	cmd_no++;
-	free(cmds); //TODO: free each allocated stuffs
 }
 
 // ask indefinitely for a command
