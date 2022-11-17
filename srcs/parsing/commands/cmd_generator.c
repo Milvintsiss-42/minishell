@@ -6,43 +6,11 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/17 17:37:41 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/17 18:03:40 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-static int	handle_files(t_token_separator sep, t_command *command,
-		t_lst_tokens *tokens)
-{
-	if (sep == e_RD_FILE || sep == e_RD_FILE_APN)
-	{
-		if (sep == e_RD_FILE_APN)
-			command->is_append_mode = TRUE;
-		if (command->outfile)
-			free(command->outfile);
-		command->outfile = ft_strdup(tokens->next->token);
-		if (!command->outfile)
-			return (1);
-	}
-	else if (sep == e_RD_STDIN)
-	{
-		if (command->infile)
-			free(command->infile);
-		command->infile = ft_strdup(tokens->next->token);
-		if (!command->infile)
-			return (1);
-	}
-	else if (sep == e_RD_STDIN_HEREDOC)
-	{
-		if (command->here_doc_limiter)
-			free(command->here_doc_limiter);
-		command->here_doc_limiter = ft_strdup(tokens->next->token);
-		if (!command->here_doc_limiter)
-			return (1);
-	}
-	return (-1);
-}
 
 static int	free_arg(char **arg)
 {
@@ -102,21 +70,28 @@ static int	add_arg( t_command *command,
 	return (1);
 }
 
+static int	initalize_cmd(t_command	*command, t_lst_tokens **tokens)
+{
+	command->cmd = ft_strdup((*tokens)->token);
+	if (!command->cmd)
+		return (-1);
+	command->args = (char **)malloc(sizeof(char *) * 2);
+	if (!command->args)
+		return (-1);
+	command->args[0] = ft_strdup((*tokens)->token);
+	if (!command->args[0])
+		return (-1);
+	command->args[1] = NULL;
+	*tokens = (*tokens)->next;
+	return (1);
+}
+
 int	command_generator(t_command	*command, t_lst_tokens **tokens)
 {
 	t_token_separator	sep;
 
-	command->cmd = ft_strdup((*tokens)->token);
-	if (!command->cmd)
-		return (1);
-	command->args = (char **)malloc(sizeof(char *) * 2);
-	if (!command->args)
-		return (1);
-	command->args[0] = ft_strdup((*tokens)->token);
-	if (!command->args[0])
-		return (1);
-	command->args[1] = NULL;
-	*tokens = (*tokens)->next;
+	if (!initalize_cmd(command, tokens))
+		return (-1);
 	sep = 0;
 	while (*tokens)
 	{
@@ -125,12 +100,17 @@ int	command_generator(t_command	*command, t_lst_tokens **tokens)
 			break ;
 		else if (sep == e_NONE)
 			add_arg(command, *tokens);
-		if (!handle_files(sep, command, *tokens))
-			return (-1);
+		else
+		{
+			if (handle_files(sep, command, tokens) == -1)
+				return (-1);
+		}
 		(*tokens) = (*tokens)->next;
 	}
-	command->e_sep = sep;
 	if (sep == e_OR || sep == e_AND || sep == e_PIPE)
+	{
+		command->e_sep = sep;
 		(*tokens) = (*tokens)->next;
+	}
 	return (1);
 }

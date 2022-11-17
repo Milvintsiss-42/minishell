@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/10 15:23:29 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/17 18:03:39 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		= main.c \
 			cmd_generator.c \
 			cmd_translator.c \
 			command_nu.c \
+			file_handling.c \
 			is_command_separator.c \
 		) \
 		$(addprefix lexer/, \

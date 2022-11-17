@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/10 16:27:32 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/17 18:03:59 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_command	default_command(void)
 	command.cmd = 0;
 	command.args = 0;
 	command.env = 0;
-	command.e_sep = sep_NONE;
+	command.e_sep = e_NONE;
 	command.here_doc_limiter = 0;
 	command.infile = 0;
 	command.outfile = 0;
