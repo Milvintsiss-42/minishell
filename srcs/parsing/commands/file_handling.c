@@ -6,11 +6,25 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:01:00 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/17 18:01:14 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/17 19:24:12 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static int	handle_rd_stdin_heredoc(t_token_separator sep, t_command *command,
+		t_lst_tokens **tokens)
+{
+	if (sep == e_RD_STDIN_HEREDOC)
+	{
+		if (command->here_doc_limiter)
+			free(command->here_doc_limiter);
+		command->here_doc_limiter = ft_strdup((*tokens)->next->token);
+		if (!command->here_doc_limiter)
+			return (-1);
+	}
+	return (1);
+}
 
 int	handle_files(t_token_separator sep, t_command *command,
 		t_lst_tokens **tokens)
@@ -36,14 +50,8 @@ int	handle_files(t_token_separator sep, t_command *command,
 		if (!command->infile)
 			return (-1);
 	}
-	else if (sep == e_RD_STDIN_HEREDOC)
-	{
-		if (command->here_doc_limiter)
-			free(command->here_doc_limiter);
-		command->here_doc_limiter = ft_strdup((*tokens)->next->token);
-		if (!command->here_doc_limiter)
-			return (-1);
-	}
+	if (handle_rd_stdin_heredoc(sep, command, tokens) == -1)
+		return (-1);
 	*tokens = (*tokens)->next;
 	return (1);
 }
