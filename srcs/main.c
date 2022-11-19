@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/13 21:25:38 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/19 22:35:58 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 
 	if (argc < 1 || !argv[0])
 		exit(1);
+	prg_data->commands = 0;
+	prg_data->nb_commands = 0;
+	prg_data->last_exit_status = 0;
+	prg_data->history = 0;
+	prg_data->len_history = 0;
 	prg_data->bin_name = ft_basename(argv[0]);
 	err = copy_env_to_heap(prg_data, &prg_data->env, env);
 	if (err != 0)
