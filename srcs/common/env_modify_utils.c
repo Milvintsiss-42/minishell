@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 04:12:58 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 05:10:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/19 03:28:47 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	cpy_old_env_to_new(char **new_env, char **old_env, char **to_skip)
 			new_env[i] = old_env[i + skipped];
 			i++;
 		}
-		else if (old_env[i + 1] != 0)
+		else
 			skipped = 1;
 	}
 	new_env[i] = 0;
