@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/17 18:03:59 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/19 22:13:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,8 @@ void	free_command_elements(t_command command)
 	if (command.cmd)
 		free(command.cmd);
 	args = command.args;
-	while (*args)
-	{
-		free(*args);
-		args++;
-	}
+	while (args && *args)
+		free(*args++);
 	free(command.args);
 	if (command.here_doc_limiter)
 		free(command.here_doc_limiter);
