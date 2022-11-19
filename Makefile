@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/17 18:03:39 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/19 01:13:06 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 RL_DIR		= /usr/local/opt/readline
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -g3
+CFLAGS		= -Wall -Wextra
 LFLAGS		= $(LIBFT_FLAGS) \
  -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
@@ -110,6 +110,9 @@ ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 endif
 ifeq (sanitize, $(filter sanitize,$(MAKECMDGOALS)))
 	CFLAGS 	+= -fsanitize=address
+endif
+ifeq (g3, $(filter g3,$(MAKECMDGOALS)))
+	CFLAGS 	+= -g3
 endif
 ifeq (debug, $(filter debug,$(MAKECMDGOALS)))
 	CFLAGS	+= -D KDEBUG=1
@@ -165,6 +168,8 @@ nWerror		:
 			@echo "WARN: Compiling without Werror flag!"
 sanitize	:
 			@echo "WARN: Compiling with fsanitize flag!"
+g3	:
+			@echo "WARN: Compiling with g3 flag!"
 debug		:
 			@echo "WARN: debug is enabled"
 debug_exec	:
