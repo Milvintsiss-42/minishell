@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 03:44:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/19 03:05:21 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:12:23 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int	test_execution_unset(t_prg_data *prg_data)
 	prg_data->commands[0].args[6] = ft_strdup("incorrect_character#");
 	prg_data->commands[0].args[7] = ft_strdup("last");
 	prg_data->commands[0].args[8] = 0;
-	prg_data->commands[0].is_last = 1;
 	return (execute(prg_data));
 }

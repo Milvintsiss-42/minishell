@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:59:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 17:53:54 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:12:10 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	test_execution_fourth_pipeline(t_prg_data *prg_data)
 	prg_data->commands[0].args[0] = ft_strdup(prg_data->commands[0].cmd);
 	prg_data->commands[0].args[1] = ft_strdup("srcs");
 	prg_data->commands[0].args[2] = 0;
-	prg_data->commands[0].is_last = 1;
 	return (execute(prg_data));
 }

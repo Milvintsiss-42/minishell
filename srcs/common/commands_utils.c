@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/19 23:14:04 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:11:52 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_command	default_command(void)
 	command.here_doc_pipe[0] = -1;
 	command.here_doc_pipe[1] = -1;
 	command.pid = -1;
-	command.is_last = FALSE;
 	return (command);
 }
 

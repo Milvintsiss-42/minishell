@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:02:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 17:53:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:11:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ int	test_execution_fifth_pipeline(t_prg_data *prg_data)
 	prg_data->commands[0].args = malloc(sizeof(char *) * 2);
 	prg_data->commands[0].args[0] = ft_strdup(prg_data->commands[0].cmd);
 	prg_data->commands[0].args[1] = 0;
-	prg_data->commands[0].is_last = 1;
 	return (execute(prg_data));
 }

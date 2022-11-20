@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:58:41 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 17:54:32 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:12:12 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int	test_execution_second_pipeline(t_prg_data *prg_data)
 	prg_data->commands[1].args[0] = ft_strdup(prg_data->commands[1].cmd);
 	prg_data->commands[1].args[1] = ft_strdup("-e");
 	prg_data->commands[1].args[2] = 0;
-	prg_data->commands[1].is_last = 1;
 	return (execute(prg_data));
 }

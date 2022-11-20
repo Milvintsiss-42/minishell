@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 02:31:49 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:11:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_command
 	int					pipe_in[2];
 	int					pipe_out[2];
 	pid_t				pid;
-	t_bool				is_last;
 }	t_command;
 
 // Initalized at startup

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:22:07 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 17:58:55 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:12:05 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static t_command	test_command4(void)
 	command.args[0] = ft_strdup(command.cmd);
 	command.args[1] = 0;
 	command.here_doc_limiter = ft_strdup("HERE2");
-	command.is_last = 1;
 	return (command);
 }
 
