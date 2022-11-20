@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/19 22:35:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 02:16:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 	prg_data->history = 0;
 	prg_data->len_history = 0;
 	prg_data->bin_name = ft_basename(argv[0]);
+	if (!prg_data->bin_name)
+		exit(errno);
 	err = copy_env_to_heap(prg_data, &prg_data->env, env);
 	if (err != 0)
 		exit(err);

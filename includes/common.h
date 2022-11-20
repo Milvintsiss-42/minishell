@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/19 02:28:25 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 02:31:49 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_command
 // - amount of commands in the history
 typedef struct s_prg_data
 {
-	const char	*bin_name;
+	char		*bin_name;
 	char		**env;
 	t_command	*commands;
 	int			nb_commands;
@@ -138,7 +138,7 @@ int			remove_env_element(t_prg_data *prg_data, char *name);
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);
 const char	*get_path_from_env(char *const *env);
-const char	*ft_basename(const char *path);
+char		*ft_basename(const char *path);
 
 char		*get_pwd(void);
 int			updates_env_pwd(t_prg_data *prg_data);
