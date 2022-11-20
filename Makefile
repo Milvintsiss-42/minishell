@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/19 01:13:06 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/20 04:51:17 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS		= main.c \
 	) \
 	$(addprefix common/, \
 		commands_utils.c \
+		commands_free.c \
 		clear_prg_data.c \
 		errors.c \
 		path_utils.c \
@@ -168,7 +169,7 @@ nWerror		:
 			@echo "WARN: Compiling without Werror flag!"
 sanitize	:
 			@echo "WARN: Compiling with fsanitize flag!"
-g3	:
+g3			:
 			@echo "WARN: Compiling with g3 flag!"
 debug		:
 			@echo "WARN: debug is enabled"
@@ -179,4 +180,4 @@ noconnection:
 
 .PHONY: \
  all clean fclean fcleanall re rmlibft\
- nWerror sanitize debug debug_exec noconnection
+ nWerror sanitize debug g3 debug_exec noconnection
