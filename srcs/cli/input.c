@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/20 02:40:56 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 03:51:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static char	*get_prompt(t_prg_data *data)
 	char	*prompt;
 	char	*pwd;
 	char	*pwd_basename;
+	char	*arrow;
 
 	pwd = get_env_element_value_by_name(data, "PWD");
 	if (!pwd)
@@ -42,7 +43,11 @@ static char	*get_prompt(t_prg_data *data)
 	free(pwd);
 	if (!pwd_basename)
 		return (0);
-	ft_vasprintf(&prompt, "-> %s$ ", pwd_basename);
+	if (data->last_exit_status == 0)
+		arrow = "\033[32;1m->\033[0m";
+	else
+		arrow = "\033[31;1m->\033[0m";
+	ft_vasprintf(&prompt, "%s \033[96m%s$\033[0m ", arrow, pwd_basename);
 	free(pwd_basename);
 	return (prompt);
 }
