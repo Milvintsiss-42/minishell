@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 11:11:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:15:03 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_command
 	char				*cmd;
 	char				**args;
 	t_token_separator	e_sep;
+	t_bool				is_opening_parenthesis;
+	t_bool				is_closing_parenthesis;
 	t_stream			e_stdin;
 	t_stream			e_stdout;
 	char				*here_doc_limiter;
