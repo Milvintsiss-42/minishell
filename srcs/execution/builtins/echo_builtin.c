@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:01:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 14:19:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 01:56:27 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@ static int	get_output_from_args(char **r_output,
 	return (0);
 }
 
+static char	**skip_options(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (*args && ft_strncmp(args[i], "-n", 3) == 0)
+	{
+		args++;
+	}
+	return (args);
+}
+
 int	exec_echo_builtin(t_prg_data *prg_data, t_command *command)
 {
 	int		add_newline;
@@ -78,7 +90,7 @@ int	exec_echo_builtin(t_prg_data *prg_data, t_command *command)
 	}
 	if (ft_strncmp(args[0], "-n", 3) == 0)
 	{
-		args++;
+		args = skip_options(args);
 		add_newline = 0;
 	}
 	err = get_output_from_args(&output, prg_data, args, add_newline);
