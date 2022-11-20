@@ -23,6 +23,8 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 		exit(1);
 	prg_data->commands = 0;
 	prg_data->nb_commands = 0;
+	prg_data->cur_pipeline = 0;
+	prg_data->nb_cmds_in_pl = 0;
 	prg_data->last_exit_status = 0;
 	prg_data->history = 0;
 	prg_data->len_history = 0;

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:07:11 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/19 22:41:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 07:57:48 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	close_here_docs_pipes(t_prg_data *prg_data)
 	int	i;
 
 	i = -1;
-	while (++i < prg_data->nb_commands)
+	while (++i < prg_data->nb_cmds_in_pl)
 	{
-		close_pipe(prg_data->commands[i].here_doc_pipe);
+		close_pipe(prg_data->cur_pipeline[i].here_doc_pipe);
 	}
 }

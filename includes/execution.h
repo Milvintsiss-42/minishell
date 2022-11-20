@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 03:09:40 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 03:24:30 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 void		set_streams_enums(t_prg_data *prg_data);
 
-int			execute_commands(t_prg_data *prg_data);
+int			execute_pipeline_commands(t_prg_data *prg_data);
 void		launch_child(t_prg_data	*prg_data, t_command *command);
 int			wait_for_childs_to_finish(t_prg_data *prg_data);
 

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/20 03:51:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:06:24 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 #include "cli.h"
 #include "signals.h"
 
-static void	handle_parsing_exec(t_prg_data *data, char	*line)
+static void	handle_parsing_exec(t_prg_data *data, char *line)
 {
 	t_command	*cmds;
-	int			cmd_no;
 
-	cmd_no = 0;
 	cmds = parsing(data, line);
 	if (!cmds)
 		return ;
-	//TODO: execution
 	execute(data);
-	cmd_no++;
+	// TODO: free parsing
 }
 
 static char	*get_prompt(t_prg_data *data)

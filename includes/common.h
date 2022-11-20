@@ -89,6 +89,9 @@ typedef struct s_prg_data
 	t_command	*commands;
 	int			nb_commands;
 
+	t_command	*cur_pipeline;
+	int			nb_cmds_in_pl;
+
 	char		**history;
 	int			len_history;
 
