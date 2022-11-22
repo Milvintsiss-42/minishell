@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/20 11:06:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:01:52 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	handle_parsing_exec(t_prg_data *data, char *line)
 	t_command	*cmds;
 
 	cmds = parsing(data, line);
+	free(line);
 	if (!cmds)
 		return ;
 	execute(data);
-	// TODO: free parsing
 }
 
 static char	*get_prompt(t_prg_data *data)
@@ -75,6 +75,5 @@ void	ft_loop_input(t_prg_data *data)
 		if (ft_strlen(line) > 0)
 			add_history(line); //TODO: free history at the end -> rl_clear_history();
 		handle_parsing_exec(data, line);
-		free(line); //TODO: free allocated stuffs
 	}
 }
