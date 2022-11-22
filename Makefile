@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/20 04:51:17 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/22 16:56:36 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS		= main.c \
 	) \
 	$(addprefix parsing/, \
 		$(addprefix commands/, \
+			args.c \
 			cmd_generator.c \
 			cmd_translator.c \
 			command_nu.c \
@@ -103,7 +104,7 @@ LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 RL_DIR		= /usr/local/opt/readline
 
 CC			= cc
-CFLAGS		= -Wall -Wextra
+CFLAGS		= -Wall -Wextra -g3
 LFLAGS		= $(LIBFT_FLAGS) \
  -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))

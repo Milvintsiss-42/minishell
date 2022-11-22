@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/17 18:01:48 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/22 16:57:24 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ t_token_separator	is_or_and_pipe(char *str);
 int					command_generator(t_command	*command, t_lst_tokens **tkns);
 int					handle_files(t_token_separator sep, t_command *command,
 						t_lst_tokens **tokens);
-
+int					copy_args(char **src, char **dest);
+int					add_arg( t_command *command, t_lst_tokens *tokens);
 #endif
