@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 11:15:03 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:45:55 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_command
 {
 	char				*cmd;
 	char				**args;
+	t_bool				*is_expandable;
 	t_token_separator	e_sep;
 	t_bool				is_opening_parenthesis;
 	t_bool				is_closing_parenthesis;
