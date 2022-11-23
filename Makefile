@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/22 16:56:36 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/23 17:51:30 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
 RL_DIR		= /usr/local/opt/readline
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -g3
+CFLAGS		= -Wall -Wextra
 LFLAGS		= $(LIBFT_FLAGS) \
  -L$(RL_DIR)/lib -lreadline
 ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
