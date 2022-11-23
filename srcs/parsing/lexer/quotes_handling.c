@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:25:09 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/23 16:38:00 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:49:31 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*quotes_removal(t_lst_tokens *token, size_t start, size_t end)
 		return (NULL);
 	i = 0;
 	j = 0;
-	if (token->token[start] == SQUOTE)
+	if (token->token[start] == DQUOTE)
 		token->does_expand = 1;
 	while (token->token && token->token[i])
 	{
