@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/22 16:59:46 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:30:28 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static int	initalize_cmd(t_command	*command, t_lst_tokens **tokens)
 	if (!command->args[0])
 		return (-1);
 	command->args[1] = NULL;
+	command->is_expandable = (t_bool *)malloc(sizeof(t_bool) * 1);
+	if (!command->is_expandable)
+		return (-1);
+	command->is_expandable[0] = (*tokens)->does_expand;
 	*tokens = (*tokens)->next;
 	return (1);
 }
