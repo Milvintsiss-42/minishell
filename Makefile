@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/23 17:51:30 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/24 02:24:45 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS		= main.c \
 		env_info_utils.c \
 		env_modify_utils.c \
 		env_cpy_and_free.c \
+		get_pwd.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
