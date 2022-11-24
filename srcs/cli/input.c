@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/24 05:17:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:53:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*get_prompt(t_prg_data *data)
 	free(pwd);
 	if (!pwd_basename)
 		return (0);
-	if (data->last_exit_status == 0)
+	if (g_last_exit_status == 0)
 		arrow = "\033[32;1m➜\033[0m";
 	else
 		arrow = "\033[31;1m➜\033[0m";

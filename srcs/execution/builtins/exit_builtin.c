@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:32:21 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 04:55:47 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:53:57 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	exec_exit_builtin(t_prg_data *prg_data, t_command *command)
 	if (return_value != 0)
 		exit_process(prg_data, command, return_value);
 	else
-		exit_process(prg_data, command, prg_data->last_exit_status);
+		exit_process(prg_data, command, g_last_exit_status);
 	return (0);
 }

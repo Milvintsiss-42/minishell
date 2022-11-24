@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/22 19:45:55 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/24 20:52:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ typedef struct s_prg_data
 
 	char		**history;
 	int			len_history;
-
-	int			last_exit_status;
 }	t_prg_data;
+
+int				g_last_exit_status;
 
 int			execute(t_prg_data *prg_data);
 void		clear_prg_data(t_prg_data *prg_data);
