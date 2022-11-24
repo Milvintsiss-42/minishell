@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:09:06 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 18:13:51 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/24 20:55:16 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	signal_int(int signo)
 {
 	if (signo == SIGINT)
 	{
+		g_last_exit_status = 130;
 		ft_putstr_fd("\n", 2);
 		rl_replace_line("", 0);
 		rl_on_new_line();
