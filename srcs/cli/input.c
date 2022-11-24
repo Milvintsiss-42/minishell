@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/22 20:01:52 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/24 05:17:58 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static char	*get_prompt(t_prg_data *data)
 	if (!pwd_basename)
 		return (0);
 	if (data->last_exit_status == 0)
-		arrow = "\033[32;1m->\033[0m";
+		arrow = "\033[32;1m➜\033[0m";
 	else
-		arrow = "\033[31;1m->\033[0m";
+		arrow = "\033[31;1m➜\033[0m";
 	ft_vasprintf(&prompt, "%s \033[96m%s$\033[0m ", arrow, pwd_basename);
 	free(pwd_basename);
 	return (prompt);
