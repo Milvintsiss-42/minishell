@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:55:58 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/23 17:45:08 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/24 02:37:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	copy_is_expandable(t_command *command, t_lst_tokens *tokens, size_t len)
 {
 	t_bool	*new_val;
 
-	printf("DEBUG LEN: %ld\n", len);
 	new_val = malloc(sizeof(t_bool) * (len + 1));
 	if (!new_val)
 		return (-1);
