@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 03:24:30 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/24 02:57:38 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ERR_TOO_MANY_ARGS				"too many arguments"
 # define ERR_NUMERIC_ARG_REQUIRED		"numeric argument required"
 # define ERR_NUMERIC_ARG_OVERFLOWING	"numeric argument is overflowing"
+# define ERR_LOCKED_ENV_VAR				"This env variable is locked by shell"
 # define ERR_CSM_EOF_IN_HERE_DOC		"%s: warning: here-document at line %d\
  delimited by end-of-file (wanted `%s')\n"
 
