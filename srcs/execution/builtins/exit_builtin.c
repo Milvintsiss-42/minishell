@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:32:21 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 20:53:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/25 00:30:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	exec_exit_builtin(t_prg_data *prg_data, t_command *command)
 			return (ft_fperror(*prg_data, command->cmd,
 					ERR_NUMERIC_ARG_OVERFLOWING));
 	}
+	write(1, "exit\n", 5);
 	if (return_value != 0)
 		exit_process(prg_data, command, return_value);
 	else
