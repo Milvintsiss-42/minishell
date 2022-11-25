@@ -6,13 +6,19 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 20:53:12 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:50:41 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "cli.h"
 #include <stdlib.h>
+
+static void	exit_init(t_prg_data *prg_data, int err)
+{
+	clear_prg_data(prg_data);
+	exit(err);
+}
 
 static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 	char *const *env)
@@ -28,16 +34,20 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 	prg_data->nb_cmds_in_pl = 0;
 	prg_data->history = 0;
 	prg_data->len_history = 0;
+	prg_data->env = 0;
 	prg_data->bin_name = ft_basename(argv[0]);
 	if (!prg_data->bin_name)
-		exit(errno);
+		exit_init(prg_data, errno);
 	err = copy_env_to_heap(prg_data, &prg_data->env, env);
 	if (err != 0)
-		exit(err);
+		exit_init(prg_data, err);
 	if (get_env_element_address_by_name(prg_data, "PWD") == 0)
 		err = updates_env_pwd(prg_data);
 	if (err != 0)
-		exit(err);
+		exit_init(prg_data, err);
+	err = update_shell_lvl(prg_data);
+	if (err != 0)
+		exit_init(prg_data, err);
 }
 
 int	main(int argc, char const **argv, char *const *env)

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 20:52:42 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:46:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,7 @@ char		*ft_basename(const char *path);
 
 char		*get_pwd(void);
 int			updates_env_pwd(t_prg_data *prg_data);
+
+int			update_shell_lvl(t_prg_data *prg_data);
 
 #endif

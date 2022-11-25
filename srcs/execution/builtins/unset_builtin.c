@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:56:24 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 03:09:14 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:57:49 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	remove_env_element_from_arg(t_prg_data *prg_data, char *arg)
 	char	*name;
 
 	name = arg;
-	if (ft_strncmp(name, "PWD", 4) == 0 || ft_strncmp(name, "OLDPWD", 7) == 0)
+	if (ft_strncmp(name, "PWD", 4) == 0 || ft_strncmp(name, "OLDPWD", 7) == 0
+		|| ft_strncmp(name, "SHLVL", 6) == 0)
 		return (ft_fperror(*prg_data, "export", ERR_LOCKED_ENV_VAR));
 	if (!is_name_identifier_valid(name))
 		return (error_invalid_identifier(prg_data, "unset"));
