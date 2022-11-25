@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:48:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/10 15:47:59 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/25 21:18:19 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,6 @@ static void	set_is_inparenthesis(t_lst_tokens *tokens)
 	}
 }
 
-// TODO: should work but need to test it more
-static void	*free_all(t_lst_tokens *tokens)
-{
-	t_lst_tokens	*tmp;
-
-	tmp = tokens;
-	while (tokens)
-	{
-		if (tokens->token)
-			free(tokens->token);
-		tmp = tokens->next;
-		if (tokens)
-			free(tokens);
-		tokens = tmp;
-	}
-	return (NULL);
-}
-
 /*
 * Attach some Metadata to the tokens from the tokenizer.
 */
@@ -73,7 +55,5 @@ t_lst_tokens	*lexer(t_lst_tokens *tokens, t_prg_data *prog_data)
 	(void) prog_data;
 	set_separators(tokens);
 	set_is_inparenthesis(tokens);
-	if (!quotes_handling(tokens))
-		return (free_all(tokens));
 	return (tokens);
 }
