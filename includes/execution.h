@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/24 02:57:38 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:13:09 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@
 # define ERR_CSM_EOF_IN_HERE_DOC		"%s: warning: here-document at line %d\
  delimited by end-of-file (wanted `%s')\n"
 
+typedef struct s_arg_cpnt
+{
+	char				*component;
+	struct s_arg_cpnt	*next;
+}	t_arg_cpnt;
+
 void		set_streams_enums(t_prg_data *prg_data);
+int			expand_env_variables_in_args(t_prg_data *prg_data);
 
 int			execute_pipeline_commands(t_prg_data *prg_data);
 void		launch_child(t_prg_data	*prg_data, t_command *command);

@@ -38,6 +38,7 @@ SRCS		= main.c \
 		here_doc.c \
 		prompt_here_docs.c \
 		redirections.c \
+		expandables.c \
 		$(addprefix builtins/, \
 			builtins.c \
 			cd_builtin.c \
