@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/25 13:55:24 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/26 01:06:53 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,6 @@ SRCS		= main.c \
 		) \
 		$(addprefix lexer/, \
 			lexer.c \
-			quotes_handling.c \
 		) \
 		$(addprefix tokenizer/, \
 			free_all.c \
