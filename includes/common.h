@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/25 13:46:26 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:12:38 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef enum e_streams
 // unitialized parameters.
 typedef struct s_command
 {
-	char				*cmd;
 	char				**args;
 	t_bool				*is_expandable;
 	t_token_separator	e_sep;

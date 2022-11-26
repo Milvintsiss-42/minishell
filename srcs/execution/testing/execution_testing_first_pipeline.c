@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:22:07 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 11:12:05 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:17:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ static t_command	test_command1(void)
 	t_command	command;
 
 	command = default_command();
-	command.cmd = ft_strdup("cat");
 	command.args = malloc(sizeof(char *) * 2);
-	command.args[0] = ft_strdup(command.cmd);
+	command.args[0] = ft_strdup("cat");
 	command.args[1] = 0;
 	command.outfile = ft_strdup("outfile");
 	command.here_doc_limiter = ft_strdup("HERE");
@@ -31,9 +30,8 @@ static t_command	test_command2(void)
 	t_command	command;
 
 	command = default_command();
-	command.cmd = ft_strdup("echo");
 	command.args = malloc(sizeof(char *) * 3);
-	command.args[0] = ft_strdup(command.cmd);
+	command.args[0] = ft_strdup("echo");
 	command.args[1] = ft_strdup("hello world");
 	command.args[2] = 0;
 	return (command);
@@ -44,9 +42,8 @@ static t_command	test_command3(void)
 	t_command	command;
 
 	command = default_command();
-	command.cmd = ft_strdup("cat");
 	command.args = malloc(sizeof(char *) * 2);
-	command.args[0] = ft_strdup(command.cmd);
+	command.args[0] = ft_strdup("cat");
 	command.args[1] = 0;
 	command.infile = ft_strdup("infile");
 	return (command);
@@ -57,9 +54,8 @@ static t_command	test_command4(void)
 	t_command	command;
 
 	command = default_command();
-	command.cmd = ft_strdup("cat");
 	command.args = malloc(sizeof(char *) * 2);
-	command.args[0] = ft_strdup(command.cmd);
+	command.args[0] = ft_strdup("cat");
 	command.args[1] = 0;
 	command.here_doc_limiter = ft_strdup("HERE2");
 	return (command);

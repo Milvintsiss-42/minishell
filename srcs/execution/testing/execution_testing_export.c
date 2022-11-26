@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 02:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 11:12:07 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:17:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int	test_execution_export(t_prg_data *prg_data)
 	prg_data->nb_commands = 1;
 	prg_data->commands = malloc(sizeof(t_command) * prg_data->nb_commands);
 	prg_data->commands[0] = default_command();
-	prg_data->commands[0].cmd = ft_strdup("export");
 	prg_data->commands[0].args = malloc(sizeof(char *) * 9);
-	prg_data->commands[0].args[0] = ft_strdup(prg_data->commands[0].cmd);
+	prg_data->commands[0].args[0] = ft_strdup("export");
 	prg_data->commands[0].args[1] = ft_strdup("new=");
 	prg_data->commands[0].args[2] = ft_strdup("new2=a");
 	prg_data->commands[0].args[3] = ft_strdup("dontaddthis");

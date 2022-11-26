@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_generator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/23 17:30:28 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/26 01:20:34 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ static int	initalize_cmd(t_command	*command, t_lst_tokens **tokens)
 		command->is_opening_parenthesis = 1;
 		*tokens = (*tokens)->next;
 	}
-	command->cmd = ft_strdup((*tokens)->token);
-	if (!command->cmd)
-		return (-1);
 	command->args = (char **)malloc(sizeof(char *) * 2);
 	if (!command->args)
 		return (-1);

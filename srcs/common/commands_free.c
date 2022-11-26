@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 23:13:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/22 19:53:15 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:13:13 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	free_command_elements(t_command command)
 {
 	char	**args;
 
-	if (command.cmd)
-		free(command.cmd);
 	args = command.args;
 	while (args && *args)
 		free(*args++);

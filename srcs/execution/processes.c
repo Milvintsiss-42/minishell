@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 04:07:07 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:14:02 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 	char	*abs_path;
 	int		s_errno;
 
-	s_errno = get_absolute_path(&abs_path, command->cmd,
+	s_errno = get_absolute_path(&abs_path, command->args[0],
 			get_path_from_env(prg_data->env));
 	if (!abs_path)
 	{
 		if (s_errno == 2)
 		{
 			s_errno = 127;
-			ft_fperror(*prg_data, command->cmd, ERR_CMD_NOT_FOUND);
+			ft_fperror(*prg_data, command->args[0], ERR_CMD_NOT_FOUND);
 		}
 		else
-			ft_fperror(*prg_data, command->cmd, strerror(s_errno));
+			ft_fperror(*prg_data, command->args[0], strerror(s_errno));
 		exit_process(prg_data, command, s_errno);
 	}
 	execve(abs_path, command->args, prg_data->env);
