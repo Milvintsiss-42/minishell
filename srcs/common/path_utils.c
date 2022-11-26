@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:41:26 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/20 02:07:34 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:39:54 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	from_env_path(char **abs_path, const char *r_path,
 		if (access(*abs_path, F_OK) == 0)
 			return (1);
 		free(*abs_path);
+		*abs_path = 0;
 		if (*next == '\0')
 			return (0);
 		env_path = next + 1;
