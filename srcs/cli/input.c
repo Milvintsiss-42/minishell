@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 17:53:09 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 23:31:32 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_loop_input(t_prg_data *data)
 	ft_signal_handler();
 	while (TRUE)
 	{
+		updates_env_pwd(data);
 		prompt = get_prompt(data);
 		if (prompt)
 			line = readline(prompt);
