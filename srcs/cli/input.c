@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 23:31:32 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 00:16:50 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ static char	*get_prompt(t_prg_data *data)
 
 // ask indefinitely for a command
 // each command input is parsed and executed
-//TODO: listen for signals CTRL + D or C or /
+//TODO: listen for signals C or /
 void	ft_loop_input(t_prg_data *data)
 {
 	char		*line;
 	char		*prompt;
 
-	ft_signal_handler();
 	while (TRUE)
 	{
 		updates_env_pwd(data);
+		ft_signal_handler();
 		prompt = get_prompt(data);
 		if (prompt)
 			line = readline(prompt);
@@ -69,7 +69,6 @@ void	ft_loop_input(t_prg_data *data)
 		free(prompt);
 		if (!line)
 		{
-			rl_clear_history(); // TODO: add clear history on exit command or any other place where shell is exited
 			clear_prg_data(data);
 			printf("exit\n");
 			exit(0);

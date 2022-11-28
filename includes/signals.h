@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:10:48 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/10 19:36:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:13:32 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include <signal.h>
 
 void	ft_signal_handler(void);
+void	ft_signal_handler_heredoc(void);
+void	ft_signal_handler_child(void);
 
 #endif

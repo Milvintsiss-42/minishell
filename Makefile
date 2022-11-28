@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/28 18:17:57 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/28 23:27:43 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,6 +171,8 @@ fclean		:
 fcleanall	: rmlibft
 			$(RM) $(BUILD_DIR)
 			$(RM) $(NAME)
+
+bonus		: all
 
 re			: fclean all
 
