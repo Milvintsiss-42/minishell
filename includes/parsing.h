@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:59:06 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 15:42:04 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 22:59:34 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_lst_tokens
 
 t_command			*parsing(t_prg_data *prog_data, char *line);
 t_token_separator	is_separator(char *str);
-int					validate_input(char *line);
-t_bool				check_syntax(t_lst_tokens *tokens);
+int					validate_input(char *line, t_prg_data data);
+t_bool				check_syntax(t_lst_tokens *tokens, t_prg_data data);
 void				*free_parsing(t_lst_tokens *tokens);
 // tokeninzer/lexer into commands
 t_command			*cmd_translator(t_lst_tokens *tokens, t_prg_data *prg_data);

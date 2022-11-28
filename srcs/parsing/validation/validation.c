@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:39:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 17:46:40 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 22:59:14 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int	is_all_parenthesis_closed(char *line)
 	return (opened_parenthesis);
 }
 
-int	validate_input(char *line)
+int	validate_input(char *line, t_prg_data data)
 {
 	if (is_all_quotes_closed(line) != 0)
 	{
-		printf("%s\n", ERR_LONELY_SYMBOLS);
+		ft_printf_fd(2, "%s: %s\n", data.bin_name, ERR_LONELY_SYMBOLS);
 		return (-1);
 	}
 	if (is_all_parenthesis_closed(line) != 0)
 	{
-		printf("%s\n", ERR_LONELY_SYMBOLS);
+		ft_printf_fd(2, "%s: %s\n", data.bin_name, ERR_LONELY_SYMBOLS);
 		return (-1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:03:50 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 17:45:06 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 22:58:26 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_bool	is_invalid(t_lst_tokens *token)
 	return (FALSE);
 }
 
-t_bool	check_syntax(t_lst_tokens *tokens)
+t_bool	check_syntax(t_lst_tokens *tokens, t_prg_data data)
 {
 	while (tokens)
 	{
@@ -46,8 +46,8 @@ t_bool	check_syntax(t_lst_tokens *tokens)
 		{
 			if (is_invalid(tokens))
 			{
-				ft_printf_fd(2, "syntax error near '%s'\n",
-					tokens->token);
+				ft_printf_fd(2, "%s: syntax error near '%s'\n",
+					data.bin_name, tokens->token);
 				return (FALSE);
 			}
 		}
