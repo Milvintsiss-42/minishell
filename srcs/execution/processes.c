@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 01:14:02 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:51:21 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 		exit_process(prg_data, command, s_errno);
 	}
 	execve(abs_path, command->args, prg_data->env);
-	exit_process(prg_data, command, ft_perror_errno(*prg_data));
+	exit_process(prg_data, command,
+		ft_fperror_errno(*prg_data, command->args[0]));
 }
 
 void	launch_child(t_prg_data	*prg_data, t_command *command)
