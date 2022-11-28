@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:45:58 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 03:19:33 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:52:40 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,13 @@ int	expand_env_variables_in_args(t_prg_data *prg_data)
 			arg_save = *arg;
 			*arg = expand_env_variables_in_arg(prg_data, *arg);
 			free(arg_save);
-			if (!*arg) // TODO: free args after current because it will stop at this 0
+			if (!*arg)
+			{
+				arg++;
+				while (*arg)
+					free(arg++);
 				return (0);
+			}
 			arg++;
 		}
 	}
