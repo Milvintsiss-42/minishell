@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/26 01:06:53 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/28 18:15:33 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ SRCS		= main.c \
 		here_doc.c \
 		prompt_here_docs.c \
 		redirections.c \
-		expandables.c \
 		$(addprefix builtins/, \
 			builtins.c \
 			cd_builtin.c \
@@ -49,6 +48,12 @@ SRCS		= main.c \
 			unset_builtin.c \
 			export_builtin.c \
 			export-unset_utils.c \
+		) \
+		$(addprefix expandables/, \
+			expandables.c \
+			expand_in_arg.c \
+			build_arg.c \
+			arg_components.c \
 		) \
 		$(addprefix testing/, \
 			execution_testing.c \

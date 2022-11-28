@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/25 21:13:09 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:14:19 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,19 @@ typedef struct s_arg_cpnt
 }	t_arg_cpnt;
 
 void		set_streams_enums(t_prg_data *prg_data);
+
 int			expand_env_variables_in_args(t_prg_data *prg_data);
+char		*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg);
+char		*add_new_cpnt_exit_status(t_prg_data *prg_data,
+				t_arg_cpnt **arg_cpnts);
+char		*add_new_cpnt_from_expandable(t_prg_data *prg_data,
+				t_arg_cpnt **arg_cpnts, char *expandable_name_start,
+				char *expandable_name_end);
+char		*add_new_cpnt(t_prg_data *prg_data, t_arg_cpnt **arg_cpnts,
+				char *new_cpnt_start, char *new_cpnt_end);
+char		*free_cpnts(t_arg_cpnt *arg_cpnts);
+char		*build_arg(t_prg_data *prg_data, t_arg_cpnt *arg_cpnts);
+size_t		get_arg_len(t_arg_cpnt *arg_cpnts);
 
 int			execute_pipeline_commands(t_prg_data *prg_data);
 void		launch_child(t_prg_data	*prg_data, t_command *command);
