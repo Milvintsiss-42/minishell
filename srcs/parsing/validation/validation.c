@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:39:29 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/10 15:30:03 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:46:40 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ int	validate_input(char *line)
 		printf("%s\n", ERR_LONELY_SYMBOLS);
 		return (-1);
 	}
-	// TODO: check for << and >> and other symbols syntax error ()
 	return (0);
 }
