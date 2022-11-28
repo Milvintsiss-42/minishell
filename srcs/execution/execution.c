@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/25 21:14:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:51:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ static int	get_nb_commands(t_command *commands, int nb_max)
 	return (nb);
 }
 
-static int	execute_pipeline(t_prg_data *prg_data, int index, int *ret_v)
+static int	execute_pipeline(t_prg_data *prg_data, int index, int *ret_v,
+	t_bool *is_in_parenthesis)
 {
-	if (index != 0
-		&& prg_data->commands[index - 1].e_sep == e_AND && *ret_v != 0)
-		return (0);
 	if (index == 0
 		|| prg_data->commands[index - 1].e_sep == e_PIPE
 		|| prg_data->commands[index - 1].e_sep == e_NONE
 		|| prg_data->commands[index - 1].e_sep == e_AND
 		|| (prg_data->commands[index - 1].e_sep == e_OR && *ret_v != 0))
 	{
+		if (index != 0 && prg_data->commands[index - 1].e_sep == e_OR
+			&& prg_data->commands[index].is_opening_parenthesis
+			&& !(prg_data->commands[index].is_closing_parenthesis))
+			*is_in_parenthesis = TRUE;
 		prg_data->cur_pipeline = &prg_data->commands[index];
 		prg_data->nb_cmds_in_pl = get_nb_commands(
 				prg_data->cur_pipeline, prg_data->nb_commands - index);
@@ -59,17 +61,29 @@ static int	execute_pipeline(t_prg_data *prg_data, int index, int *ret_v)
 
 int	execute(t_prg_data *prg_dt)
 {
-	int	i;
-	int	ret_v;
+	int		i;
+	int		ret_v;
+	t_bool	is_in_parenthesis;
 
 	i = 0;
 	ret_v = 0;
+	is_in_parenthesis = FALSE;
 	set_streams_enums(prg_dt);
 	if (!prompt_here_docs(prg_dt))
 		return (clean_execution(prg_dt) - 1);
 	while (i < prg_dt->nb_commands)
 	{
-		if (!execute_pipeline(prg_dt, i, &ret_v))
+		if (i != 0
+			&& prg_dt->commands[i - 1].e_sep == e_AND && ret_v != 0)
+		{
+			if (!is_in_parenthesis)
+				break ;
+			while (i < prg_dt->nb_commands
+				&& !prg_dt->commands[i - 1].is_closing_parenthesis)
+				i++;
+			is_in_parenthesis = FALSE;
+		}
+		if (!execute_pipeline(prg_dt, i, &ret_v, &is_in_parenthesis))
 			break ;
 		while (i < prg_dt->nb_commands && prg_dt->commands[i].e_sep == e_PIPE)
 			i++;
