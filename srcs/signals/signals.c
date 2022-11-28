@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:09:06 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 19:23:57 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 21:39:54 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ static void	signal_int_heredoc(int signo)
 		g_last_exit_status = 130;
 		close(0);
 		return ;
-	}
-}
-
-static void	signal_quit_heredoc(int signo)
-{
-	if (signo == SIGQUIT)
-	{
-		signal(SIGQUIT, SIG_IGN);
 	}
 }
 
