@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 15:42:55 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 21:59:52 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_command	*parsing(t_prg_data *prog_data, char *line)
 		return (NULL);
 	while (*line == ' ' || *line == '\t')
 		line++;
+	if (*line == '\0')
+		return (NULL);
 	if (validate_input(line) == -1)
 		return (NULL);
 	tokens = tokenizer(line);
