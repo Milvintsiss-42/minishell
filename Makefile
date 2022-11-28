@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/26 01:06:53 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/28 15:43:20 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCS		= main.c \
 			tokenizer.c \
 		) \
 		$(addprefix validation/, \
+			syntax.c \
 			validation.c \
 		) \
 		free_parsing.c \

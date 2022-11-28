@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/22 19:58:41 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/28 15:42:55 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ t_command	*parsing(t_prg_data *prog_data, char *line)
 	tokens = tokenizer(line);
 	if (!tokens)
 		return (NULL);
+	if (!check_syntax(tokens))
+	{
+		free_parsing(tokens);
+		return (NULL);
+	}
 	tokens = lexer(tokens, prog_data);
 	if (!tokens)
 		return (NULL);
