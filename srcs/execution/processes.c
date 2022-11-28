@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 18:51:21 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:39:56 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "signals.h"
 #include <sys/wait.h>
 
 void	exit_process(t_prg_data *prg_data, t_command *command, int err)
@@ -49,6 +50,7 @@ void	launch_child(t_prg_data	*prg_data, t_command *command)
 {
 	int	err;
 
+	ft_signal_handler_child();
 	err = 0;
 	if (command->e_stdin == stream_HERE_DOC)
 		err = set_here_doc_as_stdin(prg_data, command);
