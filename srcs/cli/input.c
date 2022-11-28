@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/24 20:53:42 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:53:09 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,13 @@ void	ft_loop_input(t_prg_data *data)
 		free(prompt);
 		if (!line)
 		{
-			// CTRL + D case
+			rl_clear_history(); // TODO: add clear history on exit command or any other place where shell is exited
+			clear_prg_data(data);
 			printf("exit\n");
-			exit(0); // TODO: handle exit + clean
+			exit(0);
 		}
 		if (ft_strlen(line) > 0)
-			add_history(line); //TODO: free history at the end -> rl_clear_history();
+			add_history(line);
 		handle_parsing_exec(data, line);
 	}
 }
