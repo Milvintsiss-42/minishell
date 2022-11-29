@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:11:47 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 18:54:26 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:32:47 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	exec_command_builtin(t_prg_data *prg_data, t_command *command)
 		return (exec_unset_builtin(prg_data, command));
 	if (ft_strncmp("export", command->args[0], 7) == 0)
 		return (exec_export_builtin(prg_data, command));
-	return (-1);
+	return (1);
 }
 
 static int	save_std_streams(t_prg_data *prg_data,
@@ -85,5 +85,5 @@ int	exec_builtin(t_prg_data *prg_data, t_command *command, int is_child)
 	if (err != 0)
 		return (rst_std_streams(prg_data, stdin_save, stdout_save) && err);
 	err = exec_command_builtin(prg_data, command);
-	return (rst_std_streams(prg_data, stdin_save, stdout_save));
+	return (rst_std_streams(prg_data, stdin_save, stdout_save) || err);
 }
