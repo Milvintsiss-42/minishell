@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:03:50 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 21:20:07 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/29 23:34:36 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ t_bool	is_valid_suite(t_lst_tokens *token)
 			|| is_separator(token->token) == e_RD_FILE_APN
 			|| is_separator(token->token) == e_RD_STDIN_HEREDOC)
 		&& is_separator(token->token) != e_OPEN_PRTH && !token->prev)
+		return (TRUE);
+	if (is_separator(token->token)
+		&& (is_separator(token->token) == e_RD_FILE
+			|| is_separator(token->token) == e_RD_STDIN
+			|| is_separator(token->token) == e_RD_FILE_APN
+			|| is_separator(token->token) == e_RD_STDIN_HEREDOC)
+		&& token->next && !token->next->next)
 		return (TRUE);
 	return (FALSE);
 }
