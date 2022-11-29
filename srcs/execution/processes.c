@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 23:39:56 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/29 19:19:19 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	launch_child(t_prg_data	*prg_data, t_command *command)
 // Wait for all childs to finish, gets the return result of the last child and
 // returns it.
 // If something fails during the execution of this method or the last child
-// quitted unexpectedly, returns -1.
+// quitted unexpectedly, returns corresponding errno.
 int	wait_for_childs_to_finish(t_prg_data *prg_data)
 {
 	int	i;
@@ -89,14 +89,15 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 	while (++i < prg_data->nb_cmds_in_pl)
 	{
 		if (waitpid(prg_data->cur_pipeline[i].pid, &wstatus, 0) == -1)
-		{
-			ft_perror_errno(*prg_data);
-			err = 1;
-		}
+			err = ft_perror_errno(*prg_data);
 	}
 	if (err)
-		return (-1);
+		return (err);
 	if (WIFEXITED(wstatus))
 		return (WEXITSTATUS(wstatus));
-	return (-1);
+	if (WIFSIGNALED(wstatus))
+		return (WTERMSIG(wstatus));
+	if (WIFSTOPPED(wstatus))
+		return (WSTOPSIG(wstatus));
+	return (1);
 }
