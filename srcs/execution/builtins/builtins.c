@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:11:47 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 19:32:47 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:09:39 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(t_command *command)
 {
+	if (!command->args)
+		return (0);
 	return (ft_strncmp("cd", command->args[0], 3) == 0
 		|| ft_strncmp("pwd", command->args[0], 4) == 0
 		|| ft_strncmp("env", command->args[0], 4) == 0
@@ -26,6 +28,8 @@ int	is_builtin(t_command *command)
 
 static int	exec_command_builtin(t_prg_data *prg_data, t_command *command)
 {
+	if (!command->args)
+		return (1);
 	if (ft_strncmp("cd", command->args[0], 3) == 0)
 		return (exec_cd_builtin(prg_data, command));
 	if (ft_strncmp("pwd", command->args[0], 4) == 0)

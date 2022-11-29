@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 22:38:03 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/30 00:11:24 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 	char	*abs_path;
 	int		s_errno;
 
+	if (!command->args)
+		exit_process(prg_data, command, 0);
 	s_errno = get_absolute_path(&abs_path, command->args[0],
 			get_path_from_env(prg_data->env));
 	if (!abs_path)
