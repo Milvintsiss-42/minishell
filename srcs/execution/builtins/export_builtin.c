@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:43:05 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 23:27:23 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:39:36 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static int	add_env_element_from_arg(t_prg_data *prg_data, char *arg)
 
 	value = ft_strchr(arg, '=');
 	if (!value)
+	{
+		if (!is_name_identifier_valid(arg))
+			return (error_invalid_identifier(prg_data, "export"));
 		return (-1);
+	}
 	*value = 0;
 	value++;
 	name = arg;
@@ -34,20 +38,16 @@ int	exec_export_builtin(t_prg_data *prg_data, t_command *command)
 {
 	char	**args;
 	int		rstatus;
-	int		rstatus_final;
 	int		i;
 
 	args = command->args + 1;
 	i = 0;
-	rstatus_final = 0;
 	while (args[i])
 	{
 		rstatus = add_env_element_from_arg(prg_data, args[i]);
 		if (rstatus > 1)
 			return (rstatus);
-		if (rstatus != 0)
-			rstatus_final = rstatus;
 		i++;
 	}
-	return (rstatus_final);
+	return (0);
 }

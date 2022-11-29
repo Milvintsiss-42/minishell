@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:11:47 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 00:56:48 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:32:47 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	exec_command_builtin(t_prg_data *prg_data, t_command *command)
 		return (exec_unset_builtin(prg_data, command));
 	if (ft_strncmp("export", command->args[0], 7) == 0)
 		return (exec_export_builtin(prg_data, command));
-	return (-1);
+	return (1);
 }
 
 static int	save_std_streams(t_prg_data *prg_data,
@@ -73,21 +73,17 @@ int	exec_builtin(t_prg_data *prg_data, t_command *command, int is_child)
 	if (is_child)
 		exit_process(prg_data, command,
 			exec_command_builtin(prg_data, command));
-	else
-	{
-		err = save_std_streams(prg_data, &stdin_save, &stdout_save);
-		if (err != 0)
-			return (err);
-		if (command->e_stdin == stream_REDIR)
-			err = set_infile_as_stdin(prg_data, command);
-		if (err != 0)
-			return (err);
-		if (command->e_stdout == stream_REDIR)
-			err = set_outfile_as_stdout(prg_data, command);
-		if (err != 0)
-			return (rst_std_streams(prg_data, stdin_save, stdout_save) && err);
-		err = exec_command_builtin(prg_data, command);
-		return (rst_std_streams(prg_data, stdin_save, stdout_save));
-	}
-	return (-1);
+	err = save_std_streams(prg_data, &stdin_save, &stdout_save);
+	if (err != 0)
+		return (err);
+	if (command->e_stdin == stream_REDIR)
+		err = set_infile_as_stdin(prg_data, command);
+	if (err != 0)
+		return (err);
+	if (command->e_stdout == stream_REDIR)
+		err = set_outfile_as_stdout(prg_data, command);
+	if (err != 0)
+		return (rst_std_streams(prg_data, stdin_save, stdout_save) && err);
+	err = exec_command_builtin(prg_data, command);
+	return (rst_std_streams(prg_data, stdin_save, stdout_save) || err);
 }
