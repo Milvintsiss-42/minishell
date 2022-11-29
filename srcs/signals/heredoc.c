@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 18:09:06 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 22:40:57 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/11/29 22:40:31 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/11/29 22:40:51 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 #include "common.h"
 
-static void	signal_int(int signo)
+static void	signal_int_heredoc(int signo)
 {
 	if (signo == SIGINT)
 	{
+		signal(SIGINT, SIG_IGN);
 		g_last_exit_status = 130;
-		ft_putstr_fd("\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		close(0);
 		return ;
 	}
 }
 
-void	ft_signal_handler(void)
+void	ft_signal_handler_heredoc(void)
 {
-	signal(SIGINT, signal_int);
 	signal(SIGQUIT, SIG_IGN);
-}
-
-void	ft_signal_handler_child(void)
-{
-	signal(SIGINT, SIG_IGN);
-}
-
-void	ft_signal_handler_default(void)
-{
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, signal_int_heredoc);
 }

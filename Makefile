@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/28 23:27:43 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/11/29 22:41:31 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,7 @@ SRCS		= main.c \
 		parsing.c \
 	) \
 	$(addprefix signals/, \
+		heredoc.c \
 		signals.c \
 	)
 BUILD_DIR	= build

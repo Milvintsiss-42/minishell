@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 19:05:07 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:31:44 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "signals.h"
 #include "unistd.h"
 
 int	clean_execution(t_prg_data *prg_data)
@@ -62,6 +63,7 @@ int	execute(t_prg_data *prg_dt)
 
 	i = 0;
 	ret_v = 0;
+	ft_signal_handler_child();
 	set_streams_enums(prg_dt);
 	if (!prompt_here_docs(prg_dt))
 		return (clean_execution(prg_dt) - 1);
