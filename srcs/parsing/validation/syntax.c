@@ -6,11 +6,23 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:03:50 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/28 22:58:26 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/29 21:20:07 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_bool	is_valid_suite(t_lst_tokens *token)
+{
+	if (is_separator(token->token)
+		&& !(is_separator(token->token) == e_RD_FILE
+			|| is_separator(token->token) == e_RD_STDIN
+			|| is_separator(token->token) == e_RD_FILE_APN
+			|| is_separator(token->token) == e_RD_STDIN_HEREDOC)
+		&& is_separator(token->token) != e_OPEN_PRTH && !token->prev)
+		return (TRUE);
+	return (FALSE);
+}
 
 t_bool	is_invalid(t_lst_tokens *token)
 {
@@ -35,7 +47,7 @@ t_bool	is_invalid(t_lst_tokens *token)
 	if (is_separator(token->token) == e_CLOSE_PRTH && token->next
 		&& is_separator(token->next->token) == e_OPEN_PRTH)
 		return (TRUE);
-	return (FALSE);
+	return (is_valid_suite(token));
 }
 
 t_bool	check_syntax(t_lst_tokens *tokens, t_prg_data data)
