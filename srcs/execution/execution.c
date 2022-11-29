@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 22:31:44 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/29 22:57:05 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	execute(t_prg_data *prg_dt)
 
 	i = 0;
 	ret_v = 0;
-	ft_signal_handler_child();
+	ft_signal_handler_ignore();
 	set_streams_enums(prg_dt);
 	if (!prompt_here_docs(prg_dt))
 		return (clean_execution(prg_dt) - 1);

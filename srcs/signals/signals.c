@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:09:06 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 22:40:57 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/29 22:57:20 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	ft_signal_handler(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	ft_signal_handler_child(void)
+void	ft_signal_handler_ignore(void)
 {
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 }
 
