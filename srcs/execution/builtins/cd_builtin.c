@@ -6,17 +6,16 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:01:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/13 23:58:28 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:33:31 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-int	updates_env_pwd(t_prg_data *prg_data)
+static int	updates_env_pwd_and_oldpwd(t_prg_data *prg_data)
 {
-	char	*pwd;
-	char	*old_pwd;
 	int		rstatus;
+	char	*old_pwd;
 
 	if (get_env_element_address_by_name(prg_data, "PWD") != 0)
 	{
@@ -29,9 +28,17 @@ int	updates_env_pwd(t_prg_data *prg_data)
 		if (rstatus != 0)
 			return (rstatus);
 	}
-	pwd = get_pwd();
-	if (!pwd)
-		return (ft_perror_errno(*prg_data));
+	return (updates_env_pwd(prg_data));
+}
+
+int	updates_env_pwd(t_prg_data *prg_data)
+{
+	int		rstatus;
+	char	*pwd;
+
+	rstatus = get_pwd(prg_data, &pwd);
+	if (rstatus != 0)
+		return (rstatus);
 	rstatus = add_or_modify_env_element_if_exists(prg_data, "PWD", pwd);
 	free(pwd);
 	return (rstatus);
@@ -70,5 +77,5 @@ int	exec_cd_builtin(t_prg_data *prg_data, t_command *command)
 		if (chdir(command->args[1]) == -1)
 			return (ft_perror_errno(*prg_data) * 0);
 	}
-	return (updates_env_pwd(prg_data));
+	return (updates_env_pwd_and_oldpwd(prg_data));
 }
