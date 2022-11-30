@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 12:17:34 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:13:59 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_arg_cpnt
 
 void		set_streams_enums(t_prg_data *prg_data);
 
-int			expand_env_variables_in_args(t_prg_data *prg_data);
+int			expand_env_variables(t_prg_data *prg_data);
 char		*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg);
 char		*add_new_cpnt_exit_status(t_prg_data *prg_data,
 				t_arg_cpnt **arg_cpnts);

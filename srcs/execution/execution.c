@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:11:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:14:08 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	execute_pipeline(t_prg_data *prg_data, int index, int *ret_v)
 		prg_data->cur_pipeline = &prg_data->commands[index];
 		prg_data->nb_cmds_in_pl = get_nb_commands(
 				prg_data->cur_pipeline, prg_data->nb_commands - index);
-		if (!expand_env_variables_in_args(prg_data))
+		if (!expand_env_variables(prg_data))
 		{
 			*ret_v = errno;
 			g_last_exit_status = *ret_v;
