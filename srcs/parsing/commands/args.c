@@ -6,26 +6,11 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:55:58 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/24 02:37:37 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:38:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	copy_is_expandable(t_command *command, t_lst_tokens *tokens, size_t len)
-{
-	t_bool	*new_val;
-
-	new_val = malloc(sizeof(t_bool) * (len + 1));
-	if (!new_val)
-		return (-1);
-	new_val[len] = tokens->does_expand;
-	while (len--)
-		new_val[len] = command->is_expandable[len];
-	free(command->is_expandable);
-	command->is_expandable = new_val;
-	return (1);
-}
 
 static int	free_arg(char **arg)
 {
@@ -81,7 +66,5 @@ int	add_arg(t_command *command, t_lst_tokens *tokens)
 		return (free_arg(command->args));
 	free_arg(command->args);
 	command->args = new_arg;
-	if (copy_is_expandable(command, tokens, len) == -1)
-		return (-1);
 	return (1);
 }

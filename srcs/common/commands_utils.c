@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:58:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 01:13:06 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:36:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_command	default_command(void)
 	t_command	command;
 
 	command.args = 0;
-	command.is_expandable = 0;
 	command.e_sep = e_NONE;
 	command.is_opening_parenthesis = FALSE;
 	command.is_closing_parenthesis = FALSE;

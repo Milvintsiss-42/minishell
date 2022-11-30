@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 23:13:35 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 01:13:13 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:37:06 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	free_command_elements(t_command command)
 	while (args && *args)
 		free(*args++);
 	free(command.args);
-	if (command.is_expandable)
-		free(command.is_expandable);
 	if (command.here_doc_limiter)
 		free(command.here_doc_limiter);
 	if (command.infile)

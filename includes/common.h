@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:42:55 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:36:35 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef enum e_streams
 typedef struct s_command
 {
 	char				**args;
-	t_bool				*is_expandable;
 	t_token_separator	e_sep;
 	t_bool				is_opening_parenthesis;
 	t_bool				is_closing_parenthesis;
