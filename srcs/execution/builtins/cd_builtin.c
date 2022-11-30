@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:01:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 18:33:31 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:43:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ static int	updates_env_pwd_and_oldpwd(t_prg_data *prg_data)
 		if (rstatus != 0)
 			return (rstatus);
 	}
-	return (updates_env_pwd(prg_data));
+	return (updates_env_pwd(prg_data, FALSE));
 }
 
-int	updates_env_pwd(t_prg_data *prg_data)
+int	updates_env_pwd(t_prg_data *prg_data, t_bool from_shell)
 {
 	int		rstatus;
 	char	*pwd;
 
-	rstatus = get_pwd(prg_data, &pwd);
+	rstatus = get_pwd(prg_data, &pwd, from_shell);
 	if (rstatus != 0)
 		return (rstatus);
 	rstatus = add_or_modify_env_element_if_exists(prg_data, "PWD", pwd);

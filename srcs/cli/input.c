@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 00:16:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:43:48 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_loop_input(t_prg_data *data)
 
 	while (TRUE)
 	{
-		updates_env_pwd(data);
+		updates_env_pwd(data, TRUE);
 		ft_signal_handler();
 		prompt = get_prompt(data);
 		if (prompt)

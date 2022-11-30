@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 18:25:11 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:42:55 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ int			get_absolute_path(char **abs_path, const char *r_path,
 const char	*get_path_from_env(char *const *env);
 char		*ft_basename(const char *path);
 
-int			get_pwd(t_prg_data *prg_data, char **r_buf);
-int			updates_env_pwd(t_prg_data *prg_data);
+int			get_pwd(t_prg_data *prg_data, char **r_buf, t_bool from_shell);
+int			updates_env_pwd(t_prg_data *prg_data, t_bool from_shell);
 
 int			update_shell_lvl(t_prg_data *prg_data);
 
