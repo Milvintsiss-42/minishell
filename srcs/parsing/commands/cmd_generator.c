@@ -6,13 +6,13 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/30 01:11:57 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/30 11:26:10 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int	final_touch(t_command	*command, t_lst_tokens **tokens,
+static int	final_touch(t_command *command, t_lst_tokens **tokens,
 		t_token_separator sep)
 {
 	if (sep == e_OR || sep == e_AND || sep == e_PIPE || sep == e_CLOSE_PRTH)
@@ -27,7 +27,7 @@ static int	final_touch(t_command	*command, t_lst_tokens **tokens,
 	return (1);
 }
 
-int	command_generator(t_prg_data *data, t_command	*command,
+int	command_generator(t_prg_data *data, t_command *command,
 	t_lst_tokens **tokens)
 {
 	t_token_separator	sep;
