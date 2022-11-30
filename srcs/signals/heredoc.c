@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:40:31 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 22:40:51 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/30 01:06:56 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ static void	signal_int_heredoc(int signo)
 {
 	if (signo == SIGINT)
 	{
-		signal(SIGINT, SIG_IGN);
-		g_last_exit_status = 130;
+		g_last_exit_status = -42;
 		close(0);
-		return ;
 	}
 }
 

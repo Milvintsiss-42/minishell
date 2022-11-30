@@ -6,11 +6,12 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 01:14:21 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 01:12:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "signals.h"
 
 static int	is_end_of_input(t_command *command, char *line, size_t len)
 {
@@ -24,18 +25,19 @@ static int	is_end_of_input(t_command *command, char *line, size_t len)
 	return (is_end_of_input);
 }
 
+// Returns 0 on success, errno otherwise
 static int	handle_errors(t_prg_data *prg_data, t_command *command, char *line,
 	int lines_count)
 {
-	if (errno != 0 && errno != 22)
-		return (ft_perror_errno(*prg_data) * 0);
-	if (!line)
+	if (errno != 0 && errno != 22 && g_last_exit_status != -42)
+		return (ft_perror_errno(*prg_data));
+	if (!line && errno == 0)
 		ft_printf_fd(STDERR_FILENO, ERR_CSM_EOF_IN_HERE_DOC,
 			prg_data->bin_name, lines_count, command->here_doc_limiter);
-	return (1);
+	return (0);
 }
 
-// TODO: Handle signals
+// Returns 0 on success, errno otherwise
 static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 {
 	char	*line;
@@ -44,7 +46,7 @@ static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 
 	lines_count = 0;
 	if (pipe(command->here_doc_pipe) == -1)
-		return (ft_perror_errno(*prg_data) * 0);
+		return (ft_perror_errno(*prg_data));
 	while (1)
 	{
 		ft_printf("%s> ", command->args[0]);
@@ -59,19 +61,44 @@ static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 		free(line);
 	}
 	free(line);
-	if (!handle_errors(prg_data, command, line, lines_count))
-		return (0);
-	return (1);
+	if (handle_errors(prg_data, command, line, lines_count) != 0)
+		return (errno);
+	return (0);
 }
 
+static int	on_sigint(int save_stdin)
+{
+	g_last_exit_status = 130;
+	dup2(save_stdin, STDIN_FILENO);
+	write(1, "\n", 1);
+	return (130);
+}
+
+// Returns 0 on success, errno otherwise
 int	prompt_here_docs(t_prg_data *prg_data)
 {
 	int	i;
+	int	save_stdin;
 
 	i = -1;
+	save_stdin = dup(STDIN_FILENO);
+	if (save_stdin == -1)
+		return (ft_perror_errno(*prg_data));
+	ft_signal_handler_heredoc();
 	while (++i < prg_data->nb_commands)
-		if (prg_data->commands[i].e_stdin == stream_HERE_DOC
-			&& !prompt_here_doc(prg_data, &prg_data->commands[i]))
-			return (0);
-	return (1);
+	{
+		if (prg_data->commands[i].e_stdin == stream_HERE_DOC)
+		{
+			if (prompt_here_doc(prg_data, &prg_data->commands[i]) != 0)
+			{
+				close(save_stdin);
+				return (errno);
+			}
+			if (g_last_exit_status == -42)
+				return (on_sigint(save_stdin));
+		}
+	}
+	close(save_stdin);
+	ft_signal_handler_ignore();
+	return (0);
 }
