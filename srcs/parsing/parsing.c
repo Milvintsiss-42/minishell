@@ -5,42 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 19:36:38 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/10/07 15:10:27 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/10/31 17:20:47 by oaarsse           #+#    #+#             */
+/*   Updated: 2022/11/28 22:59:50 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
 #include "parsing.h"
+#include "lexer.h"
 
-// Checks for empty line
-static int	is_empty(char *line)
+t_command	*parsing(t_prg_data *prog_data, char *line)
 {
-	int	i;
+	t_command			*commands;
+	t_lst_tokens		*tokens;
 
-	i = 0;
-	if (!line)
-		return (1);
-	while (line[i])
-	{
-		if (!ft_isspace(line[i])) // TODO: check if all whitespaces are ignored in the command input
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-// Takes as input the raw user input from the shell
-// Will fill the program data struct with the commands to exec
-// Also checks if the line is not empty
-t_command	**parsing(t_prg_data *prg_data, char *line)
-{
-	(void)prg_data;
-	if (is_empty(line))
+	if (!line || *line == '\0')
 		return (NULL);
-	// TODO: check if all whitespaces are ignored in the command input or just space and tab
 	while (*line == ' ' || *line == '\t')
 		line++;
-	// TODO: add parsing validation such as opening and closing quotes, single &...
-	return (get_commands(line));
+	if (*line == '\0')
+		return (NULL);
+	if (validate_input(line, *prog_data) == -1)
+		return (NULL);
+	tokens = tokenizer(line);
+	if (!tokens)
+		return (NULL);
+	if (!check_syntax(tokens, *prog_data))
+	{
+		free_parsing(tokens);
+		return (NULL);
+	}
+	tokens = lexer(tokens, prog_data);
+	if (!tokens)
+		return (NULL);
+	commands = cmd_translator(tokens, prog_data);
+	free_parsing(tokens);
+	return (commands);
 }

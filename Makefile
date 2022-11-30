@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/14 05:07:50 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/11/29 22:41:31 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,15 @@ SRCS		= main.c \
 	) \
 	$(addprefix common/, \
 		commands_utils.c \
+		commands_free.c \
 		clear_prg_data.c \
 		errors.c \
 		path_utils.c \
 		env_info_utils.c \
 		env_modify_utils.c \
 		env_cpy_and_free.c \
+		get_pwd.c \
+		update_shell_lvl.c \
 	) \
 	$(addprefix execution/, \
 		execution.c \
@@ -46,6 +49,12 @@ SRCS		= main.c \
 			export_builtin.c \
 			export-unset_utils.c \
 		) \
+		$(addprefix expandables/, \
+			expandables.c \
+			expand_in_arg.c \
+			build_arg.c \
+			arg_components.c \
+		) \
 		$(addprefix testing/, \
 			execution_testing.c \
 			execution_testing_first_pipeline.c \
@@ -61,10 +70,33 @@ SRCS		= main.c \
 		) \
 	) \
 	$(addprefix parsing/, \
+		$(addprefix commands/, \
+			args.c \
+			cmd_generator.c \
+			cmd_translator.c \
+			command_nu.c \
+			file_handling.c \
+			is_command_separator.c \
+		) \
+		$(addprefix lexer/, \
+			lexer.c \
+		) \
+		$(addprefix tokenizer/, \
+			free_all.c \
+			lst_tokens.c \
+			skip_quotes.c \
+			tokenizer.c \
+		) \
+		$(addprefix validation/, \
+			syntax.c \
+			validation.c \
+		) \
+		free_parsing.c \
+		is_separator.c \
 		parsing.c \
-		command_parsing.c \
 	) \
 	$(addprefix signals/, \
+		heredoc.c \
 		signals.c \
 	)
 BUILD_DIR	= build
@@ -89,6 +121,9 @@ ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 endif
 ifeq (sanitize, $(filter sanitize,$(MAKECMDGOALS)))
 	CFLAGS 	+= -fsanitize=address
+endif
+ifeq (g3, $(filter g3,$(MAKECMDGOALS)))
+	CFLAGS 	+= -g3
 endif
 ifeq (debug, $(filter debug,$(MAKECMDGOALS)))
 	CFLAGS	+= -D KDEBUG=1
@@ -138,12 +173,16 @@ fcleanall	: rmlibft
 			$(RM) $(BUILD_DIR)
 			$(RM) $(NAME)
 
+bonus		: all
+
 re			: fclean all
 
 nWerror		:
 			@echo "WARN: Compiling without Werror flag!"
 sanitize	:
 			@echo "WARN: Compiling with fsanitize flag!"
+g3			:
+			@echo "WARN: Compiling with g3 flag!"
 debug		:
 			@echo "WARN: debug is enabled"
 debug_exec	:
@@ -153,4 +192,4 @@ noconnection:
 
 .PHONY: \
  all clean fclean fcleanall re rmlibft\
- nWerror sanitize debug debug_exec noconnection
+ nWerror sanitize debug g3 debug_exec noconnection

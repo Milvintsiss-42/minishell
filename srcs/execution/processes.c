@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 19:01:32 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:11:24 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "signals.h"
 #include <sys/wait.h>
 
 void	exit_process(t_prg_data *prg_data, t_command *command, int err)
@@ -27,21 +28,24 @@ static void	exec_command(t_prg_data *prg_data, t_command *command)
 	char	*abs_path;
 	int		s_errno;
 
-	s_errno = get_absolute_path(&abs_path, command->cmd,
+	if (!command->args)
+		exit_process(prg_data, command, 0);
+	s_errno = get_absolute_path(&abs_path, command->args[0],
 			get_path_from_env(prg_data->env));
 	if (!abs_path)
 	{
 		if (s_errno == 2)
 		{
 			s_errno = 127;
-			ft_fperror(*prg_data, command->cmd, ERR_CMD_NOT_FOUND);
+			ft_fperror(*prg_data, command->args[0], ERR_CMD_NOT_FOUND);
 		}
 		else
-			ft_fperror(*prg_data, command->cmd, strerror(s_errno));
+			ft_fperror(*prg_data, command->args[0], strerror(s_errno));
 		exit_process(prg_data, command, s_errno);
 	}
 	execve(abs_path, command->args, prg_data->env);
-	exit_process(prg_data, command, ft_perror_errno(*prg_data));
+	exit_process(prg_data, command,
+		ft_fperror_errno(*prg_data, command->args[0]));
 }
 
 void	launch_child(t_prg_data	*prg_data, t_command *command)
@@ -49,6 +53,7 @@ void	launch_child(t_prg_data	*prg_data, t_command *command)
 	int	err;
 
 	err = 0;
+	ft_signal_handler_default();
 	if (command->e_stdin == stream_HERE_DOC)
 		err = set_here_doc_as_stdin(prg_data, command);
 	else if (command->e_stdin == stream_REDIR)
@@ -74,7 +79,7 @@ void	launch_child(t_prg_data	*prg_data, t_command *command)
 // Wait for all childs to finish, gets the return result of the last child and
 // returns it.
 // If something fails during the execution of this method or the last child
-// quitted unexpectedly, returns -1.
+// quitted unexpectedly, returns corresponding errno.
 int	wait_for_childs_to_finish(t_prg_data *prg_data)
 {
 	int	i;
@@ -83,17 +88,18 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 
 	i = -1;
 	err = 0;
-	while (++i < prg_data->nb_commands)
+	while (++i < prg_data->nb_cmds_in_pl)
 	{
-		if (waitpid(prg_data->commands[i].pid, &wstatus, 0) == -1)
-		{
-			ft_perror_errno(*prg_data);
-			err = 1;
-		}
+		if (waitpid(prg_data->cur_pipeline[i].pid, &wstatus, 0) == -1)
+			err = ft_perror_errno(*prg_data);
 	}
 	if (err)
-		return (-1);
+		return (err);
 	if (WIFEXITED(wstatus))
 		return (WEXITSTATUS(wstatus));
-	return (-1);
+	if (WIFSIGNALED(wstatus))
+		return (WTERMSIG(wstatus));
+	if (WIFSTOPPED(wstatus))
+		return (WSTOPSIG(wstatus));
+	return (1);
 }

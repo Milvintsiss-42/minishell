@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:01:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/09 14:19:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/24 05:14:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,24 @@ static int	get_output_from_args(char **r_output,
 	return (0);
 }
 
+static void	handle_options(char ***args, int *add_newline)
+{
+	int	i;
+
+	while (**args && ***args == '-')
+	{
+		if ((**args)[1] == 0)
+			return ;
+		i = 1;
+		while ((**args)[i] == 'n')
+			i++;
+		if ((**args)[i] != 0)
+			return ;
+		*add_newline = 0;
+		(*args)++;
+	}
+}
+
 int	exec_echo_builtin(t_prg_data *prg_data, t_command *command)
 {
 	int		add_newline;
@@ -76,11 +94,7 @@ int	exec_echo_builtin(t_prg_data *prg_data, t_command *command)
 		write(1, "\n", 1);
 		return (0);
 	}
-	if (ft_strncmp(args[0], "-n", 3) == 0)
-	{
-		args++;
-		add_newline = 0;
-	}
+	handle_options(&args, &add_newline);
 	err = get_output_from_args(&output, prg_data, args, add_newline);
 	if (err != 0)
 		return (err);

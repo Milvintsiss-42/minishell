@@ -5,40 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 14:14:24 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/09/05 14:26:25 by oaarsse          ###   ########.fr       */
+/*   Created: 2022/11/28 18:06:36 by ple-stra          #+#    #+#             */
+/*   Updated: 2022/11/30 00:13:26 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "execution.h"
 
-// check for expandable values in the args
-// if there is a $, check if it is a valid expandable value
-// if it is, expand it by replacing the value
-void	replace_expandables(t_command *cmd)
+int	expand_env_variables_in_args(t_prg_data *prg_data)
 {
 	int		i;
+	char	**arg;
+	char	*arg_save;
 
-	while (cmd->args[i])
+	i = -1;
+	while (++i < prg_data->nb_cmds_in_pl)
 	{
-		if (is_expandable(cmd->args[i]))
+		arg = prg_data->cur_pipeline[i].args;
+		while (arg && *arg)
 		{
-			// TODO: expand the value
+			arg_save = *arg;
+			*arg = expand_env_variables_in_arg(prg_data, *arg);
+			free(arg_save);
+			if (!*arg)
+			{
+				arg++;
+				while (*arg)
+					free(arg++);
+				return (0);
+			}
+			arg++;
 		}
-		i++;
 	}
-	return ;
-}
-
-// check if expandable value is valid
-// Not valid examples :
-// echo "\$?" -> $?
-// echo '$?' -> $?
-// Valid examples :
-// echo $?
-// echo "$?"
-// echo 'a' $?
-int	is_expandable(char *str)
-{
-	return ;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 03:46:11 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:25:11 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <readline/readline.h>
 # include "errno.h"
 # include "string.h"
+
+# include "tokens.h"
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -57,20 +59,21 @@ typedef enum e_streams
 // unitialized parameters.
 typedef struct s_command
 {
-	char		*cmd;
-	char		**args;
-	enum		{sep_NONE, sep_OR, sep_AND} e_sep;
-	t_stream	e_stdin;
-	t_stream	e_stdout;
-	char		*here_doc_limiter;
-	int			here_doc_pipe[2];
-	char		*infile;
-	char		*outfile;
-	t_bool		is_append_mode;
-	int			pipe_in[2];
-	int			pipe_out[2];
-	pid_t		pid;
-	t_bool		is_last;
+	char				**args;
+	t_bool				*is_expandable;
+	t_token_separator	e_sep;
+	t_bool				is_opening_parenthesis;
+	t_bool				is_closing_parenthesis;
+	t_stream			e_stdin;
+	t_stream			e_stdout;
+	char				*here_doc_limiter;
+	int					here_doc_pipe[2];
+	char				*infile;
+	char				*outfile;
+	t_bool				is_append_mode;
+	int					pipe_in[2];
+	int					pipe_out[2];
+	pid_t				pid;
 }	t_command;
 
 // Initalized at startup
@@ -82,16 +85,19 @@ typedef struct s_command
 // - amount of commands in the history
 typedef struct s_prg_data
 {
-	const char	*bin_name;
+	char		*bin_name;
 	char		**env;
 	t_command	*commands;
 	int			nb_commands;
 
+	t_command	*cur_pipeline;
+	int			nb_cmds_in_pl;
+
 	char		**history;
 	int			len_history;
-
-	int			last_exit_status;
 }	t_prg_data;
+
+extern int		g_last_exit_status;
 
 int			execute(t_prg_data *prg_data);
 void		clear_prg_data(t_prg_data *prg_data);
@@ -136,9 +142,11 @@ int			remove_env_element(t_prg_data *prg_data, char *name);
 int			get_absolute_path(char **abs_path, const char *r_path,
 				const char *env_path);
 const char	*get_path_from_env(char *const *env);
-const char	*ft_basename(const char *path);
+char		*ft_basename(const char *path);
 
-char		*get_pwd(void);
+int			get_pwd(t_prg_data *prg_data, char **r_buf);
 int			updates_env_pwd(t_prg_data *prg_data);
+
+int			update_shell_lvl(t_prg_data *prg_data);
 
 #endif
