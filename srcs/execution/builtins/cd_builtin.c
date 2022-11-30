@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:01:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:43:00 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 20:41:15 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	exec_cd_builtin(t_prg_data *prg_data, t_command *command)
 	else
 	{
 		if (chdir(command->args[1]) == -1)
-			return (ft_perror_errno(*prg_data) * 0);
+			return (ft_perror_errno(*prg_data));
 	}
 	return (updates_env_pwd_and_oldpwd(prg_data));
 }
