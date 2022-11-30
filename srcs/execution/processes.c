@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 00:11:24 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/30 14:13:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 	}
 	if (err)
 		return (err);
+	if (WIFSIGNALED(wstatus))
+		return (WTERMSIG(wstatus) + 128);
+	if (WIFSTOPPED(wstatus))
+		return (WSTOPSIG(wstatus) + 128);
 	if (WIFEXITED(wstatus))
 		return (WEXITSTATUS(wstatus));
-	if (WIFSIGNALED(wstatus))
-		return (WTERMSIG(wstatus));
-	if (WIFSTOPPED(wstatus))
-		return (WSTOPSIG(wstatus));
 	return (1);
 }
