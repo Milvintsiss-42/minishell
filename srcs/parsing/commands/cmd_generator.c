@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/29 22:16:41 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/11/30 01:11:57 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	final_touch(t_command	*command, t_lst_tokens **tokens,
 	return (1);
 }
 
-int	command_generator(t_command	*command, t_lst_tokens **tokens)
+int	command_generator(t_prg_data *data, t_command	*command,
+	t_lst_tokens **tokens)
 {
 	t_token_separator	sep;
 
@@ -40,7 +41,7 @@ int	command_generator(t_command	*command, t_lst_tokens **tokens)
 		else if (sep == e_NONE)
 			add_arg(command, *tokens);
 		else
-			if (handle_files(sep, command, tokens) == -1)
+			if (handle_files(data, sep, command, tokens) == -1)
 				return (-1);
 		(*tokens) = (*tokens)->next;
 	}
