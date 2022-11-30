@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:22:18 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/30 13:43:48 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:53:37 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static char	*get_prompt(t_prg_data *data)
 
 // ask indefinitely for a command
 // each command input is parsed and executed
-//TODO: listen for signals C or /
 void	ft_loop_input(t_prg_data *data)
 {
 	char		*line;
