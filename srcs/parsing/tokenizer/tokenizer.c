@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:34:13 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/11/07 14:28:03 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/01 00:44:23 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_lst_tokens	*tokenizer(char *str)
 	tokens = malloc(sizeof(t_lst_tokens));
 	if (!tokens)
 		return (NULL);
-	memset(tokens, 0, sizeof(t_lst_tokens));
+	ft_memset(tokens, 0, sizeof(t_lst_tokens));
 	last_cpy = str;
 	while (*str)
 	{
