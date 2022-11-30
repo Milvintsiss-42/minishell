@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:43:05 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/29 19:39:36 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:44:27 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ static int	add_env_element_from_arg(t_prg_data *prg_data, char *arg)
 int	exec_export_builtin(t_prg_data *prg_data, t_command *command)
 {
 	char	**args;
+	char	*output;
 	int		rstatus;
 	int		i;
 
 	args = command->args + 1;
 	i = 0;
+	if (!args[0])
+	{
+		if (get_output_from_env(prg_data, &output, prg_data->env, TRUE) != 0)
+			return (errno);
+		ft_putstr(output);
+		free(output);
+		return (0);
+	}
 	while (args[i])
 	{
 		rstatus = add_env_element_from_arg(prg_data, args[i]);

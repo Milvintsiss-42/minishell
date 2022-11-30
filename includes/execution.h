@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 00:24:33 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:17:34 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void		close_here_docs_pipes(t_prg_data *prg_data);
 
 int			set_infile_as_stdin(t_prg_data *prg_data, t_command *command);
 int			set_outfile_as_stdout(t_prg_data *prg_data, t_command *command);
+
+int			get_output_from_env(t_prg_data *prg_data, char **r_output,
+				char **env, t_bool alph_order);
 
 int			exec_builtin(t_prg_data *prg_data, t_command *command,
 				int is_child);
