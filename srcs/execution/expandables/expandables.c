@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:06:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 15:36:29 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:51:57 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static int	free_last_args_on_error(char **arg)
 	arg++;
 	while (*arg)
 	{
-		free(arg);
-		arg = 0;
+		free(*arg);
+		*arg = 0;
 		arg++;
 	}
 	return (0);
