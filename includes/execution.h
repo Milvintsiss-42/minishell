@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:13:59 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:41:04 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_arg_cpnt
 void		set_streams_enums(t_prg_data *prg_data);
 
 int			expand_env_variables(t_prg_data *prg_data);
-char		*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg);
+char		*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg,
+				t_bool hdoc);
 char		*add_new_cpnt_exit_status(t_prg_data *prg_data,
 				t_arg_cpnt **arg_cpnts);
 char		*add_new_cpnt_from_expandable(t_prg_data *prg_data,
@@ -61,6 +62,7 @@ void		cpy_pipe(int dst_pipe[2], int src_pipe[2]);
 void		close_pipe(int fds_pipe[2]);
 
 int			prompt_here_docs(t_prg_data *prg_data);
+int			delete_quotes_heredoc(t_prg_data *prg_data);
 int			set_here_doc_as_stdin(t_prg_data *prg_data, t_command *command);
 void		close_here_docs_pipes(t_prg_data *prg_data);
 

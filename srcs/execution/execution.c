@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:44:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:14:08 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:41:38 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	execute(t_prg_data *prg_dt)
 	ret_v = 0;
 	ft_signal_handler_ignore();
 	set_streams_enums(prg_dt);
-	if (prompt_here_docs(prg_dt) != 0)
+	if (!delete_quotes_heredoc(prg_dt) || prompt_here_docs(prg_dt) != 0)
 	{
 		clean_execution(prg_dt);
 		return (errno);

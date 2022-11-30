@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:07:42 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 18:08:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:34:24 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ static int	init_method_vars(
 	return (1);
 }
 
-char	*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg)
+char	*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg,
+	t_bool hdoc)
 {
 	t_arg_cpnt	*arg_cpnts;
 	t_arg_cpnt	*arg_cpnts_first;
@@ -110,11 +111,11 @@ char	*expand_env_variables_in_arg(t_prg_data *prg_data, char *arg)
 	{
 		startcpnt = arg;
 		while (*arg && *arg != '\"' && (*arg != '\'' || is_in_double_quotes)
-			&& *arg != '$')
+			&& (*arg != '$' || hdoc))
 			arg++;
 		if (!handle_single_quotes(prg_data, &arg_cpnts, &arg, &startcpnt))
 			return (0);
-		if (!handle_expandable(prg_data, &arg_cpnts, &arg, &startcpnt))
+		if (!hdoc && !handle_expandable(prg_data, &arg_cpnts, &arg, &startcpnt))
 			return (0);
 		if (*arg == '\"')
 			is_in_double_quotes = !is_in_double_quotes;

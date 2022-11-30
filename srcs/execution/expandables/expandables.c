@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:06:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 13:26:03 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:36:29 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	expand_env_variables_in_redirections_files(t_prg_data *prg_data,
 	{
 		save = command->outfile;
 		command->outfile = expand_env_variables_in_arg(prg_data,
-				command->outfile);
+				command->outfile, FALSE);
 		free(save);
 		if (!command->outfile)
 			return (0);
@@ -30,7 +30,7 @@ static int	expand_env_variables_in_redirections_files(t_prg_data *prg_data,
 	{
 		save = command->infile;
 		command->infile = expand_env_variables_in_arg(prg_data,
-				command->infile);
+				command->infile, FALSE);
 		free(save);
 		if (!command->infile)
 			return (0);
@@ -66,7 +66,7 @@ int	expand_env_variables(t_prg_data *prg_data)
 		while (arg && *arg)
 		{
 			arg_save = *arg;
-			*arg = expand_env_variables_in_arg(prg_data, *arg);
+			*arg = expand_env_variables_in_arg(prg_data, *arg, FALSE);
 			free(arg_save);
 			if (!*arg)
 				return (free_last_args_on_error(arg));
