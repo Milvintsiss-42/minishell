@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 01:58:09 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/28 21:27:25 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:43:35 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	init_prg_data(t_prg_data *prg_data, int argc, char const **argv,
 	if (err != 0)
 		exit_init(prg_data, err);
 	if (get_env_element_address_by_name(prg_data, "PWD") == 0)
-		err = updates_env_pwd(prg_data);
+		err = updates_env_pwd(prg_data, TRUE);
 	if (err != 0)
 		exit_init(prg_data, err);
 	err = update_shell_lvl(prg_data);
