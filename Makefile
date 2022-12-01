@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/29 22:41:31 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/12/01 04:41:37 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,9 +187,7 @@ debug		:
 			@echo "WARN: debug is enabled"
 debug_exec	:
 			@echo "WARN: debug_exec is enabled"
-noconnection:
-			@echo "WARN: Fetching submodules disabled!"
 
 .PHONY: \
- all clean fclean fcleanall re rmlibft\
- nWerror sanitize debug g3 debug_exec noconnection
+ all bonus clean fclean fcleanall re rmlibft\
+ nWerror sanitize debug g3 debug_exec
