@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 20:05:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 12:49:57 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:20:08 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,17 @@ int	exec_env_builtin(t_prg_data *prg_data, t_command *command)
 {
 	char	**env;
 	char	*output;
+	int		err;
 
 	(void)command;
+	err = 0;
 	env = prg_data->env;
 	if (!env)
 		return (0);
 	if (get_output_from_env(prg_data, &output, env, FALSE) != 0)
 		return (ft_perror_errno(*prg_data));
-	write(STDOUT_FILENO, output, ft_strlen(output));
+	if (write(STDOUT_FILENO, output, ft_strlen(output)) == -1)
+		err = ft_fperror_errno(*prg_data, "env");
 	free(output);
-	return (0);
+	return (err);
 }
