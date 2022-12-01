@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:11:47 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 00:09:39 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/01 02:11:09 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,16 @@ static int	save_std_streams(t_prg_data *prg_data,
 static int	rst_std_streams(t_prg_data *prg_data,
 	int stdin_save, int stdout_save)
 {
-	stdin_save = dup2(stdin_save, STDIN_FILENO);
-	stdout_save = dup2(stdout_save, STDOUT_FILENO);
-	if (stdin_save == -1 || stdout_save == -1)
-		return (ft_perror_errno(*prg_data));
-	return (0);
+	int	err;
+
+	err = 0;
+	if (dup2(stdin_save, STDIN_FILENO) == -1)
+		err = ft_perror_errno(*prg_data);
+	if (dup2(stdout_save, STDOUT_FILENO) == -1)
+		err = ft_perror_errno(*prg_data);
+	close(stdin_save);
+	close(stdout_save);
+	return (err);
 }
 
 int	exec_builtin(t_prg_data *prg_data, t_command *command, int is_child)
