@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:41:26 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/26 01:39:54 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:40:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,15 +104,23 @@ const char	*get_path_from_env(char *const *env)
 	return (0);
 }
 
+// ft_basename on steroids
 char	*ft_basename(const char *path)
 {
 	const char	*last_separator;
 
+	last_separator = 0;
+	if (!path || !*path)
+		return (0);
+	if (ft_strncmp(path, "/", 2) == 0)
+		return (ft_strdup("/"));
 	while (*path)
 	{
-		if (*path == '/')
+		if (*path == '/' && *(path + 1) != '\0')
 			last_separator = path;
 		path++;
 	}
+	if (!last_separator)
+		return (ft_strdup(path));
 	return (ft_strdup(++last_separator));
 }
