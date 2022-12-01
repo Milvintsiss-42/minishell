@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:13:36 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 14:13:43 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:57:14 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	wait_for_childs_to_finish(t_prg_data *prg_data)
 
 	i = -1;
 	err = 0;
+	wstatus = 0;
 	while (++i < prg_data->nb_cmds_in_pl)
 	{
 		if (waitpid(prg_data->cur_pipeline[i].pid, &wstatus, 0) == -1)
