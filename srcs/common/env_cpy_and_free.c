@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 05:01:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 05:07:29 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 03:17:08 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	copy_env_to_heap(t_prg_data *prg_data, char ***r_env_cpy, char *const *env)
 		*env_cpy = ft_strdup(*env);
 		if (!*env_cpy)
 		{
-			free_env(env_cpy);
+			free_env(*r_env_cpy);
 			return (ft_perror_errno(*prg_data));
 		}
 		env++;
