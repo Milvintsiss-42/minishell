@@ -6,12 +6,13 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:10:01 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/14 03:46:27 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/01 04:39:34 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
+// TODO: Fix thoses tests (e_SEP missing) and update description
 // This execution is not protected as it is only used for debugging purposes
 // cat << HERE > outfile | echo "hello world" | cat < infile | cat <<HERE2
 // ls -la | cat -e
