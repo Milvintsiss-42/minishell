@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:55:58 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/12/02 21:24:32 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/02 21:34:10 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	free_arg(char **arg)
 	if (!arg)
 		return (-1);
 	tmp = arg;
-	while (arg)
+	while (*arg)
 	{
 		free(*arg);
 		arg++;
