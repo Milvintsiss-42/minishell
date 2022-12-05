@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
+#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/11/29 22:41:31 by oaarsse          ###   ########.fr        #
+#    Updated: 2022/12/05 18:40:11 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS		= main.c \
 		pipe_utils.c \
 		here_doc.c \
 		prompt_here_docs.c \
+		handle_here_doc_line.c \
 		redirections.c \
 		$(addprefix builtins/, \
 			builtins.c \
