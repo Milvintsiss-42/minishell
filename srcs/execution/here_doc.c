@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:07:11 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/02 21:22:49 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/05 19:46:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,21 @@ void	close_here_docs_pipes(t_prg_data *prg_data)
 	}
 }
 
-static t_bool	expand_heredoc(t_command *command)
+static t_bool	do_expand_heredoc(t_command *command)
 {
 	t_bool	ret;
+	char	*here_doc_limiter;
 
-	if (!command->here_doc_limiter || !command->here_doc_limiter[0])
+	here_doc_limiter = command->here_doc_limiter;
+	if (!here_doc_limiter || !here_doc_limiter[0])
 		return (FALSE);
 	ret = TRUE;
-	while (*command->here_doc_limiter)
+	while (*here_doc_limiter)
 	{
-		if (*command->here_doc_limiter == '"'
-			|| *command->here_doc_limiter == '\'')
+		if (*here_doc_limiter == '"'
+			|| *here_doc_limiter == '\'')
 			ret = FALSE;
-		command->here_doc_limiter++;
+		here_doc_limiter++;
 	}
 	return (ret);
 }
@@ -63,7 +65,7 @@ int	delete_quotes_heredoc(t_prg_data *prg_data)
 	{
 		if ((&prg_data->commands[i])->here_doc_limiter)
 		{
-			prg_data->commands[i].expand_here_doc = expand_heredoc(
+			prg_data->commands[i].expand_here_doc = do_expand_heredoc(
 					&prg_data->commands[i]);
 			save = (&prg_data->commands[i])->here_doc_limiter;
 			(&prg_data->commands[i])->here_doc_limiter
