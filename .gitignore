@@ -6,3 +6,4 @@ infile*
 outfile*
 *.o
 *.supp
+.nfs*
