@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:55:58 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/12/02 21:34:10 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/06 18:37:34 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ static int	free_arg(char **arg)
 int	copy_args(char **src, char **dest)
 {
 	size_t	i;
+	char	**tmp;
 
 	if (!src || !dest)
 		return (-1);
 	i = 0;
+	tmp = dest;
 	while (*src)
 	{
 		*dest = ft_strdup(*src);
 		if (!*dest)
-			return (free_arg(dest));
+			return (free_arg(tmp));
 		i++;
 		dest++;
 		src++;
@@ -58,6 +60,7 @@ int	add_arg(t_command *command, t_lst_tokens *tokens)
 	new_arg = (char **)malloc(sizeof(char *) * (len + 2));
 	if (!new_arg)
 		return (-1);
+	ft_bzero(new_arg, sizeof(char *) * (len + 2));
 	new_arg[len] = ft_strdup(tokens->token);
 	if (!new_arg[len])
 		return (free_arg(new_arg));
