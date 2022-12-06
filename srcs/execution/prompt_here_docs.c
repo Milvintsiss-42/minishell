@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 15:40:18 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:54:48 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 	{
 		if (command->args)
 			ft_printf("%s> ", command->args[0]);
-		line = get_next_line(STDIN_FILENO);
+		line = get_next_heredoc_line(prg_data, command);
 		if (!line)
 			break ;
 		len = ft_strlen(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:34:13 by oaarsse           #+#    #+#             */
-/*   Updated: 2022/12/01 00:44:23 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:43:33 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*add_token(t_lst_tokens *tokens, char *line_start,
 {
 	if (len_to_copy == 0)
 		return (line_start);
+	if (!line_start || !tokens)
+		return (NULL);
 	if (len_to_copy == 1 && (*line_start == ' ' || *line_start == '\t'
 			|| *line_start == '\n'))
 		return (line_start + 1);

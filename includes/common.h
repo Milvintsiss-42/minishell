@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:36:55 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/01 00:36:35 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:58:51 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_command
 	t_stream			e_stdin;
 	t_stream			e_stdout;
 	char				*here_doc_limiter;
+	t_bool				expand_here_doc;
 	int					here_doc_pipe[2];
 	char				*infile;
 	char				*outfile;

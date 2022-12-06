@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 02:03:52 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 15:41:04 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:39:17 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ char		*free_cpnts(t_arg_cpnt *arg_cpnts);
 char		*build_arg(t_prg_data *prg_data, t_arg_cpnt *arg_cpnts);
 size_t		get_arg_len(t_arg_cpnt *arg_cpnts);
 
+int			handle_expandable(t_prg_data *prg_data, t_arg_cpnt **arg_cpnts,
+				char **arg,	char **startcpnt);
+int			handle_double_quotes_or_0(t_prg_data *prg_data,
+				t_arg_cpnt **arg_cpnts,	char **arg,	char **startcpnt);
+
 int			execute_pipeline_commands(t_prg_data *prg_data);
 void		launch_child(t_prg_data	*prg_data, t_command *command);
 int			wait_for_childs_to_finish(t_prg_data *prg_data);
@@ -62,6 +67,7 @@ void		cpy_pipe(int dst_pipe[2], int src_pipe[2]);
 void		close_pipe(int fds_pipe[2]);
 
 int			prompt_here_docs(t_prg_data *prg_data);
+char		*get_next_heredoc_line(t_prg_data *prg_data, t_command *command);
 int			delete_quotes_heredoc(t_prg_data *prg_data);
 int			set_here_doc_as_stdin(t_prg_data *prg_data, t_command *command);
 void		close_here_docs_pipes(t_prg_data *prg_data);

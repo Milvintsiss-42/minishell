@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:07:42 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/11/30 15:34:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:36:26 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	handle_single_quotes(
 	return (1);
 }
 
-static int	handle_expandable(
+int	handle_expandable(
 	t_prg_data *prg_data,
 	t_arg_cpnt **arg_cpnts,
 	char **arg,
@@ -61,7 +61,7 @@ static int	handle_expandable(
 	return (1);
 }
 
-static int	handle_double_quotes_or_0(
+int	handle_double_quotes_or_0(
 	t_prg_data *prg_data,
 	t_arg_cpnt **arg_cpnts,
 	char **arg,
