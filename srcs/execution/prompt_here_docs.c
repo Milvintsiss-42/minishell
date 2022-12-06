@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_here_docs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/06 17:48:49 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:04:29 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static int	on_sigint(int save_stdin)
 {
 	g_last_exit_status = 130;
 	dup2(save_stdin, STDIN_FILENO);
+	close(save_stdin);
 	write(1, "\n", 1);
 	return (130);
 }
