@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/06 17:01:02 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:48:49 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static int	is_end_of_input(t_command *command, char *line, size_t len)
 }
 
 // Returns 0 on success, errno otherwise
-static int	handle_errors(t_prg_data *prg_data, t_command *command, char *line,
-	int lines_count)
+static int	handle_errors_and_free(t_prg_data *prg_data, t_command *command,
+	char *line, int lines_count)
 {
+	free(line);
+	get_next_line(STDIN_FILENO, 1);
 	if (errno != 0 && errno != 22 && g_last_exit_status != -42)
 		return (ft_perror_errno(*prg_data));
 	if (!line && errno == 0)
@@ -61,9 +63,7 @@ static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 		lines_count++;
 		free(line);
 	}
-	free(line);
-	get_next_line(STDIN_FILENO, 1);
-	if (handle_errors(prg_data, command, line, lines_count) != 0)
+	if (handle_errors_and_free(prg_data, command, line, lines_count) != 0)
 		return (errno);
 	return (0);
 }
