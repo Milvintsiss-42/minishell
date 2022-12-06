@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/05 19:54:48 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:01:02 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	prompt_here_doc(t_prg_data *prg_data, t_command *command)
 		free(line);
 	}
 	free(line);
+	get_next_line(STDIN_FILENO, 1);
 	if (handle_errors(prg_data, command, line, lines_count) != 0)
 		return (errno);
 	return (0);

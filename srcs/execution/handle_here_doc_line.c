@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/05 19:59:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:00:53 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,11 @@ char	*get_next_heredoc_line(t_prg_data *prg_data, t_command *command)
 	char	*line;
 	char	*save;
 
-	line = get_next_line(STDIN_FILENO);
+	line = get_next_line(STDIN_FILENO, 0);
 	if (!line || !command->expand_here_doc)
 		return (line);
 	save = line;
 	line = expand_env_variables_in_line(prg_data, line);
 	free(save);
-	if (!line)
-	{
-		line = get_next_line(STDIN_FILENO);
-		while (line)
-		{
-			free(line);
-			line = get_next_line(STDIN_FILENO);
-		}
-	}
 	return (line);
 }
