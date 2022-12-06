@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 21:12:38 by ple-stra          #+#    #+#              #
-#    Updated: 2022/10/06 18:45:32 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/12/06 17:59:39 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 INC_DIR		= includes
 
-CC			= gcc
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -I $(INC_DIR)
 
 RM			= rm -rf
