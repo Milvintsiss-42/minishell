@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/06 17:00:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:37:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_next_heredoc_line(t_prg_data *prg_data, t_command *command)
 	char	*line;
 	char	*save;
 
-	line = get_next_line(STDIN_FILENO, 0);
+	line = get_next_line(STDIN_FILENO);
 	if (!line || !command->expand_here_doc)
 		return (line);
 	save = line;

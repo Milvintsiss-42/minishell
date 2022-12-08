@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_here_docs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 19:43:08 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/12/06 18:04:29 by oaarsse          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:37:35 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	handle_errors_and_free(t_prg_data *prg_data, t_command *command,
 	char *line, int lines_count)
 {
 	free(line);
-	get_next_line(STDIN_FILENO, 1);
+	clean_gnl_for_fd(STDIN_FILENO);
 	if (errno != 0 && errno != 22 && g_last_exit_status != -42)
 		return (ft_perror_errno(*prg_data));
 	if (!line && errno == 0)

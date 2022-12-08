@@ -1,0 +1,4 @@
+[submodule "libft"]
+	path = libft
+	url = https://github.com/Milvintsiss-42/libft
+	branch = v1.2.0
