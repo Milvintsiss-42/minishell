@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/12/06 17:06:40 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/12/09 18:52:08 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,6 +133,8 @@ ifeq (debug_exec, $(filter debug_exec,$(MAKECMDGOALS)))
 	CFLAGS	+= -D KDEBUG_EXEC=1
 endif
 
+GIT_SUBM	= $(shell \
+ sed -nE 's/path = +(.+)/\1\/.git/ p' .gitmodules | paste -s -)
 RM			= rm -rf
 
 all			: $(NAME)
@@ -140,6 +142,12 @@ all			: $(NAME)
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(shell dirname $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(GIT_SUBM): %/.git: .gitmodules
+ifneq (noconnection, $(filter noconnection,$(MAKECMDGOALS)))
+	@git submodule init
+	@git submodule update $*
+endif
 
 $(LIBFT)	:
 ifeq (,$(wildcard $(LIBFT)))
@@ -151,7 +159,7 @@ rmlibft		:
 			@echo "deleting libft build..."
 			@$(MAKE) -sC $(LIBFT_DIR) fclean
 
-$(NAME)		: $(LIBFT) $(OBJ)
+$(NAME)		: $(GIT_SUBM) $(LIBFT) $(OBJ)
 			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
 			
 clean		:
