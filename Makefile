@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 15:36:23 by ple-stra          #+#    #+#              #
-#    Updated: 2022/12/09 18:52:08 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/12/12 05:59:15 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,10 +144,8 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(GIT_SUBM): %/.git: .gitmodules
-ifneq (noconnection, $(filter noconnection,$(MAKECMDGOALS)))
 	@git submodule init
 	@git submodule update $*
-endif
 
 $(LIBFT)	:
 ifeq (,$(wildcard $(LIBFT)))
